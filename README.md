@@ -1,4 +1,4 @@
-# `NnsDao - icpscan is a Block Explorer and Analytics Platform for Dfinity`
+# Icpscan is a Block Explorer and Analytics Platform for Dfinity
 
 
 项目包括:
