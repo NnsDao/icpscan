@@ -78,7 +78,7 @@
             sm:pr-0
           "
         >
-          <button
+          <!-- <button
             class="
               bg-gray-800
               p-1
@@ -94,7 +94,7 @@
           >
             <span class="sr-only">View notifications</span>
             <BellIcon class="h-6 w-6" aria-hidden="true" />
-          </button>
+          </button> -->
 
           <!-- Profile dropdown -->
           <Menu as="div" class="ml-3 relative">
@@ -112,12 +112,12 @@
                   focus:ring-white
                 "
               >
-                <span class="sr-only">Open user menu</span>
+                <!-- <span class="sr-only">Open user menu</span>
                 <img
                   class="h-8 w-8 rounded-full"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt=""
-                />
+                /> -->
               </MenuButton>
             </div>
             <transition
@@ -220,7 +220,7 @@ const navigation = [
   { name: "Rank", href: "/rank", current: false },
   { name: "Projects", href: "/project", current: false },
   { name: "Node", href: "#", current: false },
-  { name: "NNS", href: "#", current: false },
+  { name: "NNS", href: "https://sdk.nnsdao.com/", current: false },
   { name: "Status", href: "#", current: false },
   { name: "About", href: "/about", current: false },
 ];

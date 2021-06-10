@@ -9,7 +9,6 @@ import { useI18n } from 'vue-i18n'
 
 const app = createApp(App)
 
-
 app.mixin({
   computed: {
     t() {
@@ -22,6 +21,7 @@ app.mixin({
     // },
   },
 });
+
 
 const router = createRouter({
   history: createWebHistory(),

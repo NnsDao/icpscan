@@ -4,16 +4,16 @@ import request from '../utils/http'
 // 不想使用缓存，在参数里传 _noCache: true 即可
 export function fetchList(query) {
   return request({
-    url: '/home/episodes',
+    url: '/block/newList',
     method: 'get',
     params: query,
   })
 }
 
-export function fetchAdd(data) {
+export function fetchRank(query) {
   return request({
-    url: '/home/episodes',
-    method: 'post',
-    data,
+    url: '/block/show',
+    method: 'get',
+    params: query,
   })
 }

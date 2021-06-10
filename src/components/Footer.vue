@@ -6,6 +6,7 @@
                 </div>
                 <div class="flex space-x-6 mt-2">
                     <a href="https://t.me/NnsDaos"> <i class="fa fa-telegram text-white fa-lg"></i> </a>
+                    <a href="https://github.com/NnsDao"> <i class="fa fa-github text-white fa-lg"></i> </a>
                     <a href="https://twitter.com/NnsDaos"> <i class="fa fa-twitter text-white fa-lg"></i> </a>
                 </div>
             </div>
@@ -14,7 +15,8 @@
 
             <div class="py-4 py-6 px-16 flex justify-between">
                 <div>
-                    <h1 class="font-semibold text-white text-sm">Copyrigth @ 2021</h1>
+                    <h1 class="font-semibold text-white text-sm">NnsDaos © 2021 </h1>
+                    <p class="font-semibold text-white text-sm my-3"> ICP捐助地址: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820 </p>
                 </div>
 
                 <div>

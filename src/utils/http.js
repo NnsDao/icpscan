@@ -62,7 +62,7 @@ const setCancel = (reqList, config, c) => {
   ci.setCancel(c)
 }
 // 修改为自己的本地服务
-let baseURL = "http://192.168.0.72:2222/api/";
+let baseURL = "http://localhost:2222/api";
 
 // 服务端地址
 const request = axios.create({
@@ -95,10 +95,11 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   response => {
+    // 成功直接返回数据
     const res = response.data
     CacheItem.endLoading(reqList, response.config) // 结束loading
     // 服务端响应成功时，搞些事情
-    if (res.code !== 200) { // 请求报错
+    if (response.status !== 200) { // 请求报错
       const msg = res.msg || '系统错误'
       throw res
     } else { // 请求成功
@@ -108,7 +109,7 @@ request.interceptors.response.use(
   },
   error => {
     error.config && CacheItem.endLoading(reqList, error.config) // 结束loading
-    console.log(error,8888)
+    console.log(error,1111)
     Promise.reject(error)
     
   }

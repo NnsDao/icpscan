@@ -169,13 +169,40 @@ const people = [
   // More people...
 ];
 
+
+
 export default defineComponent({
   components: { Header,Footer },
 
   setup() {
 
 
-    // const { t } = useI18n();
+     //获取今日 0 点 0 分 0 秒的 Unix 时间戳
+    function getTodayUnix() {
+        var date = new Date();
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        date.setMilliseconds(0);
+        return date.getTime();
+    }
+
+    function MDate(dval) {
+      
+      var interval = (new Date().getTime() - dval) / 1000;
+        if (Math.floor(interval / 60) <= 0) {//1 分钟之前
+        return '刚刚';
+      } else if (interval < 3600) {//1 分钟到 1 小时之间
+        return Math.floor(interval / 60) + ' 分钟前';
+      } else if (interval >= 3600 && (dval - this.getTodayUnix() >= 0)) {//1 小时到 1 天之间
+        return Math.floor(interval / 3600) + ' 小时前';
+      } else if (interval / (3600 * 24) <= 31) {//1 天到 1 个月（假设固定为 31 天）之间
+        return Math.ceil(interval / (3600 * 24)) + ' 天前';
+      } else {
+        return this.format(dval);
+      }
+    }
+
     console.log("setup");
     const list = ref([]);
     let _clearCache = () => {}
@@ -185,7 +212,7 @@ export default defineComponent({
     let time = 0
     const getList = () => {
       time++
-      // var num = Math.floor(Math.random() * 100 + 1);
+      var num = Math.floor(Math.random() * 100 + 1);
       const data = {
         // page: 1,
         // pageSize: 10,
@@ -201,11 +228,11 @@ export default defineComponent({
         },
       };
       fetchList(data).then((res) => {
-        console.log("APP:::", res);
-        list.value = res && res.data && res.data.list;
-        // if (time < 3) {
-        //   getList()
-        // }
+        console.log("APP:::", res.data);
+        list.value = res && res.data;
+        if (time < 3) {
+          getList()
+        }
       });
     };
     getList();
@@ -216,6 +243,8 @@ export default defineComponent({
       list,
       getList,
       onClear,
+      MDate,
+      getTodayUnix,
     };
   },
 });
@@ -322,44 +351,117 @@ export default defineComponent({
           </dl>
         </div>
 
-        <!-- content -->
+        <!-- content  latest-->
 
-        <div class="mt-10 py-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="mt-10 py-my-2 overflow-x-auto ">
           <div
-            class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+            class="py-2 align-middle inline-block min-w-full "
           >
             <h3 class="text-3xl font-bold text-gray-900">latest</h3>
 
             <div class="mt-3 shadow overflow-hidden border-b sm:rounded-lg">
+            
               <table class="min-w-full">
+                  <!-- 表头 -->
+                 <thead>
+                  <tr>
+                    <th
+                      class="
+                        px-6
+                        py-3
+                        border-b-2 border-gray-300
+                        text-left
+                        leading-4
+                        text-blue-500
+                        tracking-wider
+                      "
+                    >
+                      转账hash
+                    </th>
+                    <th
+                      class="
+                        px-6
+                        py-3
+                        border-b-2 border-gray-300
+                        text-left text-sm
+                        leading-4
+                        text-blue-500
+                        tracking-wider
+                      "
+                    >
+                      区块高度
+                    </th>
+                    <th
+                      class="
+                        px-6
+                        py-3
+                        border-b-2 border-gray-300
+                        text-left text-sm
+                        leading-4
+                        text-blue-500
+                        tracking-wider
+                      "
+                    >
+                      转账状态
+                    </th>
+                     <th
+                      class="
+                        px-6
+                        py-3
+                        border-b-2 border-gray-300
+                        text-left text-sm
+                        leading-4
+                        text-blue-500
+                        tracking-wider
+                      "
+                    >
+                      转账金额
+                    </th>
+                    <th
+                      class="
+                        px-6
+                        py-3
+                        border-b-2 border-gray-300
+                        text-left text-sm
+                        leading-4
+                        text-blue-500
+                        tracking-wider
+                      "
+                    >
+                     手续费
+                    </th>
+                    <!-- <th class="px-6 py-3 border-b-2 border-gray-300"></th> -->
+                  </tr>
+                </thead>
                 <tbody class="bg-white divide-y divide-gray-100">
-                  <tr v-for="person in people" :key="person.email">
-                    <td class="px-6 py-4 whitespace-nowrap">
+                  <tr v-for="person in list" :key="person.Id">
+                    <td class="py-4 whitespace-nowrap">
                       <div class="flex items-center">
-                        <div class="flex-shrink-0 h-10 w-10">
+                        <!-- <div class="flex-shrink-0 h-10 w-10">
                           <img
                             class="h-10 w-10 rounded-full"
-                            :src="person.image"
+                            :src="person.Mblockheight"
                             alt=""
                           />
-                        </div>
-                        <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-900">
-                            {{ person.name }}
+                        </div> -->
+                        <!-- 转账hash -->
+                        <div class="ml-4 ">
+                          <div class="w-28 text-sm font-medium text-gray-900">
+                            <p class="truncate  ...">{{ person.Tranidentifier }} </p>
                           </div>
+
+                          <!-- 时间格式化 -->
                           <div class="text-sm text-gray-500">
-                            {{ person.email }}
+                            {{   this.MDate(person.Blocktimestamp ) }}
                           </div>
                         </div>
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="text-sm text-gray-900">
-                        {{ person.title }}
+                         {{ person.Mblockheight }}
                       </div>
-                      <div class="text-sm text-gray-500">
-                        {{ person.department }}
-                      </div>
+                     
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <span
@@ -377,12 +479,12 @@ export default defineComponent({
                         Active
                       </span>
                     </td>
-                    <td
+                    <!-- <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
-                      {{ person.role }}
-                    </td>
-                    <td
+                       {{   person.Mmemo }}
+                    </td> -->
+                    <!-- <td
                       class="
                         px-6
                         py-4
@@ -392,10 +494,38 @@ export default defineComponent({
                       "
                     >
                       <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                        >Edit</a
+                        >{{ person.Mmemo }}</a
+                      >
+                    </td> -->
+
+                     <td
+                      class="
+                        px-6
+                        py-4
+                        whitespace-nowrap
+                        text-left text-sm
+                        font-medium
+                      "
+                    >
+                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
+                        >{{ person.Id }}</a
                       >
                     </td>
-                  </tr>
+
+                     <td
+                      class="
+                        px-6
+                        py-4
+                        whitespace-nowrap
+                        text-left text-sm
+                        font-medium
+                      "
+                    >
+                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
+                        >{{ person.Id }}</a
+                      >
+                    </td>
+                  </tr> 
                 </tbody>
               </table>
             </div>

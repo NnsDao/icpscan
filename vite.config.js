@@ -16,9 +16,9 @@ export default defineConfig({
     proxy: {
       // 选项写法
       '/api': {
-        target: 'https://api.polkacast.network',
+        target: 'http://localhost:8080',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, 'v1')
+        // rewrite: (path) => path.replace(/^\//, '')
       },
     },
     cors:true
