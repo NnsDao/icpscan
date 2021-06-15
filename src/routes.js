@@ -19,7 +19,7 @@ export const routes = [
     component: About,
   },
   {
-    path: '/detail',
+    path: '/detail/:id',
     meta: { title: 'Detail' },
     component: Detail,
   },

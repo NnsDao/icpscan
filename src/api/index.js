@@ -9,10 +9,26 @@ export function fetchList(query) {
     params: query,
   })
 }
-
+// 排行榜
 export function fetchRank(query) {
   return request({
     url: '/block/show',
+    method: 'get',
+    params: query,
+  })
+}
+// 详情
+export function fetchDetail(query) {
+  return request({
+    url: '/block/detail',
+    method: 'get',
+    params: query,
+  })
+}
+// 区块高度
+export function fetchBlock(query) {
+  return request({
+    url: '/block',
     method: 'get',
     params: query,
   })

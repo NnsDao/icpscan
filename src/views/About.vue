@@ -137,6 +137,37 @@ export default defineComponent({
             </div>
           </div>
 
+          <div class="xl:w-1/3 md:w-1/2 p-4">
+            <div class="border border-gray-300 p-6 rounded-lg">
+              <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </div>
+
+              <h2 class="text-lg  font-medium title-font mb-2">NnsDao Capital</h2>
+              <p class="leading-relaxed text-base"> 社群主导的DAO模式投资资本.</p>
+              
+              <div class="text-center mt-2 leading-none flex justify-between w-full">
+                <span class=" mr-3 inline-flex items-center leading-none text-sm  py-1 ">
+                </span>
+                <span class=" inline-flex items-center leading-none text-sm">
+            
+                  <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" fill-rule="evenodd">
+                      <path fill="#D8D8D8" d="M15.6 17.667h3.5V3h-3.5z"/>
+                      <path fill="#667EEA" d="M8.2 6.583v11.08h3.5V6.583z"/>
+                      <path fill="#667EEA" d="M9.2 6.583v11.08h3.5V6.583z"/>
+                      <path fill="#667EEA" d="M2.6 17.667h3.5v-7.334H2.6z"/>
+                    </g>
+                  </svg>
+                    Capital
+                </span>
+              </div>
+
+            </div>
+          </div>
+
         </div>
         <div class="my-11">       
           <p class="lg:w-1/2 w-full leading-relaxed text-base">
@@ -144,9 +175,9 @@ export default defineComponent({
           </p>
 
           <p class="lg:w-1/2 w-full leading-relaxed text-base my-3">
-            NnsDao Token : 是NnsDao社区的DAO治理通证,未来发行量10亿,每个NDT 定价 0.0001U, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.
-           
+            NnsDao Token : 是NnsDao社区的DAO治理通证,未来发行量10亿,每个NDT 暂定价格为 0.0001U, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.
           </p>
+          <p class="my-3"> 因此在NnsDao没有上线之前所有捐助的用户都将会得到一定比例的NDT,只需要你有ICP账户即可使用. </p>
           <p>  ICP捐助地址: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820 </p>
         </div>
 

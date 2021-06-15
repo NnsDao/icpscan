@@ -4,8 +4,11 @@ import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
 import { ref } from "vue";
 import Footer from "@/components/Footer.vue";
-import { fetchList }  from "../api/index.js";
+import { fetchList,fetchBlock }  from "../api/index.js";
+import { Decimal } from 'decimal.js';
+import { reactive, onMounted, watchEffect } from 'vue'
 
+import { useRouter } from "vue-router";
 
 import {
   AnnotationIcon,
@@ -21,31 +24,6 @@ const features = [
     icon: GlobeAltIcon,
   },
   {
-    name: "12.12",
-    description: "Blocks/second",
-    icon: ScaleIcon,
-  },
-  {
-    name: "105",
-    description: "Node Machines",
-    icon: LightningBoltIcon,
-  },
-  {
-    name: "233",
-    description: "Canisters",
-    icon: AnnotationIcon,
-  },
-  {
-    name: "38.15",
-    description: "Messages/second",
-    icon: AnnotationIcon,
-  },
-  {
-    name: "472786",
-    description: "Messages",
-    icon: AnnotationIcon,
-  },
-  {
     name: "160",
     description: "Price",
     icon: AnnotationIcon,
@@ -57,126 +35,16 @@ const features = [
   },
 ];
 
-const people = [
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  // More people...
-];
-
-
 
 export default defineComponent({
   components: { Header,Footer },
 
   setup() {
 
-
+    const router = useRouter();
+    function goJump(mblockheight) {
+      router.push({path:'/detail/'+mblockheight,query:{id:mblockheight}})
+    }
      //获取今日 0 点 0 分 0 秒的 Unix 时间戳
     function getTodayUnix() {
         var date = new Date();
@@ -199,8 +67,13 @@ export default defineComponent({
       } else if (interval / (3600 * 24) <= 31) {//1 天到 1 个月（假设固定为 31 天）之间
         return Math.ceil(interval / (3600 * 24)) + ' 天前';
       } else {
-        return this.format(dval);
+         return this.mydate(dval);
       }
+    }
+
+    function mydate(time_stamp ) {
+        var date = new Date(parseInt(time_stamp ) * 1000).toLocaleString('zh',{hour12:false});
+        return date;
     }
 
     console.log("setup");
@@ -236,17 +109,132 @@ export default defineComponent({
       });
     };
     getList();
+      
+    // icp数据
+
+    const blockData = reactive({
+      block: [],
+    });
+
+    const nodeData = reactive({
+      nodes: [],
+    });
+
+    const canData = reactive({
+      candid: [],
+    });
+
+    const rateData = reactive({
+      blockrate: [],
+    });
+
+    const messageData = reactive({
+      mrate: [],
+    });
+    const messageCountData = reactive({
+      mcrate: [],
+    });
+
+    const totalData = reactive({
+      total: [],
+    });
+
+    
+
+
+    const fetchBlock = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/metrics/block`
+      ).then(rsp => rsp.json())
+      blockData.block =   data.block[0]
+    }
+
+    const fetchNode = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/metrics/ic-nodes-count`
+      ).then(rsp => rsp.json())
+      nodeData.nodes =   data.ic_nodes_count[0]
+    }
+
+    const fetchCandid = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/metrics/registered-canisters`
+      ).then(rsp => rsp.json())
+      canData.candid =   data.running_canisters[0]
+    }
+
+    const fetchBlockRate = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/metrics/block-rate`
+      ).then(rsp => rsp.json())
+      rateData.blockrate =   data.block_rate[0]
+    }
+
+    const fetchMessageRate = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/metrics/message-execution-rate`
+      ).then(rsp => rsp.json())
+      messageData.mrate =   data.message_execution_rate[0]
+    }
+
+    const fetchMessageCount = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/metrics/messages-count`
+      ).then(rsp => rsp.json())
+      messageCountData.mcrate =   data.messages_count[0]
+    }
+
+     const fetchIcpTotal = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/nns/total-supply-icp`
+      ).then(rsp => rsp.json())
+      totalData.total =   data.total_supply_icp
+    }
+
+
+
+
+    onMounted(() => {
+      watchEffect(() => {
+        fetchBlock()
+        fetchNode()
+        fetchCandid()
+        fetchBlockRate()
+        fetchMessageRate()
+        fetchMessageCount()
+        fetchIcpTotal()
+      })
+    })
+    // 搜索
+    // const setQuery = () => {
+    //   state.query = state.input
+    // }
+
+    console.log(messageData,9992222)
+
 
     return {
       features,
-      people,
       list,
       getList,
       onClear,
       MDate,
       getTodayUnix,
+      Decimal,
+      goJump,
+      blockData,
+      nodeData,
+      canData,
+      rateData,
+      messageData,
+      messageCountData,
+      totalData,
+      mydate,
     };
   },
+  methods: {
+  },
+
 });
 </script>
 
@@ -298,10 +286,12 @@ export default defineComponent({
               py-2
               pl-10
             "
+            v-model="input"
             type="text"
             aria-label="Search by Account / Transaction"
             placeholder="Search by Account / Transaction"
           />
+            <button @click="setQuery">搜索</button>
         </form>
         <!-- <div class="lg:text-center">
         <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Transactions</h2>
@@ -346,6 +336,217 @@ export default defineComponent({
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
                 {{ feature.description }}
+              </dd>
+            </div>
+
+
+             <div
+              class="relative"
+              v-for="n in totalData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-500
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     n / 100000000   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    总发行量
+              </dd>
+            </div>
+
+            
+
+            <div
+              class="relative"
+              v-for="n in messageCountData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-500
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    当前总消息
+              </dd>
+            </div>
+
+
+            <div
+              class="relative"
+              v-for="n in messageData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-500
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    当前消息速度
+              </dd>
+            </div>
+
+
+
+            <div
+              class="relative"
+              v-for="n in rateData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-500
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    当前出块速度
+              </dd>
+            </div>
+
+
+             <div
+              class="relative"
+              v-for="n in canData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-500
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{ n[1] }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    运行的程序罐
+              </dd>
+            </div>
+
+
+            <div
+              class="relative"
+              v-for="n in nodeData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-500
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{ n[1] }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    节点数量
+              </dd>
+            </div>
+           
+             <div
+              class="relative"
+              v-for="b in blockData" :key="b.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-500
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                    出块速度 {{ b[1] }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    区块时间 {{   this.MDate(b[0]) }}
               </dd>
             </div>
           </dl>
@@ -436,26 +637,28 @@ export default defineComponent({
                 <tbody class="bg-white divide-y divide-gray-100">
                   <tr v-for="person in list" :key="person.Id">
                     <td class="py-4 whitespace-nowrap">
-                      <div class="flex items-center">
-                        <!-- <div class="flex-shrink-0 h-10 w-10">
-                          <img
-                            class="h-10 w-10 rounded-full"
-                            :src="person.Mblockheight"
-                            alt=""
-                          />
-                        </div> -->
-                        <!-- 转账hash -->
-                        <div class="ml-4 ">
-                          <div class="w-28 text-sm font-medium text-gray-900">
-                            <p class="truncate  ...">{{ person.Tranidentifier }} </p>
-                          </div>
+                        <a :href="href" @click="goJump(person.Mblockheight)">
+                        <div class="flex items-center">
+                          <!-- <div class="flex-shrink-0 h-10 w-10">
+                            <img
+                              class="h-10 w-10 rounded-full"
+                              :src="person.Mblockheight"
+                              alt=""
+                            />
+                          </div> -->
+                          <!-- 转账hash -->
+                          <div class="ml-4 ">
+                            <div class="w-28 text-sm font-medium text-gray-900">
+                              <p class="truncate  ...">{{ person.Tranidentifier }} </p>
+                            </div>
 
-                          <!-- 时间格式化 -->
-                          <div class="text-sm text-gray-500">
-                            {{   this.MDate(person.Blocktimestamp ) }}
+                            <!-- 时间格式化 -->
+                            <div class="text-sm text-gray-500">
+                              {{   this.MDate(person.Blocktimestamp ) }}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                        </a>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="text-sm text-gray-900">
@@ -476,7 +679,7 @@ export default defineComponent({
                           text-green-800
                         "
                       >
-                        Active
+                        {{ person.Ostatus }}
                       </span>
                     </td>
                     <!-- <td
@@ -508,7 +711,7 @@ export default defineComponent({
                       "
                     >
                       <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                        >{{ person.Id }}</a
+                        >{{    new Decimal(person.Osum).div(new Decimal(100000000)).toNumber() }}</a
                       >
                     </td>
 
@@ -522,7 +725,7 @@ export default defineComponent({
                       "
                     >
                       <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                        >{{ person.Id }}</a
+                        >0.0001 ICP</a
                       >
                     </td>
                   </tr> 

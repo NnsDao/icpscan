@@ -2,14 +2,78 @@
 import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import { ref } from "vue";
+import { fetchDetail }  from "../api/index.js";
+import { useRoute } from "vue-router";
+import * as moment from "moment";
 
 
 export default defineComponent({
   components: { Header,Footer },
 
   setup() {
-    return {
+
+    function getTodayUnix() {
+        var date = new Date();
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        date.setMilliseconds(0);
+        return date.getTime();
+    }
+
+    function MDate(dval) {
+        var dval = parseInt(dval / 1000000) ; // 转换纳秒
+        var interval = (new Date().getTime() - dval) / 1000;
+            if (Math.floor(interval / 60) <= 0) {//1 分钟之前
+            return '刚刚';
+        } else if (interval < 3600) {//1 分钟到 1 小时之间
+            return Math.floor(interval / 60) + ' 分钟前';
+        } else if (interval >= 3600 && (dval - this.getTodayUnix() >= 0)) {//1 小时到 1 天之间
+            return Math.floor(interval / 3600) + ' 小时前';
+        } else if (interval / (3600 * 24) <= 31) {//1 天到 1 个月（假设固定为 31 天）之间
+            return Math.ceil(interval / (3600 * 24)) + ' 天前';
+        } else {
+            return this.moment(dval).format("YYYY-MM-DD hh:mm:ss");
+        }
+    }
+
+
+
+    const route = useRoute();
+    const getParams = () => {
+      return route.params;
     };
+
+    const list = ref([]);
+    const getDetail = (id) => {
+      const data = {
+        id: id,
+      };
+      fetchDetail(data).then((res) => {
+        console.log("APP:::", res.data);
+        list.value = res && res.data;
+      });
+    };
+    return {
+      list,
+      getParams,
+      getDetail,
+      MDate,
+      moment,
+      getTodayUnix,
+    };
+  },
+  data() {
+    return {};
+  },
+  methods: {},
+  created: function () {
+    const { id } = this.getParams() ; 
+     this.getDetail(id);
+  },
+  mounted: function () {
+    console.log("mounted:" + this.getParams().id);
   },
 });
 </script>
@@ -18,11 +82,11 @@ export default defineComponent({
   <Header />
  <main>
 <!-- This is an example component -->
-<div class="min-h-screen flex  justify-center mt-10">
-    <div class="max-w-4xl  bg-white w-full rounded-lg shadow-xl">
+<div class="min-h-screen flex  justify-center mt-20">
+    <div class="max-w-4xl  bg-white w-full rounded-lg shadow-xl  mb-40">
         <div class="p-4 border-b">
             <h2 class="text-2xl ">
-                Transaction Information
+                Transaction Information(转账详细信息)
             </h2>
             <!-- <p class="text-sm text-gray-500">
                 Personal details and application. 
@@ -31,76 +95,91 @@ export default defineComponent({
         <div>
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Hash
+                    Hash(交易凭证)
                 </p>
                 <p>
-                    9d77d34f905b2b258a84d441234d57abe89f7656b512854d77574024d03ea056
+                    {{ list.Tranidentifier }}
                 </p>
             </div>
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Type
+                    Type(类型)
                 </p>
-                <p>
-                    Transaction
+                <p v-if="list.Otype == 'MINT'">
+                    铸造
                 </p>
-            </div>
-            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                <p class="text-gray-600">
-                    Status
-                </p>
-                <p>
-                    Completed
-                </p>
-            </div>
-            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                <p class="text-gray-600">
-                    Index
-                </p>
-                <p>
-                    43,004
-                </p>
-            </div>
-
-            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                <p class="text-gray-600">
-                    Timestamp
-                </p>
-                <p>
-                    2021/5/12下午7:36:12 UTC
-                </p>
-            </div>
-
-            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-                <p class="text-gray-600">
-                    From
-                </p>
-                <p>
-                    449ce7ad1298e2ed2781ed379aba25efc2748d14c60ede190ad7621724b9e8b2
+                 <p v-else>
+                    转账
                 </p>
             </div>
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    To
+                    symbol(通证类型)
                 </p>
                 <p>
-                    6cecb998aadd1a77722076449deef5c7ec19a7708eea0c30d454b1588aa2a9ca
+                     {{ list.Oamountcurrencysymbol }}
+                </p>
+            </div>
+
+            
+            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p class="text-gray-600">
+                    Status(交易状态)
+                </p>
+                <p v-if="list.Ostatus == 'COMPLETED'">
+                    交易完成
+                </p>
+                <p v-else>交易失败</p>
+            </div>
+            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p class="text-gray-600">
+                    Index(区块高度)
+                </p>
+                <p>
+                     {{ list.Mblockheight }}
+                </p>
+            </div>
+
+            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p class="text-gray-600">
+                    Timestamp(交易时间)
+                </p>
+                <p>
+                     {{   this.MDate(list.Mtimestamp ) }}
+                </p>
+            </div>
+
+            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p class="text-gray-600">
+                    From(发送用户ICP地址)
+                </p>
+                <p>
+                     {{ list.Oaccountaddress }}
                 </p>
             </div>
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Amount
+                    To(接收用户ICP地址)
                 </p>
                 <p>
-                    2.333 ICP
+                     {{ list.Mtimestamp }}
                 </p>
             </div>
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Fee
+                    Amount(交易金额)
+                </p>
+                <p>
+                    {{  list.Oamountvalue }}
+                </p>
+            </div>
+
+             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+                <p class="text-gray-600">
+                    Fee(手续费)
                 </p>
                 <p>
                     0.0001 ICP
@@ -109,10 +188,10 @@ export default defineComponent({
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Memo
+                    Memo(备注)
                 </p>
                 <p>
-                    14814253273985613165
+                    {{ list.Mmemo }}
                 </p>
             </div>
             <!-- <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4">

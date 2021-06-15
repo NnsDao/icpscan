@@ -5,8 +5,7 @@ import Footer from "@/components/Footer.vue";
 import { ref } from "vue";
 import { fetchRank }  from "../api/index.js";
 import { Decimal } from 'decimal.js';
-
- import * as moment from "moment";
+import * as moment from "moment";
 
  
 export default defineComponent({
@@ -227,7 +226,7 @@ export default defineComponent({
                   leading-5
                 "
               >
-                {{   new Decimal(ranks.Total ).div(new Decimal(10000000)).toNumber()  }}
+                {{   new Decimal(ranks.Total ).div(new Decimal(100000000)).toNumber()  }}
               </td>
               <td
                 class="

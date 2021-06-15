@@ -217,12 +217,13 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
-  { name: "Rank", href: "/rank", current: false },
-  { name: "Projects", href: "/project", current: false },
-  { name: "Node", href: "#", current: false },
-  { name: "NNS", href: "https://sdk.nnsdao.com/", current: false },
-  { name: "Status", href: "#", current: false },
-  { name: "About", href: "/about", current: false },
+  { name: "排行", href: "/rank", current: false },
+  { name: "项目", href: "/project", current: false },
+  { name: "节点地图", href: "#", current: false },
+  { name: "收益计算器", href: "https://nns.icpscan.co/", current: false },
+  { name: "ICP科普", href: "https://www.dailybtc.cn/dfinity/", current: false },
+  { name: "状态", href: "https://www.dailybtc.cn/dfinity/", current: false },
+  { name: "关于", href: "/about", current: false },
 ];
 
 export default {
