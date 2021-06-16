@@ -3,9 +3,10 @@ import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import { ref } from "vue";
-import { fetchDetail }  from "../api/index.js";
+import { fetchSearch }  from "../api/index.js";
 import { useRoute } from "vue-router";
 import * as moment from "moment";
+import { Decimal } from 'decimal.js';
 
 
 export default defineComponent({
@@ -48,9 +49,9 @@ export default defineComponent({
     const list = ref([]);
     const getDetail = (id) => {
       const data = {
-        id: id,
+        recorde_addr: id,
       };
-      fetchDetail(data).then((res) => {
+      fetchSearch(data).then((res) => {
         console.log("APP:::", res.data);
         list.value = res && res.data;
       });
@@ -62,6 +63,7 @@ export default defineComponent({
       MDate,
       moment,
       getTodayUnix,
+      Decimal,
     };
   },
   data() {
@@ -81,10 +83,19 @@ export default defineComponent({
 <template>
   <Header />
  <main>
-<!-- This is an example component -->
-<div class="min-h-screen flex  justify-center mt-20">
-    <div class="max-w-4xl  bg-white w-full rounded-lg shadow-xl  mb-40">
-        <div class="p-4 border-b">
+<div class="min-h-screen flex  justify-center mt-10">
+    
+    <div class="max-w-7xl  bg-white  rounded-lg shadow-xl">
+        <!-- 二级面包导航 -->
+         <ul class="flex">
+            <li><a href="/" class="underline font-semibold">首页</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li><a href="/rank" class="underline font-semibold">列表页</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li>转账详情</li>
+        </ul>
+
+        <div class="p-4 border-b mt-5">
             <h2 class="text-2xl ">
                 Transaction Information(转账详细信息)
             </h2>
@@ -118,7 +129,7 @@ export default defineComponent({
                     symbol(通证类型)
                 </p>
                 <p>
-                     {{ list.Oamountcurrencysymbol }}
+                     {{ list.Symbol }}
                 </p>
             </div>
 
@@ -127,7 +138,7 @@ export default defineComponent({
                 <p class="text-gray-600">
                     Status(交易状态)
                 </p>
-                <p v-if="list.Ostatus == 'COMPLETED'">
+                <p v-if="list.Status == 'COMPLETED'">
                     交易完成
                 </p>
                 <p v-else>交易失败</p>
@@ -137,7 +148,7 @@ export default defineComponent({
                     Index(区块高度)
                 </p>
                 <p>
-                     {{ list.Mblockheight }}
+                     {{ list.BlockHeight }}
                 </p>
             </div>
 
@@ -146,7 +157,7 @@ export default defineComponent({
                     Timestamp(交易时间)
                 </p>
                 <p>
-                     {{   this.MDate(list.Mtimestamp ) }}
+                     {{   this.MDate(list.Timestamp ) }}
                 </p>
             </div>
 
@@ -155,7 +166,7 @@ export default defineComponent({
                     From(发送用户ICP地址)
                 </p>
                 <p>
-                     {{ list.Oaccountaddress }}
+                     {{ list.From }}
                 </p>
             </div>
 
@@ -164,7 +175,7 @@ export default defineComponent({
                     To(接收用户ICP地址)
                 </p>
                 <p>
-                     {{ list.Mtimestamp }}
+                     {{ list.To }}
                 </p>
             </div>
 
@@ -173,7 +184,7 @@ export default defineComponent({
                     Amount(交易金额)
                 </p>
                 <p>
-                    {{  list.Oamountvalue }}
+                    {{     new Decimal(list.Amount ? list.Amount : 0.001 ).div(new Decimal(100000000)).toNumber()  }}
                 </p>
             </div>
 
@@ -182,7 +193,7 @@ export default defineComponent({
                     Fee(手续费)
                 </p>
                 <p>
-                    0.0001 ICP
+                    {{  new Decimal(list.Fee  ? list.Fee  : 0.0001 ).abs().div(new Decimal(100000000)).toNumber()  }} ICP
                 </p>
             </div>
 
@@ -191,7 +202,7 @@ export default defineComponent({
                     Memo(备注)
                 </p>
                 <p>
-                    {{ list.Mmemo }}
+                    {{ list.Memo }}
                 </p>
             </div>
             <!-- <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4">
@@ -226,9 +237,9 @@ export default defineComponent({
             </div> -->
         </div>
     </div>
-    <!-- support me by buying a coffee -->
-    <!-- <a href="https://www.buymeacoffee.com/danimai" target="_blank" class="bg-purple-600 p-2 rounded-lg text-white fixed right-0 bottom-0">
-        Support me
+    <!-- join daos -->
+    <!-- <a href="https://t.me/NnsDaos" target="_blank" class="bg-purple-600 p-2 rounded-lg text-white fixed right-0 bottom-0">
+        加入定投群
     </a> -->
 </div>
 

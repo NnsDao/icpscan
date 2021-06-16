@@ -25,7 +25,7 @@ export default defineComponent({
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-left py-6 px-4 sm:px-6 lg:px-8">
         <h3 class="text-3xl font-bold text-gray-900">
-            All apps 
+            All dApps 
         </h3>
         </div>
     </header>
@@ -756,6 +756,180 @@ export default defineComponent({
                 </div>
                 <a
                   href="https://dfinance.ai/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">立即体验</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+       <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="https://gateway.pinata.cloud/ipfs/QmWLk14YKmybtjVgMDJdPXeHGKeuYhK2L917ZgW2qE8rmX"
+              alt="OpenChat"
+            />
+          </div>
+          <div class="relative bg-blue-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">OpenChat</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://7e6iv-biaaa-aaaaf-aaada-cai.ic0.app/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > OpenChat </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                  OpenChat 的功能类似于 WhatsApp，不同之处在于它完全运行在互联网计算机上，这是世界上第一个互联网规模的区块链.
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/nnsdao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/OpenChat"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://7e6iv-biaaa-aaaaf-aaada-cai.ic0.app/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">立即体验</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="https://gateway.pinata.cloud/ipfs/QmV692XE1WdmHXjWULAQV2z4w95jzrZaFNDsyEEarUPnwe"
+              alt="CycleDao"
+            />
+          </div>
+          <div class="relative bg-blue-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">cycledao</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://cycledao.xyz/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > CycleDao </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                我们的使命是支持自主服务、应用程序和基础设施的创建，以促进全球访问 DFINITY 互联网计算机上的开放网络和去中心化金融。
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/cycledao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/cycle_dao"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://cycledao.xyz/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">立即体验</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="https://gateway.pinata.cloud/ipfs/QmPkUSiHrpLUbsHa7t56zoArxFp8fKsdbP7fch4re6TgCa"
+              alt="icme_app"
+            />
+          </div>
+          <div class="relative bg-blue-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">icme_app</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://sygsn-caaaa-aaaaf-qaahq-cai.raw.ic0.app/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > icme_app </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                Internet Computer 的第一个无代码网站构建器。
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/nnsdao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/icme_app"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://sygsn-caaaa-aaaaf-qaahq-cai.raw.ic0.app/"
                   class="flex items-center"
                 >
                   <p class="mr-4">立即体验</p>

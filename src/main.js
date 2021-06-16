@@ -6,6 +6,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // i18n
 import VueI18n from './language'
 import { useI18n } from 'vue-i18n'
+import Toaster from '@meforma/vue-toaster';
 
 const app = createApp(App)
 
@@ -29,5 +30,6 @@ const router = createRouter({
 })
 
 app.use(VueI18n)
+app.use(Toaster)
 app.use(router)
 app.mount('#app')

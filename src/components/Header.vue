@@ -49,17 +49,18 @@
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <a
-                v-for="item in navigation"
-                :key="item.name"
+                
+                v-for="(item,i) in navigation"
+                :key="i"
                 :href="item.href"
                 :class="[
-                  item.current
+                    item.current
                     ? 'bg-gray-900 text-white'
                     : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                   'px-3 py-2 rounded-md text-sm font-medium',
                 ]"
                 :aria-current="item.current ? 'page' : undefined"
-                >{{ item.name }}</a
+                >{{ item.name   }}</a
               >
             </div>
           </div>
@@ -216,7 +217,7 @@ import {
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/", current: false },
   { name: "排行", href: "/rank", current: false },
   { name: "项目", href: "/project", current: false },
   { name: "节点地图", href: "#", current: false },

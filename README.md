@@ -52,6 +52,6 @@ yarn serve
 + https://ic-api.internetcomputer.org/api/metrics/ic-subnet-total 子网数量
 + https://ic-api.internetcomputer.org/api/metrics/boundary-nodes-count  边界节点
 + https://ic-api.internetcomputer.org/api/node-providers/count 节点供应商 
-+ https://ic-api.internetcomputer.org/api/nns/total-supply-icp icp总供应量
++ https://ic-api.internetcomputer.org/api/nns/total-supply-icp icp总供应量  1
 + https://ic-api.internetcomputer.org/api/nns/proposals-count 提案数量
 + 

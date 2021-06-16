@@ -26,9 +26,9 @@ export function fetchDetail(query) {
   })
 }
 // 区块高度
-export function fetchBlock(query) {
+export function fetchSearch(query) {
   return request({
-    url: '/block',
+    url: '/block/search',
     method: 'get',
     params: query,
   })

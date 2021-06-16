@@ -4,36 +4,13 @@ import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
 import { ref } from "vue";
 import Footer from "@/components/Footer.vue";
-import { fetchList,fetchBlock }  from "../api/index.js";
+import { fetchList,fetchSearch }  from "../api/index.js";
 import { Decimal } from 'decimal.js';
 import { reactive, onMounted, watchEffect } from 'vue'
 
 import { useRouter } from "vue-router";
 
-import {
-  AnnotationIcon,
-  GlobeAltIcon,
-  LightningBoltIcon,
-  ScaleIcon,
-} from "@heroicons/vue/outline";
 
-const features = [
-  {
-    name: "12,740,164",
-    description: "Blocks High",
-    icon: GlobeAltIcon,
-  },
-  {
-    name: "160",
-    description: "Price",
-    icon: AnnotationIcon,
-  },
-  {
-    name: "1.333B",
-    description: "Marketcap",
-    icon: AnnotationIcon,
-  },
-];
 
 
 export default defineComponent({
@@ -45,6 +22,10 @@ export default defineComponent({
     function goJump(mblockheight) {
       router.push({path:'/detail/'+mblockheight,query:{id:mblockheight}})
     }
+    function goAccount(maccount) {
+      router.push({path:'/account/'+maccount,query:{id:maccount}})
+    }
+    
      //获取今日 0 点 0 分 0 秒的 Unix 时间戳
     function getTodayUnix() {
         var date = new Date();
@@ -139,6 +120,10 @@ export default defineComponent({
       total: [],
     });
 
+    const proposalslData = reactive({
+      proposals: [],
+    });
+
     
 
 
@@ -191,6 +176,15 @@ export default defineComponent({
       totalData.total =   data.total_supply_icp
     }
 
+    // 提案数量
+
+     const fetchProposals = async () => {
+      const data = await fetch(
+        `https://ic-api.internetcomputer.org/api/nns/proposals-count`
+      ).then(rsp => rsp.json())
+      proposalslData.proposals =   data.proposals_count
+    }
+
 
 
 
@@ -203,25 +197,57 @@ export default defineComponent({
         fetchMessageRate()
         fetchMessageCount()
         fetchIcpTotal()
+        fetchProposals()
       })
     })
+
+    const queryData = reactive({
+      query: '',
+    });
+
     // 搜索
-    // const setQuery = () => {
-    //   state.query = state.input
-    // }
 
-    console.log(messageData,9992222)
+     const searchList = ref([]);
 
+    function goSearch() {
+      if( !this.account || this.account == null || this.account == undefined ){
+        this.$toast.warning(`请输入账户地址或转账哈希值`);
+        return false ;
+      }
+      const data = {
+        recorde_addr: this.account,
+      };
+      fetchSearch(data).then((res) => {
+        console.log("APP:::", res.data);
+        searchList.value = res && res.data;
+        if(res.data.Account == '' && res.data.Tranidentifier == ''){
+          this.$toast.warning(`请输入正确的转账哈希值`);
+          return false ;
+        }else if(res.data.Type == "2" && res.data.Account != ''){
+          // 跳转到账户地址列表页
+          this.goAccount(this.account) ; 
+          return false ;
+        }else if(res.data.Type == "1" && res.data.Tranidentifier != ''){
+          this.goJump(this.account) ; 
+        }else{
+          this.$toast.warning(`未找到任何信息,请换个地址试试`);
+          return false ;
+        }
+      });
+
+    }
 
     return {
-      features,
       list,
       getList,
+      searchList,
       onClear,
       MDate,
       getTodayUnix,
       Decimal,
       goJump,
+      goAccount,
+      goSearch,
       blockData,
       nodeData,
       canData,
@@ -229,7 +255,9 @@ export default defineComponent({
       messageData,
       messageCountData,
       totalData,
+      proposalslData,
       mydate,
+      account:''
     };
   },
   methods: {
@@ -253,7 +281,7 @@ export default defineComponent({
     <div class="py-3 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- 搜索 -->
-        <form class="relative">
+        <div class="relative">
           <svg
             width="20"
             height="20"
@@ -278,21 +306,23 @@ export default defineComponent({
               focus:border-light-blue-500
               focus:ring-1 focus:ring-light-blue-500
               focus:outline-none
-              w-full
+              w-9/12
               text-sm text-black
               placeholder-gray-500
               border border-gray-200
               rounded-md
               py-2
               pl-10
+              mr-20
             "
-            v-model="input"
+            v-model="account"
             type="text"
             aria-label="Search by Account / Transaction"
             placeholder="Search by Account / Transaction"
           />
-            <button @click="setQuery">搜索</button>
-        </form>
+          <button  @click="goSearch()" class="bg-indigo-500 px-5 py-3 text-sm shadow-sm font-medium tracking-wider border text-indigo-100 rounded-full  hover:shadow-lg hover:bg-indigo-400">搜索</button>
+            
+        </div>
         <!-- <div class="lg:text-center">
         <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Transactions</h2>
         <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -305,44 +335,12 @@ export default defineComponent({
 
         <div class="mt-10">
           <dl class="md:space-y-3 md:grid md:grid-cols-4">
-            <div
-              v-for="feature in features"
-              :key="feature.name"
-              class="relative"
-            >
-              <dt>
-                <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-500
-                    text-white
-                  "
-                >
-                  <component
-                    :is="feature.icon"
-                    class="h-6 w-6"
-                    aria-hidden="true"
-                  />
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900">
-                  {{ feature.name }}
-                </p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                {{ feature.description }}
-              </dd>
-            </div>
+
 
 
              <div
               class="relative"
-              v-for="n in totalData" :key="n.key"
+              v-for="b in blockData" :key="b.key"
             >
               <dt>
                 <div
@@ -354,81 +352,21 @@ export default defineComponent({
                     h-12
                     w-12
                     rounded-md
-                    bg-indigo-500
+                    bg-indigo-50
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     n / 100000000   }}
+                    出块数量 {{ b[1] }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    总发行量
+                    区块时间 {{   this.MDate(b[0]) }}
               </dd>
             </div>
 
-            
-
-            <div
-              class="relative"
-              v-for="n in messageCountData" :key="n.key"
-            >
-              <dt>
-                <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-500
-                    text-white
-                  "
-                >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     Math.floor(n[1] * 10000) / 10000   }}
-                </p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                    当前总消息
-              </dd>
-            </div>
-
-
-            <div
-              class="relative"
-              v-for="n in messageData" :key="n.key"
-            >
-              <dt>
-                <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-500
-                    text-white
-                  "
-                >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     Math.floor(n[1] * 10000) / 10000   }}
-                </p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                    当前消息速度
-              </dd>
-            </div>
 
 
 
@@ -461,6 +399,128 @@ export default defineComponent({
               </dd>
             </div>
 
+             <div
+              class="relative"
+              v-for="n in proposalslData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmVf4fnL8CbQszVcrK1Mhn4GUus7J38BV93iE1mFYhpetF" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     n   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    提案数量
+              </dd>
+            </div>
+
+
+             <div
+              class="relative"
+              v-for="n in totalData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-700
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmVHQugXWXtUHdmFqQWX8NNiNVmZTq5FYQ3beTpCweLFPw" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     n / 100000000   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    总发行量
+              </dd>
+            </div>
+
+            
+
+            <div
+              class="relative"
+              v-for="n in messageCountData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmWVW7H5zirP83wNXLRrZvcvH8eWgdawfUpUdzJue9ph88" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    当前总消息
+              </dd>
+            </div>
+
+
+            <div
+              class="relative"
+              v-for="n in messageData" :key="n.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmaAbFqf1ZXZ4vpKLCMM7qwyKyJMqf3PTHCPCgCBq6EWB9" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    当前消息速度
+              </dd>
+            </div>
+
+
+
 
              <div
               class="relative"
@@ -476,11 +536,11 @@ export default defineComponent({
                     h-12
                     w-12
                     rounded-md
-                    bg-indigo-500
+                    bg-indigo-50
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="https://gateway.pinata.cloud/ipfs/QmdAMDPpo82WHPz9jAcgLMuEGq4pNdVmPVzbnRu43a3diA" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{ n[1] }}
@@ -506,11 +566,11 @@ export default defineComponent({
                     h-12
                     w-12
                     rounded-md
-                    bg-indigo-500
+                    bg-indigo-50
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="https://gateway.pinata.cloud/ipfs/QmSY1FY8CjDSiPtmvPQvPRAy39RHpWQq33vcequmNv1YKf" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{ n[1] }}
@@ -521,34 +581,7 @@ export default defineComponent({
               </dd>
             </div>
            
-             <div
-              class="relative"
-              v-for="b in blockData" :key="b.key"
-            >
-              <dt>
-                <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-500
-                    text-white
-                  "
-                >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                    出块速度 {{ b[1] }}
-                </p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                    区块时间 {{   this.MDate(b[0]) }}
-              </dd>
-            </div>
+            
           </dl>
         </div>
 
@@ -636,8 +669,7 @@ export default defineComponent({
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-100">
                   <tr v-for="person in list" :key="person.Id">
-                    <td class="py-4 whitespace-nowrap">
-                        <a :href="href" @click="goJump(person.Mblockheight)">
+                    <td class="py-4 whitespace-nowrap cursor-pointer" @click="goJump(person.Tranidentifier)">
                         <div class="flex items-center">
                           <!-- <div class="flex-shrink-0 h-10 w-10">
                             <img
@@ -658,7 +690,6 @@ export default defineComponent({
                             </div>
                           </div>
                         </div>
-                        </a>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="text-sm text-gray-900">
@@ -678,29 +709,21 @@ export default defineComponent({
                           bg-green-100
                           text-green-800
                         "
+                        v-if="person.Ostatus == 'COMPLETED'"
                       >
-                        {{ person.Ostatus }}
+                          交易完成
                       </span>
+                      <span   class="
+                          px-2
+                          inline-flex
+                          text-xs
+                          leading-5
+                          font-semibold
+                          rounded-full
+                          bg-green-100
+                          text-red-800
+                        " v-else> 交易失败</span>
                     </td>
-                    <!-- <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                    >
-                       {{   person.Mmemo }}
-                    </td> -->
-                    <!-- <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-right text-sm
-                        font-medium
-                      "
-                    >
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                        >{{ person.Mmemo }}</a
-                      >
-                    </td> -->
-
                      <td
                       class="
                         px-6
@@ -710,7 +733,7 @@ export default defineComponent({
                         font-medium
                       "
                     >
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
+                      <a class="text-indigo-600 hover:text-indigo-900"
                         >{{    new Decimal(person.Osum).div(new Decimal(100000000)).toNumber() }}</a
                       >
                     </td>
@@ -724,7 +747,7 @@ export default defineComponent({
                         font-medium
                       "
                     >
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
+                      <a class="text-indigo-600 hover:text-indigo-900"
                         >0.0001 ICP</a
                       >
                     </td>
