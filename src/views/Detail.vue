@@ -27,13 +27,13 @@ export default defineComponent({
         var dval = parseInt(dval / 1000000) ; // 转换纳秒
         var interval = (new Date().getTime() - dval) / 1000;
             if (Math.floor(interval / 60) <= 0) {//1 分钟之前
-            return '刚刚';
+            return 'just now';
         } else if (interval < 3600) {//1 分钟到 1 小时之间
-            return Math.floor(interval / 60) + ' 分钟前';
+            return Math.floor(interval / 60) + ' minutes ago';
         } else if (interval >= 3600 && (dval - this.getTodayUnix() >= 0)) {//1 小时到 1 天之间
-            return Math.floor(interval / 3600) + ' 小时前';
+            return Math.floor(interval / 3600) + ' hours ago';
         } else if (interval / (3600 * 24) <= 31) {//1 天到 1 个月（假设固定为 31 天）之间
-            return Math.ceil(interval / (3600 * 24)) + ' 天前';
+            return Math.ceil(interval / (3600 * 24)) + ' days ago';
         } else {
             return this.moment(dval).format("YYYY-MM-DD hh:mm:ss");
         }
@@ -88,16 +88,16 @@ export default defineComponent({
     <div class="max-w-7xl  bg-white  rounded-lg shadow-xl">
         <!-- 二级面包导航 -->
          <ul class="flex">
-            <li><a href="/" class="underline font-semibold">首页</a></li>
+            <li><a href="/" class="underline font-semibold"> {{ t('iHome') }}</a></li>
             <li><span class="mx-2">/</span></li>
-            <li><a href="/rank" class="underline font-semibold">列表页</a></li>
+            <li><a href="/rank" class="underline font-semibold"> {{ t('iList') }}</a></li>
             <li><span class="mx-2">/</span></li>
-            <li>转账详情</li>
+            <li> {{ t('iTransferDetail') }}</li>
         </ul>
 
         <div class="p-4 border-b mt-5">
             <h2 class="text-2xl ">
-                Transaction Information(转账详细信息)
+                {{ t('iTransactionInfo') }}
             </h2>
             <!-- <p class="text-sm text-gray-500">
                 Personal details and application. 
@@ -106,7 +106,7 @@ export default defineComponent({
         <div>
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Hash(交易凭证)
+                   {{ t('iTransferHash') }}
                 </p>
                 <p>
                     {{ list.Tranidentifier }}
@@ -114,19 +114,19 @@ export default defineComponent({
             </div>
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Type(类型)
+                   {{ t('iType') }}
                 </p>
                 <p v-if="list.Otype == 'MINT'">
-                    铸造
+                     {{ t('iMint') }}
                 </p>
                  <p v-else>
-                    转账
+                     {{ t('iTransfer') }}
                 </p>
             </div>
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    symbol(通证类型)
+                    {{ t('iSymbol') }}
                 </p>
                 <p>
                      {{ list.Symbol }}
@@ -136,16 +136,16 @@ export default defineComponent({
             
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Status(交易状态)
+                    {{ t('iTransferStatus') }}
                 </p>
                 <p v-if="list.Status == 'COMPLETED'">
-                    交易完成
+                     {{ t('iOstatusSuccess') }}
                 </p>
-                <p v-else>交易失败</p>
+                <p v-else> {{ t('iOstatusFail') }}</p>
             </div>
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Index(区块高度)
+                      {{ t('iBlockHeight') }}
                 </p>
                 <p>
                      {{ list.BlockHeight }}
@@ -154,7 +154,7 @@ export default defineComponent({
 
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Timestamp(交易时间)
+                     {{ t('iTimestamp') }}
                 </p>
                 <p>
                      {{   this.MDate(list.Timestamp ) }}
@@ -163,7 +163,7 @@ export default defineComponent({
 
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    From(发送用户ICP地址)
+                    {{ t('iFromAddress') }}
                 </p>
                 <p>
                      {{ list.From }}
@@ -172,7 +172,7 @@ export default defineComponent({
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    To(接收用户ICP地址)
+                    {{ t('iToAddress') }}
                 </p>
                 <p>
                      {{ list.To }}
@@ -181,7 +181,7 @@ export default defineComponent({
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Amount(交易金额)
+                    {{ t('iAmount') }}
                 </p>
                 <p>
                     {{     new Decimal(list.Amount ? list.Amount : 0.001 ).div(new Decimal(100000000)).toNumber()  }}
@@ -190,7 +190,7 @@ export default defineComponent({
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Fee(手续费)
+                    {{ t('iFee') }}
                 </p>
                 <p>
                     {{  new Decimal(list.Fee  ? list.Fee  : 0.0001 ).abs().div(new Decimal(100000000)).toNumber()  }} ICP
@@ -199,7 +199,7 @@ export default defineComponent({
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Memo(备注)
+                   {{ t('iMemo') }}
                 </p>
                 <p>
                     {{ list.Memo }}

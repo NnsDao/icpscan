@@ -97,16 +97,16 @@ export default defineComponent({
     <div class="w-2/4  bg-white  rounded-lg shadow-xl ml-40 h-screen">
         <!-- 二级面包导航 -->
          <ul class="flex">
-            <li><a href="/" class="underline font-semibold">首页</a></li>
+            <li><a href="/" class="underline font-semibold">{{ t('iHome') }}</a></li>
             <li><span class="mx-2">/</span></li>
-            <li><a href="/rank" class="underline font-semibold">排行榜</a></li>
+            <li><a href="/rank" class="underline font-semibold">{{ t('iRank') }}</a></li>
             <li><span class="mx-2">/</span></li>
-            <li>账户详情</li>
+            <li>{{ t('iAccountDetail') }}</li>
         </ul>
         <div class="mt-5">
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Address(账户地址)
+                    {{ t('iAccountAddress') }}
                 </p>
                 <p>
                     {{ list.Account }}
@@ -114,16 +114,16 @@ export default defineComponent({
             </div>
             <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                   Value(余额)
+                   {{ t('iAccountValue') }}
                 </p>
                 <p >
-                    {{     new Decimal(list.Balance ).div(new Decimal(100000000)).toNumber()  }}
+                    {{     new Decimal(list.Balance ? list.Balance : 1 ).div(new Decimal(100000000)).toNumber()  }}
                 </p>
             </div>
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Token(通证类型)
+                    {{ t('iSymbol') }}
                 </p>
                 <p>
                      <!-- {{ list.Symbol }} -->
@@ -152,7 +152,7 @@ export default defineComponent({
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
-                    Memo(备注)
+                    {{ t('iMemo') }}
                 </p>
                 <p>
                     {{ list.Memo }}

@@ -79,6 +79,15 @@
             sm:pr-0
           "
         >
+
+
+        <div class="relative inline-flex">
+          <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
+          <select  v-model="locale"  @change="getTypeSelected" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            <option v-for="items in localeSelect"  v-bind:value="items.value"  :key="items.label">{{ items.value}}</option>
+
+          </select>
+        </div>
           <!-- <button
             class="
               bg-gray-800
@@ -96,7 +105,6 @@
             <span class="sr-only">View notifications</span>
             <BellIcon class="h-6 w-6" aria-hidden="true" />
           </button> -->
-
           <!-- Profile dropdown -->
           <Menu as="div" class="ml-3 relative">
             <div>
@@ -216,8 +224,28 @@ import {
 } from "@headlessui/vue";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
 
-const navigation = [
-  { name: "Home", href: "/", current: false },
+// 多语言
+
+import defaultData from "../config/default-data";
+import { SETLOCALE } from "@/language";
+
+const locale = defaultData.locale === 'zh-CN' ? 'zh-CN'  : 'en-US'
+console.log(locale,77)
+
+let  navigation = [
+    { name:  'Index', href: "/", current: false },
+    { name: "Rank", href: "/rank", current: false },
+    { name: "Project", href: "/project", current: false },
+    { name: "Node Map", href: "#", current: false },
+    { name: "Calculator", href: "https://nns.icpscan.co/", current: false },
+    { name: "Guide", href: "https://www.dailybtc.cn/dfinity/", current: false },
+    { name: "Status", href: "https://www.dailybtc.cn/dfinity/", current: false },
+    { name: "About", href: "/about", current: false },
+  ]; 
+
+if(locale != 'en-US'){
+  navigation  = [
+  { name:  '首页', href: "/", current: false },
   { name: "排行", href: "/rank", current: false },
   { name: "项目", href: "/project", current: false },
   { name: "节点地图", href: "#", current: false },
@@ -225,7 +253,8 @@ const navigation = [
   { name: "ICP科普", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "状态", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "关于", href: "/about", current: false },
-];
+  ];
+}
 
 export default {
   components: {
@@ -243,11 +272,25 @@ export default {
   setup() {
     const open = ref(false);
 
+    // const store = useStore();
+    // let locale = defaultData.locale;
+    // 可选语言
+    const localeSelect = defaultData.localeSelect;
+
     return {
       navigation,
       open,
+      localeSelect,
+      locale,
     };
   },
+  methods:{
+    getTypeSelected(){
+        //获取选中的违规类型
+        SETLOCALE(this.locale );
+    }
+
+  }
 };
 </script>
 

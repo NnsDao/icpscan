@@ -27,13 +27,13 @@ export default defineComponent({
       var dval = parseInt(val / 1000000) ; // 转换纳秒
       var interval = (new Date().getTime() - dval) / 1000;
         if (Math.floor(interval / 60) <= 0) {//1 分钟之前
-        return '刚刚';
+        return 'just now';
       } else if (interval < 3600) {//1 分钟到 1 小时之间
-        return Math.floor(interval / 60) + ' 分钟前';
+        return Math.floor(interval / 60) + ' minutes ago';
       } else if (interval >= 3600 && (dval - this.getTodayUnix() >= 0)) {//1 小时到 1 天之间
-        return Math.floor(interval / 3600) + ' 小时前';
+        return Math.floor(interval / 3600) + ' hours ago';
       } else if (interval / (3600 * 24) <= 31) {//1 天到 1 个月（假设固定为 31 天）之间
-        return Math.ceil(interval / (3600 * 24)) + ' 天前';
+        return Math.ceil(interval / (3600 * 24)) + ' days ago';
       } else {
         return this.moment(dval).format("YYYY-MM-DD hh:mm:ss");
       }
@@ -92,7 +92,7 @@ export default defineComponent({
       <div class="mt-5  mx-auto relative items-center justify-center">
         <header class="bg-white">
           <div class="max-w-7xl mx-left py-6 px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold text-gray-900">All 地址排名</h3>
+            <h3 class="text-3xl font-bold text-gray-900"> {{ t('iAllRank') }}</h3>
           </div>
         </header>
       </div>
@@ -126,7 +126,7 @@ export default defineComponent({
                   tracking-wider
                 "
               >
-                名次
+                {{ t('iRanking') }}
               </th>
               <th
                 class="
@@ -140,7 +140,7 @@ export default defineComponent({
                   w-1/6 ...
                 "
               >
-                地址
+                {{ t('iAccountAddress') }}
               </th>
               <th
                 class="
@@ -154,7 +154,7 @@ export default defineComponent({
                   
                 "
               >
-                余额(ICP)
+                {{ t('iAccountValue') }}
               </th>
               <th
                 class="
@@ -168,7 +168,7 @@ export default defineComponent({
                   
                 "
               >
-                转账次数
+                {{ t('iTransfersNumber') }}
               </th>
               <th
                 class="
@@ -181,7 +181,7 @@ export default defineComponent({
                   tracking-wider
                 "
               >
-                活跃度
+                {{ t('iAddressActive') }}
               </th>
               <th
                 class="
@@ -195,7 +195,7 @@ export default defineComponent({
                   
                 "
               >
-                最后转账时间
+                {{ t('iLastTransferTime') }}
               </th>
               <th class="px-6 py-3 border-b-2 border-gray-300"></th>
             </tr>
@@ -226,7 +226,7 @@ export default defineComponent({
                   leading-5
                 "
               >
-                {{   new Decimal(ranks.Total ).div(new Decimal(100000000)).toNumber()  }}
+                {{   new Decimal(ranks.Total ? ranks.Total : 0.1 ).div(new Decimal(100000000)).toNumber()  }}
               </td>
               <td
                 class="

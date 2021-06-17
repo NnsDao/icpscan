@@ -8,7 +8,14 @@ import VueI18n from './language'
 import { useI18n } from 'vue-i18n'
 import Toaster from '@meforma/vue-toaster';
 
+import defalutData from "./config/default-data";
+
 const app = createApp(App)
+
+// 判断语言
+const locale = defalutData.locale === 'zh-CN' ? 'zh-CN'  : 'en-US'
+
+console.log(locale,89899)
 
 app.mixin({
   computed: {

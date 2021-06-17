@@ -40,13 +40,13 @@ export default defineComponent({
       
       var interval = (new Date().getTime() - dval) / 1000;
         if (Math.floor(interval / 60) <= 0) {//1 分钟之前
-        return '刚刚';
+        return 'just now';
       } else if (interval < 3600) {//1 分钟到 1 小时之间
-        return Math.floor(interval / 60) + ' 分钟前';
+        return Math.floor(interval / 60) + ' minutes ago';
       } else if (interval >= 3600 && (dval - this.getTodayUnix() >= 0)) {//1 小时到 1 天之间
-        return Math.floor(interval / 3600) + ' 小时前';
+        return Math.floor(interval / 3600) + ' hours ago';
       } else if (interval / (3600 * 24) <= 31) {//1 天到 1 个月（假设固定为 31 天）之间
-        return Math.ceil(interval / (3600 * 24)) + ' 天前';
+        return Math.ceil(interval / (3600 * 24)) + ' days ago';
       } else {
          return this.mydate(dval);
       }
@@ -125,8 +125,6 @@ export default defineComponent({
     });
 
     
-
-
     const fetchBlock = async () => {
       const data = await fetch(
         `https://ic-api.internetcomputer.org/api/metrics/block`
@@ -223,7 +221,7 @@ export default defineComponent({
         if(res.data.Account == '' && res.data.Tranidentifier == ''){
           this.$toast.warning(`请输入正确的转账哈希值`);
           return false ;
-        }else if(res.data.Type == "2" && res.data.Account != ''){
+        }else if(res.data.Type == "2" && res.data.Account != '' && res.data.Balance != ''){
           // 跳转到账户地址列表页
           this.goAccount(this.account) ; 
           return false ;
@@ -257,12 +255,15 @@ export default defineComponent({
       totalData,
       proposalslData,
       mydate,
-      account:''
+      account:'',
     };
   },
   methods: {
   },
-
+  mounted(){
+  	// TODO轮循
+    
+  },
 });
 </script>
 
@@ -273,13 +274,13 @@ export default defineComponent({
   <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h3 class="text-3xl font-bold text-gray-900">
-        {{t('iname')}}
+        {{ t('iName') }}
       </h3>
     </div>
   </header>
-  <main>
+  <main >
     <div class="py-3 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 ">
         <!-- 搜索 -->
         <div class="relative">
           <svg
@@ -306,7 +307,7 @@ export default defineComponent({
               focus:border-light-blue-500
               focus:ring-1 focus:ring-light-blue-500
               focus:outline-none
-              w-9/12
+              w-6/12
               text-sm text-black
               placeholder-gray-500
               border border-gray-200
@@ -317,10 +318,10 @@ export default defineComponent({
             "
             v-model="account"
             type="text"
-            aria-label="Search by Account / Transaction"
-            placeholder="Search by Account / Transaction"
+            aria-label=" Search by Account / Transaction "
+            placeholder=" Search by Account / Transaction "
           />
-          <button  @click="goSearch()" class="bg-indigo-500 px-5 py-3 text-sm shadow-sm font-medium tracking-wider border text-indigo-100 rounded-full  hover:shadow-lg hover:bg-indigo-400">搜索</button>
+          <button  @click="goSearch()" class="bg-indigo-500 px-5 py-3 text-sm shadow-sm font-medium tracking-wider border text-indigo-100 rounded-full  hover:shadow-lg hover:bg-indigo-400">{{ t('iSearch') }}</button>
             
         </div>
         <!-- <div class="lg:text-center">
@@ -333,11 +334,8 @@ export default defineComponent({
         </p>
       </div> -->
 
-        <div class="mt-10">
+        <div class="m-10">
           <dl class="md:space-y-3 md:grid md:grid-cols-4">
-
-
-
              <div
               class="relative"
               v-for="b in blockData" :key="b.key"
@@ -359,11 +357,11 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                    出块数量 {{ b[1] }}
+                    {{ t('iBlockCount') }} {{ b[1] }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    区块时间 {{   this.MDate(b[0]) }}
+                    {{ t('iBlockDate') }} {{   this.MDate(b[0]) }}
               </dd>
             </div>
 
@@ -395,7 +393,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    当前出块速度
+                   {{ t('iBlockSpeed') }}
               </dd>
             </div>
 
@@ -424,7 +422,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    提案数量
+                    {{ t('iProposals') }}
               </dd>
             </div>
 
@@ -454,7 +452,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    总发行量
+                     {{ t('iTotal') }}
               </dd>
             </div>
 
@@ -485,7 +483,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    当前总消息
+                    {{ t('icountMessage') }}
               </dd>
             </div>
 
@@ -515,7 +513,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    当前消息速度
+                     {{ t('iMessageSpeed') }}
               </dd>
             </div>
 
@@ -547,7 +545,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    运行的程序罐
+                    {{ t('iDappCandid') }}
               </dd>
             </div>
 
@@ -577,7 +575,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    节点数量
+                    {{ t('iNodeCount') }}
               </dd>
             </div>
            
@@ -591,7 +589,7 @@ export default defineComponent({
           <div
             class="py-2 align-middle inline-block min-w-full "
           >
-            <h3 class="text-3xl font-bold text-gray-900">latest</h3>
+            <h3 class="text-3xl font-bold text-gray-900"> {{ t('iLatest') }}</h3>
 
             <div class="mt-3 shadow overflow-hidden border-b sm:rounded-lg">
             
@@ -610,7 +608,7 @@ export default defineComponent({
                         tracking-wider
                       "
                     >
-                      转账hash
+                     {{ t('iTransferHash') }}
                     </th>
                     <th
                       class="
@@ -623,7 +621,7 @@ export default defineComponent({
                         tracking-wider
                       "
                     >
-                      区块高度
+                      {{ t('iBlockHeight') }}
                     </th>
                     <th
                       class="
@@ -636,7 +634,7 @@ export default defineComponent({
                         tracking-wider
                       "
                     >
-                      转账状态
+                      {{ t('iTransferStatus') }}
                     </th>
                      <th
                       class="
@@ -649,7 +647,7 @@ export default defineComponent({
                         tracking-wider
                       "
                     >
-                      转账金额
+                      {{ t('iTransferToken') }}
                     </th>
                     <th
                       class="
@@ -662,7 +660,7 @@ export default defineComponent({
                         tracking-wider
                       "
                     >
-                     手续费
+                     {{ t('iFee') }}
                     </th>
                     <!-- <th class="px-6 py-3 border-b-2 border-gray-300"></th> -->
                   </tr>
@@ -711,7 +709,7 @@ export default defineComponent({
                         "
                         v-if="person.Ostatus == 'COMPLETED'"
                       >
-                          交易完成
+                          {{ t('iOstatusSuccess') }}
                       </span>
                       <span   class="
                           px-2
@@ -722,7 +720,7 @@ export default defineComponent({
                           rounded-full
                           bg-green-100
                           text-red-800
-                        " v-else> 交易失败</span>
+                        " v-else>  {{ t('iOstatusFail') }}</span>
                     </td>
                      <td
                       class="
