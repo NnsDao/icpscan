@@ -335,7 +335,7 @@ export default defineComponent({
       </div> -->
 
         <div class="m-10">
-          <dl class="md:space-y-3 md:grid md:grid-cols-4">
+          <dl class="flex flex-wrap  gap-20 md:space-y-3 md:grid md:grid-cols-4">
              <div
               class="relative"
               v-for="b in blockData" :key="b.key"

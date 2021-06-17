@@ -36,7 +36,7 @@
           <div class="flex-shrink-0 flex items-center mr-7">
             <!-- <img
               class="block lg:hidden h-8 w-auto"
-              src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp"
+              src="https://gateway.pinata.cloud/ipfs/QmPL14z774r2Yw3a3xp3j2SxD3DRMjTwis9eXwicdAra1x"
               alt="Icpscan"
             /> -->
             <a href="/">
