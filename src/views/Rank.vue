@@ -5,7 +5,7 @@ import Footer from "@/components/Footer.vue";
 import { ref } from "vue";
 import { fetchRank }  from "../api/index.js";
 import { Decimal } from 'decimal.js';
-import * as moment from "moment";
+import moment from "moment";
 import { reactive, onMounted, watchEffect } from 'vue'
 
  
