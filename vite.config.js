@@ -10,18 +10,19 @@ export default defineConfig({
     },
   },
   server: {
-    open: true,
+    // open: true,
     // host:'0.0.0.0',
-    port:2222,
+    // port:2222,
+    // https:true,
     proxy: {
       // 选项写法
       '/api': {
         target: 'https://api.baqiye.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^api\//, 'api')
+        // rewrite: (path) => path.replace(/^api\//, 'api')
       },
     },
-    cors:true
+    // cors:true
   },
 
 })

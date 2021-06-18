@@ -62,7 +62,7 @@ const setCancel = (reqList, config, c) => {
   ci.setCancel(c)
 }
 // 修改为自己的本地服务
-let baseURL = "api";
+let baseURL = "/api";
 
 // 服务端地址
 const request = axios.create({
