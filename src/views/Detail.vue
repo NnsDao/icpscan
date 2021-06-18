@@ -7,6 +7,7 @@ import { fetchSearch }  from "../api/index.js";
 import { useRoute } from "vue-router";
 import * as moment from "moment";
 import { Decimal } from 'decimal.js';
+import { reactive, onMounted, watchEffect } from 'vue'
 
 
 export default defineComponent({
@@ -47,15 +48,30 @@ export default defineComponent({
     };
 
     const list = ref([]);
-    const getDetail = (id) => {
-      const data = {
-        recorde_addr: id,
-      };
-      fetchSearch(data).then((res) => {
-        console.log("APP:::", res.data);
-        list.value = res && res.data;
-      });
-    };
+    // const getDetail = (id) => {
+    //   const data = {
+    //     recorde_addr: id,
+    //   };
+    //   fetchSearch(data).then((res) => {
+    //     console.log("APP:::", res.data);
+    //     list.value = res && res.data;
+    //   });
+    // };
+
+    const getDetail = async (id) => {
+        console.log(id,34324)
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+      ).then(rsp => rsp.json())
+      list.value=   res && res.data;
+    }
+
+    // onMounted(() => {
+    //   watchEffect(() => {
+    //     getDetail()
+    //   })
+    // })
+
     return {
       list,
       getParams,
@@ -83,9 +99,9 @@ export default defineComponent({
 <template>
   <Header />
  <main>
-<div class="min-h-screen flex  justify-center mt-10">
+<div class="min-h-screen  m-10">
     
-    <div class="max-w-7xl  bg-white  rounded-lg shadow-xl">
+    <div class="max-w-7xl  bg-white  rounded-lg ">
         <!-- 二级面包导航 -->
          <ul class="flex">
             <li><a href="/" class="underline font-semibold"> {{ t('iHome') }}</a></li>

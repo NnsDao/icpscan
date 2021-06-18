@@ -6,6 +6,7 @@ import { ref } from "vue";
 import { fetchRank }  from "../api/index.js";
 import { Decimal } from 'decimal.js';
 import * as moment from "moment";
+import { reactive, onMounted, watchEffect } from 'vue'
 
  
 export default defineComponent({
@@ -46,32 +47,48 @@ export default defineComponent({
       _clearCache();
     };
     let time = 0
-    const getList = () => {
-      time++
-      var num = Math.floor(Math.random() * 100 + 1);
-      const data = {
-        // page: 1,
-        // pageSize: 10,
-        // loading 回调函数
-        _loadingCallback: (l) => {
-          console.log("loading:::", l);
-        },
-        // 是否使用缓存
-        _cache: true,
-        // 清除缓存方法 
-        _clearCache: (clear) => {
-          _clearCache = clear;
-        },
-      };
-      fetchRank(data).then((res) => {
-        console.log("APP:::", res.data);
-        list.value = res && res.data;
-        if (time < 3) {
-          getList()
-        }
-      });
-    };
-    getList();
+    // const getList = () => {
+    //   time++
+    //   var num = Math.floor(Math.random() * 100 + 1);
+    //   const data = {
+    //     // page: 1,
+    //     // pageSize: 10,
+    //     // loading 回调函数
+    //     _loadingCallback: (l) => {
+    //       console.log("loading:::", l);
+    //     },
+    //     // 是否使用缓存
+    //     _cache: true,
+    //     // 清除缓存方法 
+    //     _clearCache: (clear) => {
+    //       _clearCache = clear;
+    //     },
+    //   };
+    //   fetchRank(data).then((res) => {
+    //     console.log("APP:::", res.data);
+    //     list.value = res && res.data;
+    //     if (time < 3) {
+    //       getList()
+    //     }
+    //   });
+    // };
+    // getList();
+
+    // 单个请求 TODO CORS 
+    const getList = async () => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/show`
+      ).then(rsp => rsp.json())
+      list.value=   res && res.data;
+    }
+
+    onMounted(() => {
+      watchEffect(() => {
+        getList()
+      })
+    })
+
+
     return {
       list,
       getList,
