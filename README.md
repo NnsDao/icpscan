@@ -1,11 +1,11 @@
 # Icpscan is a Block Explorer and Analytics Platform for Dfinity
 
 
-项目包括:
+Project includes:
 
-- [Transactions](https://icpscan.cn/) (区块链查询)
-- [Project](https://icpscan.cn/project) (项目列表)
-- [Rank](https://icpscan.cn/rank) (ICP持有地址排行榜)
+- [Transactions](https://icpscan.co/) (Search)
+- [Project](https://icpscan.co/project) (Project)
+- [Rank](https://icpscan.co/rank) (ICP Holder Address Rank)
 
 
 ### Getting Started 🚀
@@ -31,15 +31,23 @@ yarn build
 yarn serve
 ```
 
+### Completed
+
++ Multi-language , [Vue3 i18n](https://github.com/intlify/vue-i18n-next)
++ ICP Holder Address Rank
++ Some ICP projects
++ NNS Calculator
++ Internetcomputer API
+
 ### TODO
 
-+ 多语言
-  + [Vue3 i18n](https://github.com/intlify/vue-i18n-next)
-+ Api 接入
-+ 数据整理
++ Node Map
++ Mobile version adaptation
++ Internetcomputer Status
++ Fee Rank
++ NNS rule
 
-
-### 一些api
+### api
 
 + https://ic-api.internetcomputer.org/api/metrics/block 当前的出块数  1
 + https://ic-api.internetcomputer.org/api/metrics/message-execution-rate 当前的消息速度 1
@@ -54,4 +62,3 @@ yarn serve
 + https://ic-api.internetcomputer.org/api/node-providers/count 节点供应商 
 + https://ic-api.internetcomputer.org/api/nns/total-supply-icp icp总供应量  1
 + https://ic-api.internetcomputer.org/api/nns/proposals-count 提案数量
-+ 

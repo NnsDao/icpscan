@@ -230,7 +230,7 @@ import defaultData from "../config/default-data";
 import { SETLOCALE } from "@/language";
 
 const locale = defaultData.locale === 'zh-CN' ? 'zh-CN'  : 'en-US'
-console.log(locale,77)
+// console.log(locale,77)
 
 let  navigation = [
     { name:  'Index', href: "/", current: false },

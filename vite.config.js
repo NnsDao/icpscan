@@ -18,7 +18,7 @@ export default defineConfig({
       '/api': {
         target: 'https://api.baqiye.com',
         changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\//, '')
+        rewrite: (path) => path.replace(/^api\//, 'api')
       },
     },
     cors:true

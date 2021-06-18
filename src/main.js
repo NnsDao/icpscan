@@ -15,8 +15,6 @@ const app = createApp(App)
 // 判断语言
 const locale = defalutData.locale === 'zh-CN' ? 'zh-CN'  : 'en-US'
 
-console.log(locale,89899)
-
 app.mixin({
   computed: {
     t() {
