@@ -13,7 +13,6 @@ export default defineConfig({
     // open: true,
     // host:'0.0.0.0',
     // port:2222,
-    // https:true,
     proxy: {
       // 选项写法
       '/api': {

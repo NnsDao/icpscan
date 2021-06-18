@@ -59,37 +59,45 @@ export default defineComponent({
 
     console.log("setup");
     const list = ref([]);
-    let _clearCache = () => {}
-    let onClear = () => {
-      _clearCache();
-    };
-    let time = 0
-    const getList = () => {
-      time++
-      var num = Math.floor(Math.random() * 100 + 1);
-      const data = {
-        // page: 1,
-        // pageSize: 10,
-        // loading 回调函数
-        _loadingCallback: (l) => {
-          console.log("loading:::", l);
-        },
-        // 是否使用缓存
-        _cache: true,
-        // 清除缓存方法 
-        _clearCache: (clear) => {
-          _clearCache = clear;
-        },
-      };
-      fetchList(data).then((res) => {
-        console.log("APP:::", res.data);
-        list.value = res && res.data;
-        if (time < 3) {
-          getList()
-        }
-      });
-    };
-    getList();
+    // let _clearCache = () => {}
+    // let onClear = () => {
+    //   _clearCache();
+    // };
+    // let time = 0
+    // const getList = () => {
+      // time++
+      // var num = Math.floor(Math.random() * 100 + 1);
+      // const data = {
+      //   // page: 1,
+      //   // pageSize: 10,
+      //   // loading 回调函数
+      //   _loadingCallback: (l) => {
+      //     console.log("loading:::", l);
+      //   },
+      //   // 是否使用缓存
+      //   _cache: true,
+      //   // 清除缓存方法 
+      //   _clearCache: (clear) => {
+      //     _clearCache = clear;
+      //   },
+      // };
+      // fetchList(data).then((res) => {
+      //   console.log("APP:::", res.data);
+      //   list.value = res && res.data;
+      //   if (time < 3) {
+      //     getList()
+      //   }
+      // });
+      
+    // };
+    // 单个请求 TODO CORS 
+    const getList = async () => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/show`
+      ).then(rsp => rsp.json())
+      list.value=   res && res.data;
+    }
+
       
     // icp数据
 
@@ -196,6 +204,7 @@ export default defineComponent({
         fetchMessageCount()
         fetchIcpTotal()
         fetchProposals()
+        getList()
       })
     })
 
@@ -239,7 +248,7 @@ export default defineComponent({
       list,
       getList,
       searchList,
-      onClear,
+      // onClear,
       MDate,
       getTodayUnix,
       Decimal,
