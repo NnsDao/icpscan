@@ -167,15 +167,6 @@ export default defineComponent({
       messageCountData.mcrate =   data.messages_count[0]
     }
 
-
-    const fetchTest = async () => {
-      const data = await fetch(
-        `https://api.baqiye.com/api/block/show`
-      ).then(rsp => rsp.json())
-      messageCountData.mcrate =   data.messages_count[0]
-    }
-
-
      const fetchIcpTotal = async () => {
       const data = await fetch(
         `https://ic-api.internetcomputer.org/api/nns/total-supply-icp`
@@ -205,7 +196,6 @@ export default defineComponent({
         fetchMessageCount()
         fetchIcpTotal()
         fetchProposals()
-        fetchTest()
       })
     })
 
