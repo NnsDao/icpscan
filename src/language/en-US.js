@@ -74,7 +74,7 @@ export default  {
    
     'iNnsDaoTokenSub':'Therefore, before NnsDao is online, all users who donated will get a certain percentage of NDT, and you only need to have an ICP account to use it.',
 
-    'iNnsDaoSponsor':'ICP Address: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'Sponsors ICP Address: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
 
 
     //nav

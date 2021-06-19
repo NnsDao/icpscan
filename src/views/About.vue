@@ -186,7 +186,33 @@ export default defineComponent({
             {{ t('iNnsDaoToken') }}
           </p>
           <p class="my-3"> {{ t('iNnsDaoTokenSub') }} </p>
-          <p>   {{ t('iNnsDaoSponsor') }} </p>
+          <p class="hover:underline">  
+            <a   target="_blank" href="https://www.icpscan.co/account/76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820?id=76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820"> 
+              {{ t('iNnsDaoSponsor') }} 
+            </a>
+          </p>
+        </div>
+
+
+        <div class="flex  justify-start mt-4">
+          <!-- todo api接入 -->
+          <p  class="text-white mb-2">Sponsors Holders:</p>
+            <div class="w-12 mr-5">
+              <a href="https://twitter.com/teslack1" rel="nofollow" target="_blank">
+                 <img src="https://gateway.pinata.cloud/ipfs/QmYwaYwA3HMg7n63ZnYSCMtyQu6Z6BcGyJZfd8GzQhe4XD"
+                        alt="HWRD" class="object-cover w-10 h-10 mx-4 rounded-full">
+              </a>
+              <h3 class="font-bold text-gray-100 hover:underline ml-3 mt-3">HWRD</h3>
+            </div>
+            <!-- 
+            <div class="w-12">
+              <a href="https://twitter.com/kkdelos" rel="nofollow" target="_blank">
+                 <img src="https://gateway.pinata.cloud/ipfs/QmYwaYwA3HMg7n63ZnYSCMtyQu6Z6BcGyJZfd8GzQhe4XD"
+                        alt="HWRD" class="object-cover w-10 h-10 mx-4 rounded-full">
+              </a>
+              <h3 class="font-bold text-gray-100 hover:underline ml-3 mt-3">HWRD</h3>
+            </div> -->
+           
         </div>
 
       </div>
