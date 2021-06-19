@@ -65,30 +65,29 @@ export default defineComponent({
     // };
     // let time = 0
     // const getList = () => {
-      // time++
-      // var num = Math.floor(Math.random() * 100 + 1);
-      // const data = {
-      //   // page: 1,
-      //   // pageSize: 10,
-      //   // loading 回调函数
-      //   _loadingCallback: (l) => {
-      //     console.log("loading:::", l);
-      //   },
-      //   // 是否使用缓存
-      //   _cache: true,
-      //   // 清除缓存方法 
-      //   _clearCache: (clear) => {
-      //     _clearCache = clear;
-      //   },
-      // };
-      // fetchList(data).then((res) => {
-      //   console.log("APP:::", res.data);
-      //   list.value = res && res.data;
-      //   if (time < 3) {
-      //     getList()
-      //   }
-      // });
-      
+    //   time++
+    //   var num = Math.floor(Math.random() * 100 + 1);
+    //   const data = {
+    //     // page: 1,
+    //     // pageSize: 10,
+    //     // loading 回调函数
+    //     _loadingCallback: (l) => {
+    //       console.log("loading:::", l);
+    //     },
+    //     // 是否使用缓存
+    //     _cache: true,
+    //     // 清除缓存方法 
+    //     _clearCache: (clear) => {
+    //       _clearCache = clear;
+    //     },
+    //   };
+    //   fetchList(data).then((res) => {
+    //     console.log("APP:::", res.data);
+    //     list.value = res && res.data;
+    //     if (time < 3) {
+    //       getList()
+    //     }
+    //   });
     // };
     // 单个请求 TODO CORS 
     const getList = async () => {
@@ -217,36 +216,62 @@ export default defineComponent({
      const searchList = ref([]);
 
     function goSearch() {
-      if( !this.account || this.account == null || this.account == undefined ){
+      let that = this;
+      if( !that.account || that.account == null || that.account == undefined ){
         this.$toast.warning(`请输入账户地址或转账哈希值`);
         return false ;
       }
-      const data = {
-        recorde_addr: this.account,
-      };
-      fetchSearch(data).then((res) => {
-        console.log("APP:::", res.data);
+     
+      that.getDetail(that,that.account)
+
+      // const data = {
+      //   recorde_addr: this.account,
+      // };
+      // fetchSearch(data).then((res) => {
+      //   console.log("APP:::", res.data);
+      //   searchList.value = res && res.data;
+      //   if(res.data.Account == '' && res.data.Tranidentifier == ''){
+      //     this.$toast.warning(`请输入正确的转账哈希值`);
+      //     return false ;
+      //   }else if(res.data.Type == "2" && res.data.Account != '' && res.data.Balance != ''){
+      //     // 跳转到账户地址列表页
+      //     this.goAccount(this.account) ; 
+      //     return false ;
+      //   }else if(res.data.Type == "1" && res.data.Tranidentifier != ''){
+      //     this.goJump(this.account) ; 
+      //   }else{
+      //     this.$toast.warning(`未找到任何信息,请换个地址试试`);
+      //     return false ;
+      //   }
+      // });
+
+    }
+
+    const getDetail = async (that,id) => {
+        const res = await fetch(
+          `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+        ).then(rsp => rsp.json())
+
         searchList.value = res && res.data;
         if(res.data.Account == '' && res.data.Tranidentifier == ''){
-          this.$toast.warning(`请输入正确的转账哈希值`);
+          that.$toast.warning(`请输入正确的转账哈希值`);
           return false ;
         }else if(res.data.Type == "2" && res.data.Account != '' && res.data.Balance != ''){
           // 跳转到账户地址列表页
-          this.goAccount(this.account) ; 
+          that.goAccount(that.account) ; 
           return false ;
         }else if(res.data.Type == "1" && res.data.Tranidentifier != ''){
-          this.goJump(this.account) ; 
+          that.goJump(that.account) ; 
         }else{
-          this.$toast.warning(`未找到任何信息,请换个地址试试`);
+          that.$toast.warning(`未找到任何信息,请换个地址试试`);
           return false ;
         }
-      });
-
-    }
+      }
 
     return {
       list,
       getList,
+      getDetail,
       searchList,
       // onClear,
       MDate,

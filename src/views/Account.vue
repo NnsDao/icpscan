@@ -48,15 +48,24 @@ export default defineComponent({
     };
 
     const list = ref([]);
-    const getDetail = (id) => {
-      const data = {
-        recorde_addr: id,
-      };
-      fetchSearch(data).then((res) => {
-        console.log("APP:::", res.data);
-        list.value = res && res.data;
-      });
-    };
+    // const getDetail = (id) => {
+    //   const data = {
+    //     recorde_addr: id,
+    //   };
+    //   fetchSearch(data).then((res) => {
+    //     console.log("APP:::", res.data);
+    //     list.value = res && res.data;
+    //   });
+    // };
+
+
+    const getDetail = async (id) => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+      ).then(rsp => rsp.json())
+      list.value=   res && res.data;
+    }
+
     return {
       list,
       getParams,
