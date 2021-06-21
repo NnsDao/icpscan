@@ -700,8 +700,8 @@ export default defineComponent({
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-100">
-                  <tr v-for="person in list" :key="person.Id">
-                    <td class="py-4 whitespace-nowrap cursor-pointer" @click="goJump(person.Tranidentifier)">
+                  <tr  v-for="person in list" :key="person.Id"  >
+                    <td class="py-4 whitespace-nowrap cursor-pointer hover:underline "  @click="goJump(person.Tranidentifier)" >
                         <div class="flex items-center">
                           <!-- <div class="flex-shrink-0 h-10 w-10">
                             <img
@@ -712,7 +712,7 @@ export default defineComponent({
                           </div> -->
                           <!-- 转账hash -->
                           <div class="ml-4 ">
-                            <div class="w-28 text-sm font-medium text-gray-900">
+                            <div class="w-28 text-sm font-medium text-purple-700  ">
                               <p class="truncate  ...">{{ person.Tranidentifier }} </p>
                             </div>
 
