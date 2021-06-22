@@ -5,6 +5,7 @@ import Project from './views/Project.vue'
 import Rank from './views/Rank.vue'
 import Account from './views/Account.vue'
 import NotFound from './views/NotFound.vue'
+import Chart from './views/Chart.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -38,6 +39,11 @@ export const routes = [
     path: '/account/:id',
     meta: { title: 'Account' },
     component: Account,
+  },
+  {
+    path: '/chart',
+    meta: { title: 'Chart' },
+    component: Chart,
   },
   { path: '/:path(.*)', component: NotFound },
 ]
