@@ -103,7 +103,7 @@ export default defineComponent({
  <main>
 <div class="flex flex-row  mt-10">
     
-    <div class="w-2/4  bg-white  rounded-lg shadow-xl ml-40 h-screen">
+    <div class="w-2/4  bg-white  rounded-lg shadow-xl ml-40 h-auto mb-10">
         <!-- 二级面包导航 -->
          <ul class="flex">
             <li><a href="/" class="underline font-semibold">{{ t('iHome') }}</a></li>
@@ -171,34 +171,31 @@ export default defineComponent({
         </div>
     </div>
 </div>
+
 <!-- tab -->
-<!-- <div class="flex justify-center items-center h-screen">
 
-    <div class="w-1/2 mx-auto mt-4  rounded">
-        <ul id="tabs" class="inline-flex w-full px-1 pt-2 ">
-            <li class="px-4 py-2 -mb-px font-semibold text-gray-800 border-b-2 border-blue-400 rounded-t opacity-50"><a id="default-tab" href="#first">All</a></li>
-            <li class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a href="#second">Clothes</a></li>
-            <li class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a href="#third">Electronics</a></li>
-            <li class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50"><a href="#fourth">Others</a></li>
-        </ul>
+<!-- <div class="md:px-32 py-8 w-full">
+  <div class="shadow overflow-hidden rounded border-b border-gray-200">
+    <table class="min-w-full bg-white">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="text-left py-3 px-4 uppercase font-semibold text-sm">{{ t("iTransactions")}}</th>
+        </tr>
+      </thead>
+    <tbody class="text-gray-700">
 
-        <div id="tab-contents">
-            <div id="first" class="p-4">
-            First tab
-            </div>
-            <div id="second" class="hidden p-4">
-            Second tab
-            </div>
-            <div id="third" class="hidden p-4">
-            Third tab
-            </div>
-            <div id="fourth" class="hidden p-4">
-            Fourth tab
-            </div>
-        </div>
-    </div>
-
+      <tr>
+        <td class="w-1/3 text-left py-3 px-4">Lian</td>
+        <td class="w-1/3 text-left py-3 px-4">Smith</td>
+        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
+        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+      </tr>
+     
+    </tbody>
+    </table>
+  </div>
 </div> -->
+
 
 </main>
   <Footer /> 

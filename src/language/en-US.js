@@ -14,6 +14,7 @@ export default  {
     'iNodeCount': 'Node Machines' ,
     'iLatest': 'Latest' ,
     'iTransferHash': 'Transactions Hash' ,
+    'iTransactions': 'Transactions' ,
     'iOstatusSuccess': 'Completed' ,
     'iOstatusFail': 'Fail' ,
     'iBlockHeight': 'Block Height' ,

@@ -233,10 +233,10 @@ const locale = defaultData.locale === 'zh-CN' ? 'zh-CN'  : 'en-US'
 // console.log(locale,77)
 
 let  navigation = [
-    { name:  'Index', href: "/", current: false },
+    { name:  'Home', href: "/", current: false },
     { name: "Rank", href: "/rank", current: false },
     { name: "Project", href: "/project", current: false },
-    { name: "Node Map", href: "#", current: false },
+    { name: "Node Map", href: "/chart", current: false },
     { name: "Calculator", href: "https://nns.icpscan.co/", current: false },
     { name: "Guide", href: "https://www.dailybtc.cn/dfinity/", current: false },
     { name: "Status", href: "https://www.dailybtc.cn/dfinity/", current: false },
@@ -248,7 +248,7 @@ if(locale != 'en-US'){
   { name:  '首页', href: "/", current: false },
   { name: "排行", href: "/rank", current: false },
   { name: "项目", href: "/project", current: false },
-  { name: "节点地图", href: "#", current: false },
+  { name: "节点地图", href: "/chart", current: false },
   { name: "收益计算器", href: "https://nns.icpscan.co/", current: false },
   { name: "ICP科普", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "状态", href: "https://www.dailybtc.cn/dfinity/", current: false },

@@ -14,6 +14,7 @@ export default  {
     'iNodeCount': '节点数量' ,
     'iLatest': '最新' ,
     'iTransferHash': '转账hash' ,
+    'iTransactions': '转账' ,
     'iOstatusSuccess': '交易完成' ,
     'iOstatusFail': '交易失败' ,
     'iBlockHeight': '区块高度' ,

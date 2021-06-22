@@ -63,3 +63,4 @@ yarn serve
 + https://ic-api.internetcomputer.org/api/nns/total-supply-icp icp总供应量  1
 + https://ic-api.internetcomputer.org/api/nns/proposals-count 提案数量
 + https://ic-api.internetcomputer.org/api/boundary-node-locations map
++ https://ic-api.internetcomputer.org/api/locations map 
