@@ -19,7 +19,7 @@ export default defineComponent({
  <main>
 
 <div>
-  <div class="relative items-center justify-center">
+  <div class="">
     <!-- Header Text-->
     
     <header class="bg-white shadow">
@@ -28,11 +28,10 @@ export default defineComponent({
             All dApps 
         </h3>
         </div>
-    </header>
+    </header> 
 
-
-      <div
-      class="container mx-auto mt-10 grid grid-cols-2 gap-8 md:grid-cols-3 xl:grid-cols-4"
+     <div
+      class="container mx-auto mt-10 grid grid-cols-4 gap-10 md:grid-cols-3 xl:grid-cols-4"
     >
       <div class="">
         <div class="flex flex-row bg-white shadow-sm rounded-xl p-4">
@@ -183,7 +182,7 @@ export default defineComponent({
     <!-- app -->
 
     <div
-      class="container mx-auto mt-20 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3"
+      class="container mx-auto mt-10 grid grid-cols-3 gap-4 md:grid-cols-2 xl:grid-cols-3"
     >
       <div>
         <div class="rounded-lg overflow-hidden">

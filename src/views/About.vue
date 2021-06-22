@@ -186,10 +186,8 @@ export default defineComponent({
             {{ t('iNnsDaoToken') }}
           </p>
           <p class="my-3"> {{ t('iNnsDaoTokenSub') }} </p>
-          <p class="hover:underline">  
-            <a   target="_blank" href="https://www.icpscan.co/account/76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820?id=76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820"> 
+          <p class="my-5">  
               {{ t('iNnsDaoSponsor') }} 
-            </a>
           </p>
         </div>
 

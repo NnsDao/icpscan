@@ -12,9 +12,12 @@ export default  {
     'iMessageSpeed': '当前消息速度' ,
     'iDappCandid': '运行的程序罐' ,
     'iNodeCount': '节点数量' ,
+    'iPriceName':'ICP价格',
+    'iIcpRank':'全球排名',
     'iLatest': '最新' ,
     'iTransferHash': '转账hash' ,
     'iTransactions': '转账' ,
+    'iTransactionsDesc': '当前账户的所有转账' ,
     'iOstatusSuccess': '交易完成' ,
     'iOstatusFail': '交易失败' ,
     'iBlockHeight': '区块高度' ,
@@ -77,6 +80,9 @@ export default  {
     'iNnsDaoTokenSub':'因此在NnsDao没有上线之前所有捐助的用户都将会得到一定比例的NDT,只需要你有ICP账户即可使用.',
 
     'iNnsDaoSponsor':'赞助 ICP 地址: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+
+    'iKnowUser':'未知用户',
+
 
 
     //nav

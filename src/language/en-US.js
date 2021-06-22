@@ -12,9 +12,12 @@ export default  {
     'iMessageSpeed': 'Message Rate' ,
     'iDappCandid': 'Dapp Canisters' ,
     'iNodeCount': 'Node Machines' ,
+    'iIcpRank':'CMC Rank',
+    'iPriceName':'ICP Price',
     'iLatest': 'Latest' ,
     'iTransferHash': 'Transactions Hash' ,
     'iTransactions': 'Transactions' ,
+    'iTransactionsDesc': 'All transfers from the current account.' ,
     'iOstatusSuccess': 'Completed' ,
     'iOstatusFail': 'Fail' ,
     'iBlockHeight': 'Block Height' ,
@@ -76,6 +79,7 @@ export default  {
     'iNnsDaoTokenSub':'Therefore, before NnsDao is online, all users who donated will get a certain percentage of NDT, and you only need to have an ICP account to use it.',
 
     'iNnsDaoSponsor':'Sponsors ICP Address: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iKnowUser':'Unknown user',
 
 
     //nav

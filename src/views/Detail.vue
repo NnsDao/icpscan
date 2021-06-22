@@ -98,7 +98,7 @@ export default defineComponent({
 <template>
   <Header />
  <main>
-<div class="min-h-screen  m-10">
+<div class="container mx-auto mt-5">
     
     <div class="max-w-7xl  bg-white  rounded-lg ">
         <!-- 二级面包导航 -->

@@ -131,6 +131,10 @@ export default defineComponent({
       proposals: [],
     });
 
+    const priceData = reactive({
+      ticker: [],
+    });
+
     
     const fetchBlock = async () => {
       const data = await fetch(
@@ -181,35 +185,26 @@ export default defineComponent({
       totalData.total =   data.total_supply_icp
     }
 
-    // 提案数量
 
-     const fetchProposals = async () => {
+    const  fetchProposals = async () => {
       const data = await fetch(
         `https://ic-api.internetcomputer.org/api/nns/proposals-count`
       ).then(rsp => rsp.json())
       proposalslData.proposals =   data.proposals_count
     }
 
+    // price  交易总量
+    const  fetchPrice = async () => {
+      const data = await fetch(
+        `https://ic.rocks/api/markets`
+      ).then(rsp => rsp.json())
+      priceData.ticker =   data.ticker
+    }
 
 
-
-    onMounted(() => {
-      watchEffect(() => {
-        fetchBlock()
-        fetchNode()
-        fetchCandid()
-        fetchBlockRate()
-        fetchMessageRate()
-        fetchMessageCount()
-        fetchIcpTotal()
-        fetchProposals()
-        getList()
-      })
-    })
-
-    const queryData = reactive({
-      query: '',
-    });
+    // const queryData = reactive({
+    //   query: '',
+    // });
 
     // 搜索
 
@@ -247,6 +242,18 @@ export default defineComponent({
 
     }
 
+    function testTime(){
+      let that = this ;
+      that.getList()
+      that.fetchProposals()
+      that.fetchNode()
+      that.fetchBlockRate()
+      that.fetchMessageRate()
+      that.fetchMessageCount()
+      that.fetchBlock()
+      that.fetchPrice()
+    }
+
     const getDetail = async (that,id) => {
         const res = await fetch(
           `https://api.baqiye.com/api/block/search?recorde_addr=`+id
@@ -266,18 +273,45 @@ export default defineComponent({
           that.$toast.warning(`未找到任何信息,请换个地址试试`);
           return false ;
         }
-      }
+    }
+
+
+    onMounted(() => {
+    
+      watchEffect(() => {
+        fetchPrice()
+        fetchBlock()
+        fetchNode()
+        fetchCandid()
+        fetchBlockRate()
+        fetchMessageRate()
+        fetchMessageCount()
+        fetchIcpTotal()
+        fetchProposals()
+        getList()
+      })
+    })
 
     return {
       list,
       getList,
       getDetail,
+      fetchProposals,
+      fetchNode,
+      fetchBlock,
+      fetchBlockRate,
+      fetchMessageRate,
+      fetchMessageCount,
+      fetchIcpTotal,
+      fetchPrice,
       searchList,
+      timer: "",
       // onClear,
       MDate,
       getTodayUnix,
       Decimal,
       goJump,
+      testTime,
       goAccount,
       goSearch,
       blockData,
@@ -288,15 +322,25 @@ export default defineComponent({
       messageCountData,
       totalData,
       proposalslData,
+      priceData,
       mydate,
       account:'',
+      num:'',
     };
   },
+  created() {
+    
+  },
   methods: {
+   
   },
   mounted(){
   	// TODO轮循
-    
+    let that = this; 
+    window.setInterval(() => {
+      setTimeout(  this.testTime(), 2000);
+    }, 3000);
+  
   },
 });
 </script>
@@ -314,7 +358,7 @@ export default defineComponent({
   </header>
   <main >
     <div class="py-3 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 ">
+      <div class="container mx-auto px-4 sm:px-6 ">
         <!-- 搜索 -->
         <div class="relative">
           <svg
@@ -390,7 +434,7 @@ export default defineComponent({
                 >
                   <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
+                <p class="ml-16 text-lg leading-6 font-medium text-green-500" >
                     {{ t('iBlockCount') }} {{ b[1] }}
                 </p>
               </dt>
@@ -398,7 +442,6 @@ export default defineComponent({
                     {{ t('iBlockDate') }} {{   this.MDate(b[0]) }}
               </dd>
             </div>
-
 
 
 
@@ -612,6 +655,66 @@ export default defineComponent({
                     {{ t('iNodeCount') }}
               </dd>
             </div>
+
+            <!-- price -->
+
+             <div
+              class="relative"
+              v-for="i in priceData" :key="i.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
+                    {{ i['price'] }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    {{ t('iPriceName') }}
+              </dd>
+            </div>
+
+             <div
+              class="relative"
+              v-for="i in priceData" :key="i.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
+                     {{ i['rank'] }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    {{ t('iIcpRank') }}
+              </dd>
+            </div>
            
             
           </dl>
@@ -683,7 +786,7 @@ export default defineComponent({
                     >
                       {{ t('iTransferToken') }}
                     </th>
-                    <th
+                    <!-- <th
                       class="
                         px-6
                         py-3
@@ -695,8 +798,7 @@ export default defineComponent({
                       "
                     >
                      {{ t('iFee') }}
-                    </th>
-                    <!-- <th class="px-6 py-3 border-b-2 border-gray-300"></th> -->
+                    </th> -->
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-100">
@@ -770,7 +872,7 @@ export default defineComponent({
                       >
                     </td>
 
-                     <td
+                     <!-- <td
                       class="
                         px-6
                         py-4
@@ -782,7 +884,7 @@ export default defineComponent({
                       <a class="text-indigo-600 hover:text-indigo-900"
                         >0.0001 ICP</a
                       >
-                    </td>
+                    </td> -->
                   </tr> 
                 </tbody>
               </table>
