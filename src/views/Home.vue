@@ -325,7 +325,7 @@ export default defineComponent({
       priceData,
       mydate,
       account:'',
-      num:'',
+      timer: null,
     };
   },
   created() {
@@ -335,13 +335,26 @@ export default defineComponent({
    
   },
   mounted(){
-  	// TODO轮循
+  	// clear timer 66 times die
     let that = this; 
-    window.setInterval(() => {
-      setTimeout(  this.testTime(), 2000);
+    let num =  0; 
+    this.timer = setInterval(() => {   
+        if (num == 66) {
+          clearInterval(that.timer);
+        }    
+        that.testTime()           
     }, 3000);
   
   },
+  beforeUnmount() {    
+    //clear timer
+    clearInterval(this.timer);            
+  },
+  unmounted() {            
+    //clear timer
+    clearInterval(this.timer);
+  }
+
 });
 </script>
 

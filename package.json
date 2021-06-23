@@ -11,6 +11,7 @@
     "@amcharts/amcharts4": "^4.10.20",
     "@amcharts/amcharts4-geodata": "^4.1.20",
     "@meforma/vue-toaster": "^1.2.2",
+    "@soerenmartius/vue3-clipboard": "^0.1.2",
     "axios": "^0.21.1",
     "decimal.js": "^10.2.1",
     "moment": "^2.29.1",

@@ -8,6 +8,7 @@ import { useRoute } from "vue-router";
 import * as moment from "moment";
 import { Decimal } from 'decimal.js';
 import { reactive, onMounted, watchEffect } from 'vue'
+import { toClipboard } from '@soerenmartius/vue3-clipboard'
 
 
 export default defineComponent({
@@ -48,6 +49,8 @@ export default defineComponent({
     };
 
     const list = ref([]);
+    const value = ref('lorem')
+   
     // const getDetail = (id) => {
     //   const data = {
     //     recorde_addr: id,
@@ -58,18 +61,14 @@ export default defineComponent({
     //   });
     // };
 
+    console.log(value,2222)
+
     const getDetail = async (id) => {
       const res = await fetch(
         `https://api.baqiye.com/api/block/search?recorde_addr=`+id
       ).then(rsp => rsp.json())
       list.value=   res && res.data;
     }
-
-    // onMounted(() => {
-    //   watchEffect(() => {
-    //     getDetail()
-    //   })
-    // })
 
     return {
       list,
@@ -79,6 +78,7 @@ export default defineComponent({
       moment,
       getTodayUnix,
       Decimal,
+      value, 
     };
   },
   data() {
@@ -180,8 +180,16 @@ export default defineComponent({
                 <p class="text-gray-600">
                     {{ t('iFromAddress') }}
                 </p>
-                <p>
-                     {{ list.From }}
+                <p  class="flex">
+                    <span class="mr-3"> {{ list.From }} </span>
+                    
+                    <span class="cursor-pointer "  
+                            v-clipboard:copy="list.From"
+                    > 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg> 
+                    </span>
                 </p>
             </div>
 
@@ -189,8 +197,15 @@ export default defineComponent({
                 <p class="text-gray-600">
                     {{ t('iToAddress') }}
                 </p>
-                <p>
-                     {{ list.To }}
+                <p class="flex">
+                    <span class="mr-3">  {{ list.To }}</span>
+                     <span class="cursor-pointer "  
+                            v-clipboard:copy="list.To"
+                    > 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg> 
+                    </span>
                 </p>
             </div>
 
