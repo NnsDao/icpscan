@@ -11,8 +11,6 @@ import { reactive, onMounted, watchEffect } from 'vue'
 import { useRouter } from "vue-router";
 
 
-
-
 export default defineComponent({
   components: { Header,Footer },
 
@@ -25,7 +23,7 @@ export default defineComponent({
     function goAccount(maccount) {
       router.push({path:'/account/'+maccount,query:{id:maccount}})
     }
-    
+
      //获取今日 0 点 0 分 0 秒的 Unix 时间戳
     function getTodayUnix() {
         var date = new Date();
@@ -55,6 +53,16 @@ export default defineComponent({
     function mydate(time_stamp ) {
         var date = new Date(parseInt(time_stamp ) * 1000).toLocaleString('zh',{hour12:false});
         return date;
+    }
+
+    function toThousands(num) {
+        var num = (num || 0).toString(), result = '';
+        while (num.length > 3) {
+            result = ',' + num.slice(-3) + result;
+            num = num.slice(0, num.length - 3);
+        }
+        if (num) { result = num + result; }
+        return result;
     }
 
     console.log("setup");
@@ -326,6 +334,7 @@ export default defineComponent({
       mydate,
       account:'',
       timer: null,
+      toThousands,
     };
   },
   created() {
@@ -448,7 +457,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-green-500" >
-                    {{ t('iBlockCount') }} {{ b[1] }}
+                    {{ t('iBlockCount') }} {{  toThousands(b[1]) }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -489,7 +498,7 @@ export default defineComponent({
 
              <div
               class="relative"
-              v-for="n in proposalslData" :key="n.key"
+              v-for="n in proposalslData" :key="n"
             >
               <dt>
                 <div
@@ -508,7 +517,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmVf4fnL8CbQszVcrK1Mhn4GUus7J38BV93iE1mFYhpetF" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     n   }}
+                     {{   toThousands(n)  }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -631,7 +640,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmdAMDPpo82WHPz9jAcgLMuEGq4pNdVmPVzbnRu43a3diA" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{ n[1] }}
+                     {{  toThousands(n[1])  }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -771,7 +780,7 @@ export default defineComponent({
                         tracking-wider
                       "
                     >
-                      {{ t('iBlockHeight') }}
+                      {{ t('iBlockHeight')  }}
                     </th>
                     <th
                       class="
@@ -840,7 +849,7 @@ export default defineComponent({
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="text-sm text-gray-900">
-                         {{ person.Mblockheight }}
+                         {{    toThousands(person.Mblockheight) }}
                       </div>
                      
                     </td>

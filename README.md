@@ -6,7 +6,7 @@ Project includes:
 - [Transactions](https://icpscan.co/) (Search)
 - [Project](https://icpscan.co/project) (Project)
 - [Rank](https://icpscan.co/rank) (ICP Holder Address Rank)
-
+- [About](https://icpscan.co/about) (About NnsDao)
 
 ### Getting Started 🚀
 
@@ -46,6 +46,8 @@ yarn serve
 + Internetcomputer Status
 + Fee Rank
 + NNS rule
++ Principals  service provider
++ About Canisters 
 
 ### api
 

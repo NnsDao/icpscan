@@ -196,6 +196,20 @@ export default defineComponent({
                   leading-4
                   text-blue-500
                   tracking-wider
+                  
+                "
+              >
+                {{ t('iFee') }}
+              </th>
+              <th
+                class="
+                  px-6
+                  py-3
+                  border-b-2 border-gray-300
+                  text-left text-sm
+                  leading-4
+                  text-blue-500
+                  tracking-wider
                 "
               >
                 {{ t('iAddressActive') }}
@@ -245,6 +259,9 @@ export default defineComponent({
               >
                 {{   new Decimal(ranks.Total ? ranks.Total : 0.1 ).div(new Decimal(100000000)).toNumber()  }}
               </td>
+
+             
+
               <td
                 class="
                   px-6
@@ -259,6 +276,22 @@ export default defineComponent({
               >
                  {{ ranks.Times }}
               </td>
+
+                <td
+                class="
+                  px-6
+                  py-4
+                  whitespace-no-wrap
+                  border-b
+                  text-blue-900
+                  border-gray-500
+                  text-sm
+                  leading-5
+                "
+              >
+                  {{   ranks.Times*10000 / 100000000  }} ICP
+              </td>
+              
               <td
                 class="
                   px-6
