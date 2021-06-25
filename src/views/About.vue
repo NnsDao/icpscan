@@ -202,14 +202,14 @@ export default defineComponent({
               </a>
               <h3 class="font-bold text-gray-100 hover:underline ml-3 mt-3">HWRD</h3>
             </div>
-            <!-- 
+            
             <div class="w-12">
-              <a href="https://twitter.com/kkdelos" rel="nofollow" target="_blank">
-                 <img src="https://gateway.pinata.cloud/ipfs/QmYwaYwA3HMg7n63ZnYSCMtyQu6Z6BcGyJZfd8GzQhe4XD"
+              <a href="https://twitter.com/milk53456614" rel="nofollow" target="_blank">
+                 <img src="https://gateway.pinata.cloud/ipfs/QmW2PegVeFRuvUboGBMNWbDBwRsQgMnKaePADFHJKdTg24"
                         alt="HWRD" class="object-cover w-10 h-10 mx-4 rounded-full">
               </a>
-              <h3 class="font-bold text-gray-100 hover:underline ml-3 mt-3">HWRD</h3>
-            </div> -->
+              <h3 class="font-bold text-gray-100 hover:underline ml-5 mt-3">haru</h3>
+            </div>
            
         </div>
 
