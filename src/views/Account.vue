@@ -7,6 +7,8 @@ import { fetchSearch }  from "../api/index.js";
 import { useRoute } from "vue-router";
 import * as moment from "moment";
 import { Decimal } from 'decimal.js';
+import { toThousands } from "../utils/tool.js";
+import { useRouter } from "vue-router";
 
 
 
@@ -46,6 +48,11 @@ export default defineComponent({
     const getParams = () => {
       return route.params;
     };
+    const router = useRouter();
+
+    function goJump(mblockheight) {
+      router.push({path:'/detail/'+mblockheight,query:{id:mblockheight}})
+    }
 
     const list = ref([]);
     const listAccount = ref([]);
@@ -60,28 +67,30 @@ export default defineComponent({
     // };
 
 
-    const getDetail = async (id) => {
-      const res = await fetch(
-        `https://api.baqiye.com/api/block/search?recorde_addr=`+id
-      ).then(rsp => rsp.json())
-      list.value=   res && res.data;
-    }
+    // const getDetail = async (id) => {
+    //   const res = await fetch(
+    //     `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+    //   ).then(rsp => rsp.json())
+    //   list.value=   res && res.data;
+    // }
 
      const getAccountDetail = async (id) => {
       const res = await fetch(
         `https://api.baqiye.com/api/block/searchDetail?account=`+id
       ).then(rsp => rsp.json())
+      list.value=   res && res.data.Detail[0];
       listAccount.value=   res && res.data;
     }
 
-    console.log(listAccount,232323)
+    console.log(list,232323)
+    console.log(listAccount,332545454)
 
     return {
       list,
       listAccount,
       getParams,
-      getDetail,
       getAccountDetail,
+      // getDetail,
       MDate,
       moment,
       getTodayUnix,
@@ -90,6 +99,8 @@ export default defineComponent({
       pagination:'',
       current_page:'',
       last_page:'',
+      toThousands,
+      goJump,
     };
   },
   data() {
@@ -99,7 +110,7 @@ export default defineComponent({
   created: function () {
     const { id } = this.getParams() ; 
     let that = this;
-    that.getDetail(id);
+    // that.getDetail(id);
     that.getAccountDetail(id)
     
   },
@@ -141,14 +152,14 @@ export default defineComponent({
                     </span>
                 </p>
             </div>
-            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+            <!-- <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
                    {{ t('iAccountValue') }}
                 </p>
                 <p >
-                    {{     new Decimal(list.Balance ? list.Balance : 1 ).div(new Decimal(100000000)).toNumber()  }}
+                    {{    toThousands(   new Decimal(list.Amount ? list.Amount : 1 ).div(new Decimal(100000000)).toNumber() ) }}
                 </p>
-            </div>
+            </div> -->
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
@@ -175,7 +186,7 @@ export default defineComponent({
                     Transactions(转账次数)
                 </p>
                 <p>
-                    {{  listAccount.Total  }}
+                    {{     toThousands(listAccount.Total)  }}
                 </p>
             </div>
 

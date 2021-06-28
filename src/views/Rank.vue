@@ -6,14 +6,19 @@ import { ref } from "vue";
 import { fetchRank }  from "../api/index.js";
 import { Decimal } from 'decimal.js';
 import moment from "moment";
-import { reactive, onMounted, watchEffect } from 'vue'
+import { toThousands } from "../utils/tool.js";
+import { reactive, onMounted, watchEffect } from 'vue';
+import { useRouter } from "vue-router";
 
  
 export default defineComponent({
   components: { Header, Footer },
 
   setup() {
-        //获取今日 0 点 0 分 0 秒的 Unix 时间戳
+
+    const router = useRouter();
+
+    //获取今日 0 点 0 分 0 秒的 Unix 时间戳
     function getTodayUnix() {
         var date = new Date();
         date.setHours(0);
@@ -38,6 +43,10 @@ export default defineComponent({
       } else {
         return this.moment(dval).format("YYYY-MM-DD hh:mm:ss");
       }
+    }
+
+    function goJumpAccount(raccount) {
+      router.push({path:'/account/'+raccount,query:{id:raccount}})
     }
 
     console.log("setup");
@@ -97,6 +106,8 @@ export default defineComponent({
       getTodayUnix,
       Decimal,
       moment,
+      toThousands,
+      goJumpAccount,
     };
   },
 });
@@ -240,8 +251,8 @@ export default defineComponent({
                   </div>
                 </div>
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                <div class="text-sm leading-5 text-blue-900">
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-600 "  @click="goJumpAccount(ranks.Oaccountaddress)"  >
+                <div class="text-sm leading-5 text-blue-900 cursor-pointer hover:underline">
                   {{ ranks.Oaccountaddress }}
                 </div>
               </td>
@@ -257,7 +268,7 @@ export default defineComponent({
                   leading-5
                 "
               >
-                {{   new Decimal(ranks.Total ? ranks.Total : 0.1 ).div(new Decimal(100000000)).toNumber()  }}
+                {{   toThousands(  new Decimal(ranks.Total ? ranks.Total : 0.1 ).div(new Decimal(100000000)).toNumber() )  }}
               </td>
 
              

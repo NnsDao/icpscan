@@ -7,6 +7,7 @@ import { fetchSearch }  from "../api/index.js";
 import { useRoute } from "vue-router";
 import * as moment from "moment";
 import { Decimal } from 'decimal.js';
+import { toThousands } from "../utils/tool.js";
 import { reactive, onMounted, watchEffect } from 'vue'
 import { toClipboard } from '@soerenmartius/vue3-clipboard'
 
@@ -79,6 +80,7 @@ export default defineComponent({
       getTodayUnix,
       Decimal,
       value, 
+      toThousands,
     };
   },
   data() {
@@ -163,7 +165,7 @@ export default defineComponent({
                       {{ t('iBlockHeight') }}
                 </p>
                 <p>
-                     {{ list.BlockHeight }}
+                     {{     toThousands( list.BlockHeight  )  }}
                 </p>
             </div>
 

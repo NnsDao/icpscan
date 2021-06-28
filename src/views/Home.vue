@@ -7,7 +7,7 @@ import Footer from "@/components/Footer.vue";
 import { fetchList,fetchSearch }  from "../api/index.js";
 import { Decimal } from 'decimal.js';
 import { reactive, onMounted, watchEffect } from 'vue'
-
+import { toThousands,MDate,mydate } from "../utils/tool.js";
 import { useRouter } from "vue-router";
 
 
@@ -22,47 +22,6 @@ export default defineComponent({
     }
     function goAccount(maccount) {
       router.push({path:'/account/'+maccount,query:{id:maccount}})
-    }
-
-     //获取今日 0 点 0 分 0 秒的 Unix 时间戳
-    function getTodayUnix() {
-        var date = new Date();
-        date.setHours(0);
-        date.setMinutes(0);
-        date.setSeconds(0);
-        date.setMilliseconds(0);
-        return date.getTime();
-    }
-
-    function MDate(dval) {
-      
-      var interval = (new Date().getTime() - dval) / 1000;
-        if (Math.floor(interval / 60) <= 0) {//1 分钟之前
-        return 'just now';
-      } else if (interval < 3600) {//1 分钟到 1 小时之间
-        return Math.floor(interval / 60) + ' minutes ago';
-      } else if (interval >= 3600 && (dval - this.getTodayUnix() >= 0)) {//1 小时到 1 天之间
-        return Math.floor(interval / 3600) + ' hours ago';
-      } else if (interval / (3600 * 24) <= 31) {//1 天到 1 个月（假设固定为 31 天）之间
-        return Math.ceil(interval / (3600 * 24)) + ' days ago';
-      } else {
-         return this.mydate(dval);
-      }
-    }
-
-    function mydate(time_stamp ) {
-        var date = new Date(parseInt(time_stamp ) * 1000).toLocaleString('zh',{hour12:false});
-        return date;
-    }
-
-    function toThousands(num) {
-        var num = (num || 0).toString(), result = '';
-        while (num.length > 3) {
-            result = ',' + num.slice(-3) + result;
-            num = num.slice(0, num.length - 3);
-        }
-        if (num) { result = num + result; }
-        return result;
     }
 
     console.log("setup");
@@ -104,7 +63,6 @@ export default defineComponent({
       ).then(rsp => rsp.json())
       list.value=   res && res.data;
     }
-
       
     // icp数据
 
@@ -273,9 +231,11 @@ export default defineComponent({
           return false ;
         }else if(res.data.Type == "2" && res.data.Account != '' && res.data.Balance != ''){
           // 跳转到账户地址列表页
+          console.log(22)
           that.goAccount(that.account) ; 
           return false ;
         }else if(res.data.Type == "1" && res.data.Tranidentifier != ''){
+           console.log(333)
           that.goJump(that.account) ; 
         }else{
           that.$toast.warning(`未找到任何信息,请换个地址试试`);
@@ -316,7 +276,6 @@ export default defineComponent({
       timer: "",
       // onClear,
       MDate,
-      getTodayUnix,
       Decimal,
       goJump,
       testTime,
@@ -344,11 +303,11 @@ export default defineComponent({
    
   },
   mounted(){
-  	// clear timer 66 times die
+  	// clear timer 20 times die
     let that = this; 
     let num =  0; 
     this.timer = setInterval(() => {   
-        if (num == 66) {
+        if (num == 20) {
           clearInterval(that.timer);
         }    
         that.testTime()           
@@ -461,7 +420,7 @@ export default defineComponent({
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    {{ t('iBlockDate') }} {{   this.MDate(b[0]) }}
+                    {{ t('iBlockDate') }} {{   MDate(b[0]) }}
               </dd>
             </div>
 
@@ -488,7 +447,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                     {{    toThousands( Math.floor(n[1] * 10000) / 10000)    }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -547,7 +506,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmVHQugXWXtUHdmFqQWX8NNiNVmZTq5FYQ3beTpCweLFPw" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     n / 100000000   }}
+                     {{    toThousands( n / 100000000 )      }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -578,7 +537,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmWVW7H5zirP83wNXLRrZvcvH8eWgdawfUpUdzJue9ph88" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                     {{      toThousands( Math.floor(n[1] * 10000) / 10000 )      }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -608,7 +567,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmaAbFqf1ZXZ4vpKLCMM7qwyKyJMqf3PTHCPCgCBq6EWB9" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{     Math.floor(n[1] * 10000) / 10000   }}
+                     {{     toThousands( Math.floor(n[1] * 10000) / 10000  )      }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -670,7 +629,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmSY1FY8CjDSiPtmvPQvPRAy39RHpWQq33vcequmNv1YKf" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
-                     {{ n[1] }}
+                     {{   toThousands( n[1] )  }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -701,7 +660,7 @@ export default defineComponent({
                   <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
-                    {{ i['price'] }}
+                    {{   toThousands( i['price']  )  }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -842,7 +801,7 @@ export default defineComponent({
 
                             <!-- 时间格式化 -->
                             <div class="text-sm text-gray-500">
-                              {{   this.MDate(person.Blocktimestamp ) }}
+                              {{   MDate(person.Blocktimestamp ) }}
                             </div>
                           </div>
                         </div>
