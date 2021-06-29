@@ -1,3 +1,5 @@
+import * as moment from "moment";
+
 /**
 * @param {number} s
 * @returns {100,000.00}

@@ -47,6 +47,7 @@ export default  {
     'iTransfersNumber':'转账次数',
     'iAddressActive':'地址活跃度',
     'iLastTransferTime':'最后转账时间',
+    'iRankTransDetail':'交易详情',
 
 
        // about

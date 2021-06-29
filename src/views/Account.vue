@@ -66,31 +66,26 @@ export default defineComponent({
     //   });
     // };
 
-
-    // const getDetail = async (id) => {
-    //   const res = await fetch(
-    //     `https://api.baqiye.com/api/block/search?recorde_addr=`+id
-    //   ).then(rsp => rsp.json())
-    //   list.value=   res && res.data;
-    // }
+    const getDetail = async (id) => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+      ).then(rsp => rsp.json())
+      list.value=   res && res.data;
+    }
 
      const getAccountDetail = async (id) => {
       const res = await fetch(
         `https://api.baqiye.com/api/block/searchDetail?account=`+id
       ).then(rsp => rsp.json())
-      list.value=   res && res.data.Detail[0];
       listAccount.value=   res && res.data;
     }
-
-    console.log(list,232323)
-    console.log(listAccount,332545454)
 
     return {
       list,
       listAccount,
       getParams,
       getAccountDetail,
-      // getDetail,
+      getDetail,
       MDate,
       moment,
       getTodayUnix,
@@ -110,7 +105,7 @@ export default defineComponent({
   created: function () {
     const { id } = this.getParams() ; 
     let that = this;
-    // that.getDetail(id);
+    that.getDetail(id);
     that.getAccountDetail(id)
     
   },
@@ -152,14 +147,14 @@ export default defineComponent({
                     </span>
                 </p>
             </div>
-            <!-- <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+            <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
                    {{ t('iAccountValue') }}
                 </p>
                 <p >
-                    {{    toThousands(   new Decimal(list.Amount ? list.Amount : 1 ).div(new Decimal(100000000)).toNumber() ) }}
+                    {{    toThousands(   new Decimal(list.Balance ? list.Balance : 1 ).div(new Decimal(100000000)).toNumber() ) }}
                 </p>
-            </div> -->
+            </div>
 
              <div class="md:grid md:grid-cols-4 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
                 <p class="text-gray-600">
@@ -214,12 +209,13 @@ export default defineComponent({
 
     <div class="flex">
       <table class="text-left w-full">
-        <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style="height: 50vh;">
+        <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style="height: auto;">
          
           <tr class="flex w-full space-y-1 p-2 border-b mb-2"  v-for="a in listAccount.Detail" :key="a.Amount" >
             <td class="p-4 w-40 truncate cursor-pointer hover:underline ... "   @click="goJump(a.Tranidentifier)">
                 {{a.Tranidentifier}}  
                </td>
+            
             <td class="p-4 ">
               <div class=" pr-3">
                 <div class="text-sm leading-5 font-semibold"><span class="text-xs leading-4 font-normal text-gray-500"> From #</span> {{a.From}} </div>
@@ -227,15 +223,17 @@ export default defineComponent({
                 <div class="text-sm leading-5 font-semibold">   {{ this.MDate(a.Timestamp )}} </div>
               </div>
             </td>
-            <td class="p-4 ">  {{    new Decimal(a.Amount).div(new Decimal(100000000)).toNumber() }} </td>
-            <td class="p-4 " v-if="a.Account =='d3e13d4777e22367532053190b6c6ccf57444a61337e996242b1abfb52cf92c8' ">  {{ '币安/Binance' }}  </td>
-            <td class="p-4 " v-else-if="a.Account =='4dfa940def17f1427ae47378c440f10185867677109a02bc8374fc25b9dee8af' ">  {{ 'Coinbase' }}  </td>
-            <td class="p-4 " v-else-if="a.Account =='449ce7ad1298e2ed2781ed379aba25efc2748d14c60ede190ad7621724b9e8b2' ">  {{ 'Coinbase 2' }}  </td>
-            <td class="p-4 " v-else-if="a.Account =='e7a879ea563d273c46dd28c1584eaa132fad6f3e316615b3eb657d067f3519b5' ">  {{ 'OKEX' }}  </td>
-            <td class="p-4 " v-else-if="a.Account =='a6ed987d89796f921c8a49d275ec7c9aa04e75a8fc8cd2dbaa5da799f0215ab0' ">  {{ 'Coinlist' }}  </td>
-            <td class="p-4 " v-else-if="a.Account =='660b1680dafeedaa68c1f1f4cf8af42ed1dfb8564646efe935a2b9a48528b605' ">  {{ 'Coinbase 3' }}  </td>
-            <td class="p-4 " v-else-if="a.Account =='76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820' ">  {{ 'NnsDaos' }}  </td>
-            <td class="p-4 " v-else>  {{ t('iKnowUser')  }}  </td>
+           
+            <td class="w-1/4 p-4 ">  {{    new Decimal(a.Amount).div(new Decimal(100000000)).toNumber() }} </td>
+            
+            <td class="w/20 p-4 " v-if="a.Account =='d3e13d4777e22367532053190b6c6ccf57444a61337e996242b1abfb52cf92c8' ">  {{ '币安/Binance' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='4dfa940def17f1427ae47378c440f10185867677109a02bc8374fc25b9dee8af' ">  {{ 'Coinbase' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='449ce7ad1298e2ed2781ed379aba25efc2748d14c60ede190ad7621724b9e8b2' ">  {{ 'Coinbase 2' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='e7a879ea563d273c46dd28c1584eaa132fad6f3e316615b3eb657d067f3519b5' ">  {{ 'OKEX' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='a6ed987d89796f921c8a49d275ec7c9aa04e75a8fc8cd2dbaa5da799f0215ab0' ">  {{ 'Coinlist' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='660b1680dafeedaa68c1f1f4cf8af42ed1dfb8564646efe935a2b9a48528b605' ">  {{ 'Coinbase 3' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820' ">  {{ 'NnsDaos' }}  </td>
+            <td class="w/20 p-4 " v-else>  {{ t('iKnowUser')  }}  </td>
           </tr>
         
              

@@ -46,6 +46,7 @@ export default  {
     'iTransfersNumber':'Number of Transactions',
     'iAddressActive':'Address Activity',
     'iLastTransferTime':'Last transfer time',
+    'iRankTransDetail':'Transactions Detail',
 
 
     // about

@@ -91,6 +91,28 @@ export default defineComponent({
       list.value=   res && res.data;
     }
 
+    // user rank
+
+
+    function goSearch() {
+      let that = this;
+      if( !that.account || that.account == null || that.account == undefined ){
+        this.$toast.warning(`请输入账户地址或转账哈希值`);
+        return false ;
+      }
+      that.goRank(that.account)
+    }
+
+    const goRank = async (account) => {
+
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/searchDetail?account=`+account
+      ).then(rsp => rsp.json())
+      list.value=   res && res.data;
+    }
+
+    console.log(list,89898)
+
     onMounted(() => {
       watchEffect(() => {
         getList()
@@ -108,6 +130,9 @@ export default defineComponent({
       moment,
       toThousands,
       goJumpAccount,
+      goRank,
+      goSearch,
+      account:'',
     };
   },
 });
@@ -124,6 +149,11 @@ export default defineComponent({
           </div>
         </header>
       </div>
+      <!-- search account rank -->
+      <!-- <div class="container relative text-gray-600 ml-40 mb-5">
+        <input type="text"  placeholder="Search Account Rank"  v-model="account" class="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none mr-3">
+        <button  @click="goSearch()" class="bg-indigo-500 px-5 py-3 text-sm shadow-sm font-medium tracking-wider border text-indigo-100 rounded-full  hover:shadow-lg hover:bg-indigo-400">{{ t('iSearch') }}</button>
+      </div> -->
 
       <div
         class="
@@ -251,8 +281,8 @@ export default defineComponent({
                   </div>
                 </div>
               </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-600 "  @click="goJumpAccount(ranks.Oaccountaddress)"  >
-                <div class="text-sm leading-5 text-blue-900 cursor-pointer hover:underline">
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-600 "   >
+                <div class="text-sm leading-5 text-blue-900 cursor-pointer ">
                   {{ ranks.Oaccountaddress }}
                 </div>
               </td>
@@ -347,22 +377,23 @@ export default defineComponent({
                   leading-5
                 "
               >
-                <!-- <button
+                <button
                   class="
                     px-5
                     py-2
                     border-blue-500 border
                     text-blue-500
-                    rounded
+                    rounded-full
                     transition
                     duration-300
                     focus:outline-none
-                    disabled
+                    hover:underline
                   "
-                  
+                   @click="goJumpAccount(ranks.Oaccountaddress)"
                 >
-                  交易详情
-                </button> -->
+                  
+                   {{ t('iRankTransDetail') }}
+                </button>
          
               </td>
             </tr>
