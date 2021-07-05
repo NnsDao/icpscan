@@ -75,11 +75,11 @@ export default  {
 
     'iNnsDaoInfo':'NnsDao is an open DAOs community.Our vision is to build basic tools on ICP and do some ecological construction for ICP within our capacity.',
 
-    'iNnsDaoToken':'NnsDao Token: It is the DAO governance token of the NnsDao community. The future issuance is 1 billion. The tentative price of each NDT is 0.0001U. We accept early donations to help developers build the NnsDao ecosystem, and also encourage everyone who contributes to the community people.',
+    'iNnsDaoToken':'NnsDao Token: It is the DAO governance token of the NnsDao community. The future issuance is 1 billion. The tentative price of each NDT is 0.1 USDT. We accept early donations to help developers build the NnsDao ecosystem, and also encourage everyone who contributes to the community people.',
    
     'iNnsDaoTokenSub':'Therefore, before NnsDao is online, all users who donated will get a certain percentage of NDT, and you only need to have an ICP account to use it.',
 
-    'iNnsDaoSponsor':'Sponsors ICP Address: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'Sponsors ICP Address(Over): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
     'iKnowUser':'Unknown user',
 
 

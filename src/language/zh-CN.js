@@ -76,11 +76,11 @@ export default  {
 
     'iNnsDaoInfo':'NnsDao是一个开放的DAOs社区,我们的愿景是在ICP上构建基础工具和为ICP做一些力所能及的生态建设.',
 
-    'iNnsDaoToken':'NnsDao Token : 是NnsDao社区的DAO治理通证,未来发行量10亿,每个NDT 暂定价格为 0.0001U, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.',
+    'iNnsDaoToken':'NnsDao Token : 是NnsDao社区的DAO治理通证,未来发行量10亿,每个NDT 暂定价格为 0.1 USDT, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.',
    
     'iNnsDaoTokenSub':'因此在NnsDao没有上线之前所有捐助的用户都将会得到一定比例的NDT,只需要你有ICP账户即可使用.',
 
-    'iNnsDaoSponsor':'赞助 ICP 地址: 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'赞助 ICP 地址(已结束): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
 
     'iKnowUser':'未知用户',
 

@@ -12,5 +12,9 @@
         value: "en-US",
         label: "English",
       },
+      {
+        value: "ja-JP",
+        label: "日本語",
+      },
     ],
   }

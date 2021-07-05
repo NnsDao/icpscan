@@ -229,8 +229,15 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
 import defaultData from "../config/default-data";
 import { SETLOCALE } from "@/language";
 
-const locale = defaultData.locale === 'zh-CN' ? 'zh-CN'  : 'en-US'
-// console.log(locale,77)
+let locale = '';
+
+if(defaultData.locale === 'zh-CN'  ){
+  locale = 'zh-CN' ;
+}else if(defaultData.locale === 'ja-JP'){
+  locale =  'ja-JP' ;
+}else{
+  locale =  'en-US' ;
+}
 
 let  navigation = [
     { name:  'Home', href: "/", current: false },
@@ -243,7 +250,7 @@ let  navigation = [
     { name: "About", href: "/about", current: false },
   ]; 
 
-if(locale != 'en-US'){
+if(locale == 'en-US'){
   navigation  = [
   { name:  '首页', href: "/", current: false },
   { name: "排行", href: "/rank", current: false },
@@ -253,6 +260,19 @@ if(locale != 'en-US'){
   { name: "ICP科普", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "状态", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "关于", href: "/about", current: false },
+  ];
+}
+
+if(locale == 'ja-JP'){
+  navigation  = [
+  { name:  'フロントページ', href: "/", current: false },
+  { name: "ランキング", href: "/rank", current: false },
+  { name: "スポーツイベント", href: "/project", current: false },
+  { name: "ノードマップ", href: "/chart", current: false },
+  { name: "損益計算書", href: "https://nns.icpscan.co/", current: false },
+  { name: "ICPサイエンス", href: "https://www.dailybtc.cn/dfinity/", current: false },
+  { name: "ステータス", href: "https://www.dailybtc.cn/dfinity/", current: false },
+  { name: "に関しては", href: "/about", current: false },
   ];
 }
 
