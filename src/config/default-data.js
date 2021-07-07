@@ -5,16 +5,20 @@
     locale,
     localeSelect: [
       {
-        value: "zh-CN",
-        label: "中文",
+        label: "zh-CN",
+        value: "中文",
       },
       {
-        value: "en-US",
-        label: "English",
+        label: "en-US",
+        value: "English",
       },
       {
-        value: "ja-JP",
-        label: "日本語",
+        label: "ja-JP",
+        value: "日本語",
+      },
+      {
+        label: "ko-KR",
+        value: "한국어",
       },
     ],
   }

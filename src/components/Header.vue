@@ -84,7 +84,7 @@
         <div class="relative inline-flex">
           <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
           <select  v-model="locale"  @change="getTypeSelected" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-            <option v-for="items in localeSelect"  v-bind:value="items.value"  :key="items.label">{{ items.value}}</option>
+            <option v-for="items in localeSelect"  v-bind:value="items.label"  :key="items.label">{{ items.value}}</option>
 
           </select>
         </div>
@@ -224,7 +224,7 @@ import {
 } from "@headlessui/vue";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
 
-// 多语言
+// i18n
 
 import defaultData from "../config/default-data";
 import { SETLOCALE } from "@/language";
@@ -235,7 +235,9 @@ if(defaultData.locale === 'zh-CN'  ){
   locale = 'zh-CN' ;
 }else if(defaultData.locale === 'ja-JP'){
   locale =  'ja-JP' ;
-}else{
+}else if(defaultData.locale === 'ko-KR' ) {
+  locale =  'ko-KR' ;
+}else if(defaultData.locale === 'en-US' ) {
   locale =  'en-US' ;
 }
 
@@ -250,7 +252,7 @@ let  navigation = [
     { name: "About", href: "/about", current: false },
   ]; 
 
-if(locale == 'en-US'){
+if(locale == 'zh-CN'){
   navigation  = [
   { name:  '首页', href: "/", current: false },
   { name: "排行", href: "/rank", current: false },
@@ -260,6 +262,19 @@ if(locale == 'en-US'){
   { name: "收益计算器", href: "https://nns.icpscan.co/", current: false },
   { name: "ICP科普", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "关于", href: "/about", current: false },
+  ];
+}
+
+if(locale == 'ko-KR'){
+  navigation  = [
+  { name:  '홈페이지', href: "/", current: false },
+  { name: "순위", href: "/rank", current: false },
+  { name: "탱크", href: "/canisters", current: false },
+  { name: "계획", href: "/project", current: false },
+  { name: "노드 맵", href: "/chart", current: false },
+  { name: "소득 계산기", href: "https://nns.icpscan.co/", current: false },
+  { name: "ICP 과학", href: "https://www.dailybtc.cn/dfinity/", current: false },
+  { name: "의 위에", href: "/about", current: false },
   ];
 }
 
@@ -275,6 +290,8 @@ if(locale == 'ja-JP'){
   { name: "に関しては", href: "/about", current: false },
   ];
 }
+
+
 
 export default {
   components: {
@@ -294,7 +311,6 @@ export default {
 
     // const store = useStore();
     // let locale = defaultData.locale;
-    // 可选语言
     const localeSelect = defaultData.localeSelect;
 
     return {
