@@ -227,18 +227,16 @@ export default defineComponent({
 
         searchList.value = res && res.data;
         if(res.data.Account == '' && res.data.Tranidentifier == ''){
-          that.$toast.warning(`请输入正确的转账哈希值`);
+          that.$toast.warning(`Please enter the correct transfer hash value`);
           return false ;
         }else if(res.data.Type == "2" && res.data.Account != '' && res.data.Balance != ''){
-          // 跳转到账户地址列表页
-          console.log(22)
+          // account detail
           that.goAccount(that.account) ; 
           return false ;
         }else if(res.data.Type == "1" && res.data.Tranidentifier != ''){
-           console.log(333)
           that.goJump(that.account) ; 
         }else{
-          that.$toast.warning(`未找到任何信息,请换个地址试试`);
+          that.$toast.warning(`Did not find any information, please try another address`);
           return false ;
         }
     }

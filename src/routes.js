@@ -6,6 +6,7 @@ import Rank from './views/Rank.vue'
 import Account from './views/Account.vue'
 import NotFound from './views/NotFound.vue'
 import Chart from './views/Chart.vue'
+import Canisters from './views/Canisters.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -44,6 +45,11 @@ export const routes = [
     path: '/chart',
     meta: { title: 'Chart' },
     component: Chart,
+  },
+  {
+    path: '/canisters',
+    meta: { title: 'canisters' },
+    component: Canisters,
   },
   { path: '/:path(.*)', component: NotFound },
 ]

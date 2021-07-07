@@ -242,11 +242,11 @@ if(defaultData.locale === 'zh-CN'  ){
 let  navigation = [
     { name:  'Home', href: "/", current: false },
     { name: "Rank", href: "/rank", current: false },
+    { name: "Canisters", href: "/canisters", current: false },
     { name: "Project", href: "/project", current: false },
     { name: "Node Map", href: "/chart", current: false },
     { name: "Calculator", href: "https://nns.icpscan.co/", current: false },
     { name: "Guide", href: "https://www.dailybtc.cn/dfinity/", current: false },
-    { name: "Status", href: "https://www.dailybtc.cn/dfinity/", current: false },
     { name: "About", href: "/about", current: false },
   ]; 
 
@@ -254,11 +254,11 @@ if(locale == 'en-US'){
   navigation  = [
   { name:  '首页', href: "/", current: false },
   { name: "排行", href: "/rank", current: false },
+  { name: "罐", href: "/canisters", current: false },
   { name: "项目", href: "/project", current: false },
   { name: "节点地图", href: "/chart", current: false },
   { name: "收益计算器", href: "https://nns.icpscan.co/", current: false },
   { name: "ICP科普", href: "https://www.dailybtc.cn/dfinity/", current: false },
-  { name: "状态", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "关于", href: "/about", current: false },
   ];
 }
@@ -267,11 +267,11 @@ if(locale == 'ja-JP'){
   navigation  = [
   { name:  'フロントページ', href: "/", current: false },
   { name: "ランキング", href: "/rank", current: false },
+  { name: "タンク", href: "/canisters", current: false },
   { name: "スポーツイベント", href: "/project", current: false },
   { name: "ノードマップ", href: "/chart", current: false },
   { name: "損益計算書", href: "https://nns.icpscan.co/", current: false },
   { name: "ICPサイエンス", href: "https://www.dailybtc.cn/dfinity/", current: false },
-  { name: "ステータス", href: "https://www.dailybtc.cn/dfinity/", current: false },
   { name: "に関しては", href: "/about", current: false },
   ];
 }

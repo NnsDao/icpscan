@@ -49,6 +49,14 @@ export default  {
     'iRankTransDetail':'Transactions Detail',
 
 
+    //canisters
+    'iCanistersName':'Canisters',
+    'iController':'Controller',
+    'iModule':'Module',
+    'iSubnet':'Subnet',
+    'iLastUpdated':'Last Updated',
+    'iUrl':'dApp Url',
+
     // about
     'iAboutUs':'About us',
     'iAboutUsSub':'ICP block explorer under the NnsDao ecosystem.',

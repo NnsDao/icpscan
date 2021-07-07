@@ -49,8 +49,15 @@ export default  {
     'iLastTransferTime':'最終転送時間',
     'iRankTransDetail':'取引内容',
 
+    //canisters
+    'iCanistersName':'プログラムジャー',
+    'iController':'支配者',
+    'iModule':'モジュール',
+    'iSubnet':'サブネット',
+    'iLastUpdated':'最終更新',
+    'iUrl':'から用地址',
 
-       // about
+    // about
     'iAboutUs':'会社概要',
     'iAboutUsSub':'NnsDaoエコシステムにおけるICPブロックブラウザ.',
 

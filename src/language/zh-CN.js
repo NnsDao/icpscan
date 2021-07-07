@@ -49,8 +49,15 @@ export default  {
     'iLastTransferTime':'最后转账时间',
     'iRankTransDetail':'交易详情',
 
+    //canisters
+    'iCanistersName':'程序罐',
+    'iController':'控制方',
+    'iModule':'模块',
+    'iSubnet':'子网',
+    'iLastUpdated':'最后更新',
+    'iUrl':'应用地址',
 
-       // about
+    // about
     'iAboutUs':'关于我们',
     'iAboutUsSub':'NnsDao生态下ICP区块浏览器.',
 
