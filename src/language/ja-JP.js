@@ -57,6 +57,25 @@ export default  {
     'iLastUpdated':'最終更新',
     'iUrl':'から用地址',
 
+
+     // Neurons
+     'iNeurons':'NNSニューロン',
+     'iKnowNeurons':'既知のニューロン',
+     'iNeuronStatus':'ニューロンの状態',
+     'iNeuronCount':'ニューロンの数',
+     'iNeuronController':'コントローラ',
+     'iNeuronLockIcp':'トータルプレッジICP',
+     'iNeuronSupplyIcp':'質権の割合',
+     'iNeuronLock':'ロック',
+     'iNeuronDissolving':'ディゾルブ',
+     'iNeuronId':'ニューロン番号',
+     'iNeuronState':'現在の状態',
+     'iNeuronProposals':'提案',
+     'iNeuronWhoAccount':'アカウント',
+     'iNeuronStacked':'質権額',
+     'iNeuronDissolveDate':'溶解時間',
+
+
     // about
     'iAboutUs':'会社概要',
     'iAboutUsSub':'NnsDaoエコシステムにおけるICPブロックブラウザ.',

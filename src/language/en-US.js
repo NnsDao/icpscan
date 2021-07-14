@@ -57,6 +57,23 @@ export default  {
     'iLastUpdated':'Last Updated',
     'iUrl':'dApp Url',
 
+     // Neurons
+    'iNeurons':'Neurons',
+    'iKnowNeurons':'Known Neurons',
+    'iNeuronStatus':'Neurons Status',
+    'iNeuronCount':'Count',
+    'iNeuronController':'Controllers',
+    'iNeuronLockIcp':'Total ICP',
+    'iNeuronSupplyIcp':'Supply %',
+    'iNeuronLock':'Locked',
+    'iNeuronDissolving':'Dissolving',
+    'iNeuronId':'Neurons ID',
+    'iNeuronState':'State',
+    'iNeuronProposals':'Proposals',
+    'iNeuronWhoAccount':'Account',
+    'iNeuronStacked':'Staked ICP',
+    'iNeuronDissolveDate':'Dissolve Date',
+
     // about
     'iAboutUs':'About us',
     'iAboutUsSub':'ICP block explorer under the NnsDao ecosystem.',

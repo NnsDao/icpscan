@@ -57,6 +57,23 @@ export default  {
     'iLastUpdated':'최근 업데이트',
     'iUrl':'신청 주소',
 
+      // Neurons
+      'iNeurons':'NNS 뉴런',
+      'iKnowNeurons':'알려진 뉴런',
+      'iNeuronStatus':'뉴런 상태',
+      'iNeuronCount':'뉴런의 수',
+      'iNeuronController':'뉴런 컨트롤러',
+      'iNeuronLockIcp':'총 서약 ICP',
+      'iNeuronSupplyIcp':'담보비율',
+      'iNeuronLock':'잠금',
+      'iNeuronDissolving':'용해',
+      'iNeuronId':'뉴런 번호',
+      'iNeuronState':'현재 상태',
+      'iNeuronProposals':'提案신청',
+      'iNeuronWhoAccount':'계정',
+      'iNeuronStacked':'약정금액',
+      'iNeuronDissolveDate':'용해 시간',
+
     // about
     'iAboutUs':'우리에 대해',
     'iAboutUsSub':'NnsDao 생태학 아래 ICP 블록 탐색기.',
