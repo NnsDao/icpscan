@@ -62,7 +62,7 @@ export default  {
     'iKnowNeurons':'已知神经元',
     'iNeuronStatus':'神经元状态',
     'iNeuronCount':'神经元数量',
-    'iNeuronController':'神经元控制器',
+    'iNeuronController':'控制器',
     'iNeuronLockIcp':'总质押ICP',
     'iNeuronSupplyIcp':'质押占比',
     'iNeuronLock':'锁定中',

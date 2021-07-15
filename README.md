@@ -104,3 +104,15 @@ Data Center address:https://www.dfinityexplorer.org/#/datacenters
 Data Center locations:https://ic-api.internetcomputer.org/api/locations
 
 ```
+
+### IC Account Migration
+
++ Keep the migrated SDK version the same,`sudo dfx upgrade `
++ Import the developer identity file xxx.pem on the other computer,`sudo dfx identity import icpscan identity.pem`
++ Switching the imported developer identity,`sudo dfx identity use icpscan`
++ Check whether the principals of the two computers are the same,`sudo dfx identity get-principal `
++ Execute on the computer before backup `dfx identity --network ic get-wallet ` 
++ Then set the wallet canister obtained in the previous step  ` sudo dfx identity --network ic set-wallet --force smk67-5iaaa-aaaah-qabzq-cai`
++ Run the command to get the controllers：`sudo dfx wallet --network ic controllers` 
++ Adding a local controller to the migrated canister via NNS authorizes multiple controllers to operate the current, canister_id`sznps-4aaaa-aaaah-qab2a-cai `
++ Test if the deployed canister ids are consistent, `sudo dfx deploy --no-wallet --network ic

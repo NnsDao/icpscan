@@ -9,7 +9,6 @@ import moment from "moment";
 import { toThousands } from "../utils/tool.js";
 import { reactive, onMounted, watchEffect } from 'vue';
 import { useRouter } from "vue-router";
-import '@ocrv/vue-tailwind-pagination/styles';
  
 export default defineComponent({
   components: { Header, Footer },
