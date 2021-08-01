@@ -14,6 +14,8 @@
     "@soerenmartius/vue3-clipboard": "^0.1.2",
     "axios": "^0.21.1",
     "decimal.js": "^10.2.1",
+    "echarts": "^5.1.2",
+    "echarts-gl": "^2.0.6",
     "moment": "^2.29.1",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",

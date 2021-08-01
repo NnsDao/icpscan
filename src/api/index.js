@@ -33,3 +33,12 @@ export function fetchSearch(query) {
     params: query,
   })
 }
+
+// 获取地图数据
+export function fetchLocations(query) {
+  return request({
+    url: '/api/block/newList',
+    method: 'get',
+    params: query,
+  })
+}
