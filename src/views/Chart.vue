@@ -52,10 +52,9 @@ export default {
         myChart.resize(styleO);
       };
 
-      const response = await fetch(
+      const locations = await fetch(
         "https://ic-api.internetcomputer.org/api/locations"
-      );
-      const locations = await response.json();
+      ).then((response) => response.json());
 
       const routes = [];
       for (const from of locations) {
@@ -71,7 +70,7 @@ export default {
         dataset: [
           {
             source: locations,
-          }
+          },
         ],
         backgroundColor: "#000",
         globe: {

@@ -42,3 +42,14 @@ export function fetchLocations(query) {
     params: query,
   })
 }
+
+// 获取用户名
+export function fetchLoginInfo(principal_id) {
+  return request({
+    url: '/api/user/login',
+    method: 'get',
+    params: {
+      principal_id,
+    },
+  })
+}
