@@ -61,8 +61,8 @@ const setCancel = (reqList, config, c) => {
   const ci = reqList.getCache(config) // 获取缓存实例
   ci.setCancel(c)
 }
-// 修改为自己的本地服务
-let baseURL = "";
+
+let baseURL = "https://api.baqiye.com";
 
 // 服务端地址
 const request = axios.create({
