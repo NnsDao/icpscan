@@ -22,7 +22,7 @@
                 <div>
                     <a href="#" class="flex space-x-2 text-white hover:text-yellow-400">
                         <!-- <p class="font-semibold  text-sm">TOP</p> -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10  -mt-2" fill="none" viewBox="0 0 24 24"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce h-10 w-10  -mt-2" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7l4-4m0 0l4 4m-4-4v18" />

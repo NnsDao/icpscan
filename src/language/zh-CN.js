@@ -74,6 +74,12 @@ export default  {
     'iNeuronStacked':'质押数量',
     'iNeuronDissolveDate':'溶解时间',
 
+    //acount
+    'iAccountBalance': '余额' ,
+    'iAccountBalanceCurve': '账户余额折线图' ,
+    'iTrackIcpData': '追踪IC链上数据' ,
+    'iTrackIcpWallet': '活跃钱包' ,
+
 
     // about
     'iAboutUs':'关于我们',
@@ -91,7 +97,7 @@ export default  {
     'iIcpSocialAuthor':'Social',
     'iIcpSocialName':'Dfinity Social',
 
-    'iIcpNnsDao':'开放的DAO社区平台.',
+    'iIcpNnsDao':'无边界的自治组织.',
     'iIcpNnsdaoAuthor':'DAOs',
     'iIcpNnsdaoName':'NnsDao',
 
@@ -99,11 +105,11 @@ export default  {
     'iIcpCapitalAuthor':'Capital',
     'iIcpCapitalName':'NnsDao Capital',
 
-    'iNnsDaoInfo':'NnsDao是一个开放的DAOs社区,我们的愿景是在ICP上构建基础工具和为ICP做一些力所能及的生态建设.',
+    'iNnsDaoInfo':'Nnsdao 源自于IC的NNS思想和DAO组织组合而来，在类比到人类的神经网络复杂性，并结合个体在追求独立、自由、自治的前景下成立NNSDAO，主要愿景是实现一种权力下放、由用户主导的自由自治协议。Nnsdao简单说是一个无边界的自治组织，它提供一些基础的模块式可编程服务，用于构建DAOn的世界.',
 
-    'iNnsDaoToken':'NnsDao Token : 是NnsDao社区的DAO治理通证,未来发行量10亿,每个NDT 暂定价格为 0.1 USDT, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.',
+    'iNnsDaoToken':'NnsDao Protocol : 是NnsDao社区的DAO治理通证,未来发行量10亿,每个NDP 暂定价格为 0.1 USDT, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.',
    
-    'iNnsDaoTokenSub':'因此在NnsDao没有上线之前所有捐助的用户都将会得到一定比例的NDT,只需要你有ICP账户即可使用.',
+    'iNnsDaoTokenSub':'因此在NnsDao没有上线之前所有捐助的用户都将会得到一定比例的NDP,只需要你有ICP账户即可使用.',
 
     'iNnsDaoSponsor':'赞助 ICP 地址(已结束): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
 

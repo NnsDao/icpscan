@@ -1,14 +1,14 @@
 <script>
-import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import { ref } from "vue";
+import { defineComponent,ref,onMounted,onUnmounted } from "vue";
 import { fetchSearch }  from "../api/index.js";
 import { useRoute } from "vue-router";
 import * as moment from "moment";
 import { Decimal } from 'decimal.js';
 import { toThousands } from "../utils/tool.js";
 import { useRouter } from "vue-router";
+import * as echarts from "echarts";
 
 
 
@@ -16,6 +16,44 @@ export default defineComponent({
   components: { Header,Footer },
 
   setup() {
+
+
+    let echart = echarts;
+ 
+    onUnmounted(() => {
+      echart.dispose;
+    });
+	
+    function initChart(dates,balance) {
+      let chart = echart.init(document.getElementById("myEcharts"), "dark");
+
+      console.log(dates,balance,89898)
+      //config data
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: dates,
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: balance,
+            type: "line",
+            smooth: true
+          }
+        ]
+      });
+      window.onresize = function() {
+        //自适应大小
+        chart.resize();
+      };
+    }
+
 
     function getTodayUnix() {
         var date = new Date();
@@ -56,6 +94,7 @@ export default defineComponent({
 
     const list = ref([]);
     const listAccount = ref([]);
+    const tranAccount = ref([]);
     // const getDetail = (id) => {
     //   const data = {
     //     recorde_addr: id,
@@ -73,18 +112,32 @@ export default defineComponent({
       list.value=   res && res.data;
     }
 
-     const getAccountDetail = async (id) => {
+    const getAccountDetail = async (id) => {
       const res = await fetch(
         `https://api.baqiye.com/api/block/searchDetail?account=`+id
       ).then(rsp => rsp.json())
       listAccount.value=   res && res.data;
     }
 
+    const getTransAccount = async (id) => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/accountBalanceCurve?account=`+id
+      ).then(rsp => rsp.json())
+      tranAccount.value=   res && res.data;
+
+      let afterArr = res.data.Balance.map(val =>    new Decimal(val ? val : 1 ).div(new Decimal(100000000)).toNumber() )
+
+      initChart(res.data.Date,afterArr);
+    }
+
+
     return {
       list,
       listAccount,
+      tranAccount,
       getParams,
       getAccountDetail,
+      getTransAccount,
       getDetail,
       MDate,
       moment,
@@ -96,6 +149,7 @@ export default defineComponent({
       last_page:'',
       toThousands,
       goJump,
+      initChart,
     };
   },
   data() {
@@ -106,7 +160,9 @@ export default defineComponent({
     const { id } = this.getParams() ; 
     let that = this;
     that.getDetail(id);
-    that.getAccountDetail(id)
+    that.getAccountDetail(id);
+    that.getTransAccount(id);
+    
     
   },
   mounted: function () {
@@ -197,6 +253,15 @@ export default defineComponent({
         </div>
     </div>
 
+    <div class="mt-5 space-y-1 p-3">
+      <div class="inline-flex items-center bg-white leading-none text-purple-600 rounded-full p-2 shadow text-sm">
+        <span class="inline-flex bg-purple-400 text-white rounded-full h-6 px-3 justify-center items-center ">{{ t("iAccountBalance")}}</span>
+        <span class="inline-flex px-2">{{ t("iAccountBalanceCurve")}}</span>
+      </div>
+    </div>
+    
+    <div id="myEcharts" :style="{ width: '1200px', height: '300px' }"></div>
+
 
     <!-- tab -->
 
@@ -228,11 +293,14 @@ export default defineComponent({
             
             <td class="w/20 p-4 " v-if="a.Account =='d3e13d4777e22367532053190b6c6ccf57444a61337e996242b1abfb52cf92c8' ">  {{ '币安/Binance' }}  </td>
             <td class="w/20 p-4 " v-else-if="a.Account =='4dfa940def17f1427ae47378c440f10185867677109a02bc8374fc25b9dee8af' ">  {{ 'Coinbase' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='a6ed987d89796f921c8a49d275ec7c9aa04e75a8fc8cd2dbaa5da799f0215ab0' ">  {{ 'Coinbase 1' }}  </td>
             <td class="w/20 p-4 " v-else-if="a.Account =='449ce7ad1298e2ed2781ed379aba25efc2748d14c60ede190ad7621724b9e8b2' ">  {{ 'Coinbase 2' }}  </td>
             <td class="w/20 p-4 " v-else-if="a.Account =='e7a879ea563d273c46dd28c1584eaa132fad6f3e316615b3eb657d067f3519b5' ">  {{ 'OKEX' }}  </td>
-            <td class="w/20 p-4 " v-else-if="a.Account =='a6ed987d89796f921c8a49d275ec7c9aa04e75a8fc8cd2dbaa5da799f0215ab0' ">  {{ 'Coinlist' }}  </td>
             <td class="w/20 p-4 " v-else-if="a.Account =='660b1680dafeedaa68c1f1f4cf8af42ed1dfb8564646efe935a2b9a48528b605' ">  {{ 'Coinbase 3' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='4878d23a09b554157b31323004e1cc053567671426ca4eec7b7e835db607b965' ">  {{ 'Coinbase 5' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='dd15f3040edab88d2e277f9d2fa5cc11616ebf1442279092e37924ab7cce8a74' ">  {{ 'Coinbase 4' }}  </td>
             <td class="w/20 p-4 " v-else-if="a.Account =='76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820' ">  {{ 'NnsDaos' }}  </td>
+            <td class="w/20 p-4 " v-else-if="a.Account =='935b1a3adc28fd68cacc95afcdec62e985244ce0cfbbb12cdc7d0b8d198b416d' ">  {{ 'Huobi' }}  </td>
             <td class="w/20 p-4 " v-else>  {{ t('iKnowUser')  }}  </td>
           </tr>
         

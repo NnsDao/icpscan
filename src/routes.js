@@ -8,6 +8,7 @@ import NotFound from './views/NotFound.vue'
 import Chart from './views/Chart.vue'
 import Canisters from './views/Canisters.vue'
 import Neurons from './views/Neurons.vue'
+import Line from './views/Line.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -56,6 +57,11 @@ export const routes = [
     path: '/neurons',
     meta: { title: 'neurons' },
     component: Neurons,
+  },
+  {
+    path: '/line',
+    meta: { title: 'Chart' },
+    component: Line,
   },
   { path: '/:path(.*)', component: NotFound },
 ]

@@ -76,6 +76,13 @@ export default  {
      'iNeuronDissolveDate':'溶解時間',
 
 
+     //acount
+    'iAccountBalance': 'バランス' ,
+    'iAccountBalanceCurve': '勘定残高折れ線グラフ' ,
+    'iTrackIcpData': 'ICチェーン上のデータを追跡する' ,
+    'iTrackIcpWallet': 'アクティブウォレット' ,
+
+
     // about
     'iAboutUs':'会社概要',
     'iAboutUsSub':'NnsDaoエコシステムにおけるICPブロックブラウザ.',
@@ -92,7 +99,7 @@ export default  {
     'iIcpSocialAuthor':'ソーシャル',
     'iIcpSocialName':'Dfinity ソーシャル',
 
-    'iIcpNnsDao':'オープンなDAOコミュニティプラットフォーム.',
+    'iIcpNnsDao':'国境のない自律組織.',
     'iIcpNnsdaoAuthor':'DAOs',
     'iIcpNnsdaoName':'NnsDao',
 
@@ -100,9 +107,9 @@ export default  {
     'iIcpCapitalAuthor':'資本金',
     'iIcpCapitalName':'NnsDao 資本金',
 
-    'iNnsDaoInfo':'NnsDao是一个开放的DAOs社区,NnsDaoはDAOのオープンコミュニティです。私たちのビジョンは、ICPの基本的なツールを構築し、ICPのためのエコシステムを構築するためにできることをすることです。',
+    'iNnsDaoInfo':'Nnsdaoは、ICのNNS思想とDAO組織の組み合わせから派生しています。これは、人間のニューラルネットワークの複雑さに類似しており、独立性、自由、自律性を追求する個人と組み合わされています。主なビジョンは、一種の分散化を実現することです。ユーザー主導の無料で自律的な合意。 Nnsdaoは、DAOnの世界を構築するための基本的なモジュール式のプログラム可能なサービスを提供する、ボーダレスな自律組織です。',
 
-    'iNnsDaoToken':'NnsDao Token : は、NnsDaoコミュニティのためのDAOガバナンス・パスで、将来の発行枚数は10億枚、暫定価格は1NDTあたり0.1 USDT です。開発者がNnsDaoのエコシステムを構築するために、早期の寄付を受け付けており、また、コミュニティに貢献してくださる皆様を応援しています。',
+    'iNnsDaoToken':'NnsDao Protocol : は、NnsDaoコミュニティのためのDAOガバナンス・パスで、将来の発行枚数は10億枚、暫定価格は1NDTあたり0.1 USDT です。開発者がNnsDaoのエコシステムを構築するために、早期の寄付を受け付けており、また、コミュニティに貢献してくださる皆様を応援しています。',
    
     'iNnsDaoTokenSub':'そのため、NnsDaoが稼動するまでは、寄付をしたすべてのユーザーは、それを利用するためのICPアカウントを持っている限り、NDTのパーセンテージを受け取ることができます。',
 

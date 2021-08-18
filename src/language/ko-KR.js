@@ -74,6 +74,13 @@ export default  {
       'iNeuronStacked':'약정금액',
       'iNeuronDissolveDate':'용해 시간',
 
+
+    //acount
+    'iAccountBalance': '균형' ,
+    'iAccountBalanceCurve': '계정 잔액 그래프' ,
+    'iTrackIcpData': 'IC 체인의 데이터 추적' ,
+    'iTrackIcpWallet': '활성 지갑' ,
+
     // about
     'iAboutUs':'우리에 대해',
     'iAboutUsSub':'NnsDao 생태학 아래 ICP 블록 탐색기.',
@@ -90,7 +97,7 @@ export default  {
     'iIcpSocialAuthor':'사회적인',
     'iIcpSocialName':'Dfinity Social',
 
-    'iIcpNnsDao':'오픈 DAO 커뮤니티 플랫폼.',
+    'iIcpNnsDao':'국경 없는 자율적인 조직.',
     'iIcpNnsdaoAuthor':'DAOs',
     'iIcpNnsdaoName':'NnsDao',
 
@@ -98,9 +105,9 @@ export default  {
     'iIcpCapitalAuthor':'자본',
     'iIcpCapitalName':'NnsDao 자본',
 
-    'iNnsDaoInfo':'NnsDao는 개방형 DAO 커뮤니티입니다. 우리의 비전은 ICP에 대한 기본 도구를 구축하고 우리의 능력 내에서 ICP를위한 생태 학적 구축을 수행하는 것입니다..',
+    'iNnsDaoInfo':'Nnsdao는 IC의 NNS 사고와 DAO 조직의 결합에서 파생되며 인간 신경망의 복잡성과 유사하며 독립, 자유 및 자율성을 추구하기 위해 개인과 결합됩니다. 주요 비전은 일종의 탈중앙화를 달성하는 것입니다. 사용자가 주도하는 자유롭고 자율적인 계약. Nnsdao는 단순히 DAOn의 세계를 구축하기 위한 몇 가지 기본 모듈식 프로그래밍 가능 서비스를 제공하는 국경 없는 자율 조직입니다.',
 
-    'iNnsDaoToken':'NnsDao 토큰 : NnsDao 커뮤니티의 DAO 거버넌스 토큰입니다. 향후 발행량은 10 억, 각 NDT의 잠정 가격은 0.1 USDT입니다. 개발자가 NnsDao 생태계를 구축 할 수 있도록 조기 기부를 받고 참여하는 모든 사람을 격려합니다. 커뮤니티 사람들에게.',
+    'iNnsDaoToken':'NnsDao Protocol : NnsDao 커뮤니티의 DAO 거버넌스 토큰입니다. 향후 발행량은 10 억, 각 NDT의 잠정 가격은 0.1 USDT입니다. 개발자가 NnsDao 생태계를 구축 할 수 있도록 조기 기부를 받고 참여하는 모든 사람을 격려합니다. 커뮤니티 사람들에게.',
    
     'iNnsDaoTokenSub':'NnsDao가 온라인 상태가되기 전에 기부 한 모든 사용자는 일정 비율의 NDT를 받게되며 ICP 계정 만 있으면 사용할 수 있습니다.',
 

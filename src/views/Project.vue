@@ -184,6 +184,64 @@ export default defineComponent({
     <div
       class="container mx-auto mt-10 grid grid-cols-3 gap-4 md:grid-cols-2 xl:grid-cols-3"
     >
+
+       <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="/img/texas.png"
+              alt="Texas Holdem"
+            />
+          </div>
+          <div class="relative bg-gray-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">Texas Holdem</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://lm5fh-ayaaa-aaaah-aafua-cai.ic0.app/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  >Texas DAOs </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                Built in IC Texas Hold'em Poker, it does not have a cloud server, it belongs to everyone.
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/nnsdao/"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/nnsdaos"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://lm5fh-ayaaa-aaaah-aafua-cai.ic0.app/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">Visit</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div>
         <div class="rounded-lg overflow-hidden">
           <div class="relative overflow-hidden pb-60">
@@ -193,7 +251,7 @@ export default defineComponent({
               alt=""
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">dscvr</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -217,7 +275,7 @@ export default defineComponent({
                   href="https://h5aet-waaaa-aaaab-qaamq-cai.raw.ic0.app/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -252,7 +310,7 @@ export default defineComponent({
               alt=""
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">capsule social</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -277,7 +335,7 @@ export default defineComponent({
                   href="https://capsule.social/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -312,7 +370,7 @@ export default defineComponent({
               alt="origyn"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">origyn</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -339,7 +397,7 @@ export default defineComponent({
                   href="https://origyn.ch/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -373,7 +431,7 @@ export default defineComponent({
               alt="cancan"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">CanCan</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -397,7 +455,7 @@ export default defineComponent({
                   href="https://github.com/dfinity/cancan"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -431,7 +489,7 @@ export default defineComponent({
               alt="Fleek"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">Fleek</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -458,7 +516,7 @@ export default defineComponent({
                   href="https://fleek.co/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -492,7 +550,7 @@ export default defineComponent({
               alt="cancan"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">dfinitynft</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -517,7 +575,7 @@ export default defineComponent({
                   href="https://dfinitynft.org/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -551,7 +609,7 @@ export default defineComponent({
               alt="canistore"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">Canistore</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -580,7 +638,7 @@ export default defineComponent({
                   href="https://canistore.io/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -615,7 +673,7 @@ export default defineComponent({
               alt="hypotenuse"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">Hypotenuse</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -641,7 +699,7 @@ export default defineComponent({
                   href="https://hypotenuse.ca/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -675,7 +733,7 @@ export default defineComponent({
               alt="Sudograph"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">Sudograph</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -699,7 +757,7 @@ export default defineComponent({
                   href="https://sudograph.org/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -733,7 +791,7 @@ export default defineComponent({
               alt="dfinance"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">dfinance</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -757,7 +815,7 @@ export default defineComponent({
                   href="https://dfinance.ai/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -791,7 +849,7 @@ export default defineComponent({
               alt="OpenChat"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">OpenChat</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -815,7 +873,7 @@ export default defineComponent({
                   href="https://7e6iv-biaaa-aaaaf-aaada-cai.ic0.app/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -849,7 +907,7 @@ export default defineComponent({
               alt="CycleDao"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">cycledao</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -873,7 +931,7 @@ export default defineComponent({
                   href="https://cycledao.xyz/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -907,7 +965,7 @@ export default defineComponent({
               alt="icme_app"
             />
           </div>
-          <div class="relative bg-blue-200">
+          <div class="relative bg-gray-200">
             <div class="py-10 px-8">
               <h3 class="text-2xl font-bold">icme_app</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
@@ -931,7 +989,7 @@ export default defineComponent({
                   href="https://sygsn-caaaa-aaaaf-qaahq-cai.raw.ic0.app/"
                   class="flex items-center"
                 >
-                  <p class="mr-4">立即体验</p>
+                  <p class="mr-4">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -954,6 +1012,294 @@ export default defineComponent({
           </div>
         </div>
       </div>
+
+
+      <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="/img/nnsdao-logo-1024.png"
+              alt="Nnsdao"
+            />
+          </div>
+          <div class="relative bg-gray-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">Nnsdao Protocol</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://twitter.com/nnsdaos"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > Nnsdao Labs </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                The boundaryless autonomous organization.
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/nnsdao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/nnsdaos"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://twitter.com/nnsdaos"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">Visit</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="/img/ICP-logo-mark.png"
+              alt="Nnsdao"
+            />
+          </div>
+          <div class="relative bg-gray-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">NNS Dapp</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://nns.ic0.app/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > Dfinity </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                The NNS front-end dapp allows anyone to interact with the Internet Computer's Network Nervous System with a user-friendly UI. 
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/dfinity"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/dfinity"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://nns.ic0.app/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">Visit</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="/img/motoko-lab-logo.5b9112fe.png"
+              alt="Nnsdao Motoko"
+            />
+          </div>
+          <div class="relative bg-gray-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">Motoko Playground</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > Motoko School </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                The Motoko Playground is an IDE for developers to learn Motoko – the native language for the Internet Computer blockchain. 
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/dfinity/motoko-playground"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/dfinity"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">Visit</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="/img/icrocks-logo.png"
+              alt="IC Rocks"
+            />
+          </div>
+          <div class="relative bg-gray-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">IC Rocks</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://ic.rocks/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > IC Rocks </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                IC.Rocks is a complete "block explorer" for the Internet Computer – built by the community.Tracking everything from transactions, to network upgrades, to cycles, IC.Rocks enables anyone to explore the inner-workings of the Internet Computer. 
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/ic-rocks"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/ic_rocks"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://ic.rocks/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">Visit</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="rounded-lg overflow-hidden">
+          <div class="relative overflow-hidden pb-60">
+            <img
+              class="absolute h-full w-full object-cover object-center"
+              src="/img/loader.webp"
+              alt="Internet Identity"
+            />
+          </div>
+          <div class="relative bg-gray-200">
+            <div class="py-10 px-8">
+              <h3 class="text-2xl font-bold">Internet Identity</h3>
+              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
+                <p>Provided by&nbsp;</p>
+                <a
+                  href="https://identity.ic0.app/"
+                  class="hover:text-black transition duration-300 ease-in-out"
+                  > Dfinity </a
+                >
+              </div>
+              <!--  -->
+              <p class="leading-7">
+                Internet Identity guarantees that your data isn’t visible, tracked, or mined. The blockchain authentication system enables users to sign in to dapps on the Internet Computer and sites across the web anonymously and securely.
+              </p>
+              <div class="mt-10 flex justify-between items-center">
+                <div>
+                  <a href="https://github.com/dfinity/internet-identity"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
+                  <a href="https://twitter.com/dfinity"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
+                </div>
+                <a
+                  href="https://identity.ic0.app/"
+                  class="flex items-center"
+                >
+                  <p class="mr-4">Visit</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14.125"
+                    height="13.358"
+                    viewBox="0 0 14.125 13.358"
+                  >
+                    <g transform="translate(-3 -3.293)">
+                      <path
+                        id="Path_7"
+                        data-name="Path 7"
+                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
+                        fill="#1d1d1d"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     
      
