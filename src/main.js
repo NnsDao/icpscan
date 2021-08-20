@@ -9,7 +9,9 @@ import { useI18n } from 'vue-i18n'
 import {Toaster} from '@meforma/vue-toaster';
 
 import defalutData from "./config/default-data";
-import { VueClipboard } from '@soerenmartius/vue3-clipboard'
+import { VueClipboard } from '@soerenmartius/vue3-clipboard';
+// var Buffer = require('buffer/').Buffer; 
+// const stream = require('stream');
 
 const app = createApp(App)
 
@@ -38,5 +40,7 @@ const router = createRouter({
 app.use(VueI18n)
 app.use(Toaster)
 app.use(VueClipboard)
+// app.use(stream)
+// app.use(Buffer)
 app.use(router)
 app.mount('#app')

@@ -69,6 +69,7 @@ import Footer from "@/components/Footer.vue";
 import * as echarts from "echarts";
 import { Decimal } from 'decimal.js';
 import { ref, onMounted,onUnmounted } from "vue";
+// import { identity } from "../api/identity.js";
 
 export default {
   name: "Chart",
@@ -77,6 +78,7 @@ export default {
 
 
     let echart = echarts;
+    let identity = identity ;
  
     onUnmounted(() => {
       echart.dispose;
@@ -85,7 +87,7 @@ export default {
     function initTrackChart(dates,balance) {
       let chart = echart.init(document.getElementById("myTrackEcharts"), "dark");
 
-      console.log(dates,balance,89898)
+      // console.log(dates,balance,89898)
       //config data
       chart.setOption({
         xAxis: {
@@ -145,6 +147,7 @@ export default {
 
     const trackAccount = ref([]);
     const tranAccount = ref([]);
+    const texasAccount = ref([]);
 
     const getTrackAccount = async () => {
       const res = await fetch(
@@ -161,7 +164,16 @@ export default {
       tranAccount.value=   res && res.data;
       initChart(res.data.Dt,res.data.Number);
     }
-   
+
+    // canister data 
+
+    // const getTexasData = async () => {
+    //     const canisterId = 'ery6l-taaaa-aaaah-aaeqq-cai';
+    //     const resd = identity.createActor(canisterId) ; 
+    //     texasAccount.value = await resd.totalUsers();
+    // }
+
+    // console.log(texasAccount,777777)
 
     return {
       trackAccount,
@@ -170,12 +182,13 @@ export default {
       getAccountOther,
       initTrackChart,
       initChart,
+      // getTexasData,
     };
   },
    created: function () {
     let that = this;
     that.getTrackAccount();
-    // that.getAccountOther();
+    // that.getTexasData();
     
   },
 };
