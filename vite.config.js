@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-import polyfillNode from 'rollup-plugin-polyfill-node'
+// import polyfillNode from 'rollup-plugin-polyfill-node'
 
 export default defineConfig({
-  plugins: [vue(),polyfillNode()],
+  plugins: [vue()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '/src'),
