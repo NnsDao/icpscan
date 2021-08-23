@@ -14,6 +14,8 @@ export default  {
     'iNodeCount': '节点数量' ,
     'iPriceName':'ICP价格',
     'iIcpRank':'全球排名',
+    'iTexasTotalUser':'德州总用户',
+    'iTexasGameAmount':'德州游戏局数',
     'iLatest': '最新' ,
     'iTransferHash': '转账hash' ,
     'iTransactions': '转账' ,
@@ -79,6 +81,11 @@ export default  {
     'iAccountBalanceCurve': '账户余额折线图' ,
     'iTrackIcpData': '追踪IC链上数据' ,
     'iTrackIcpWallet': '活跃钱包' ,
+    'iTrackIcpDayBlock': '每日区块量' ,
+    'iTrackIcpDayBurn': '销毁数量' ,
+    'iTrackIcpDayMint': '铸币数量' ,
+    'iTrackIcpDayMoney': '交易金额' ,
+    'iTrackIcpDayTransation': '交易笔数' ,
 
 
     // about
@@ -111,7 +118,8 @@ export default  {
    
     'iNnsDaoTokenSub':'因此在NnsDao没有上线之前所有捐助的用户都将会得到一定比例的NDP,只需要你有ICP账户即可使用.',
 
-    'iNnsDaoSponsor':'赞助 ICP 地址(已结束): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'赞助 ICP 地址(第二次启动): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsorIcpdrops':'提示:赞助和空投占总量的2%.',
 
     'iKnowUser':'未知用户',
 

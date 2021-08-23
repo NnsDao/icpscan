@@ -12,9 +12,9 @@
             </div>
           </div>
 
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap text-center justify-center">
 
-          <div class=" sm:-m-4 -mx-4 -mb-10 -mt-4 ">
+          <div class=" sm:-m-4 -mx-4 -mb-10 -mt-4">
             <div class="p-10  md:mb-0 mb-6  ">
               <div class="pattern-dots-md gray-light">
                 <div class="rounded bg-gray-800 p-4 transform translate-x-6 -translate-y-6  "  >
@@ -27,33 +27,76 @@
             </div>
           </div>
 
-           <!-- <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
+          <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
             <div class="p-10  md:mb-0 mb-6   ">
               <div class="pattern-dots-md gray-light">
                 <div class="rounded bg-gray-800 p-4 transform translate-x-6 -translate-y-6  "  >
-                    <div class="mb-5">{{ t('iTrackIcpWallet') }}</div>
+                    <div class="mb-5">{{ t('iTrackIcpDayBlock') }}</div>
                     <div class="flex-grow ">
                         <div id="myEcharts" :style="{ width: '650px', height: '300px' }"></div>
                     </div> 
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
 
-
-           <!-- <div class="  sm:-m-4 -mx-4 -mb-10 -mt-4 ">
+          <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
             <div class="p-10  md:mb-0 mb-6   ">
               <div class="pattern-dots-md gray-light">
                 <div class="rounded bg-gray-800 p-4 transform translate-x-6 -translate-y-6  "  >
-                  <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-green-100 text-green-500 mb-5 flex-shrink-0 p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>                </div>
-                  <div class="flex-grow ">
-                       <div id="myEcharts" :style="{ width: '400px', height: '300px' }"></div>
-                  </div> 
+                    <div class="mb-5">{{ t('iTrackIcpDayBurn') }}</div>
+                    <div class="flex-grow ">
+                        <div id="myBurnEcharts" :style="{ width: '650px', height: '300px' }"></div>
+                    </div> 
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
+
+          <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
+            <div class="p-10  md:mb-0 mb-6   ">
+              <div class="pattern-dots-md gray-light">
+                <div class="rounded bg-gray-800 p-4 transform translate-x-6 -translate-y-6  "  >
+                    <div class="mb-5">{{ t('iTrackIcpDayMint') }}</div>
+                    <div class="flex-grow ">
+                        <div id="myMintEcharts" :style="{ width: '650px', height: '300px' }"></div>
+                    </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- myAmountEcharts -->
+
+          <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
+            <div class="p-10  md:mb-0 mb-6   ">
+              <div class="pattern-dots-md gray-light">
+                <div class="rounded bg-gray-800 p-4 transform translate-x-6 -translate-y-6  "  >
+                    <div class="mb-5">{{ t('iTrackIcpDayMoney') }}</div>
+                    <div class="flex-grow ">
+                        <div id="myAmountEcharts" :style="{ width: '650px', height: '300px' }"></div>
+                    </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- transationCount -->
+
+           <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
+            <div class="p-10  md:mb-0 mb-6   ">
+              <div class="pattern-dots-md gray-light">
+                <div class="rounded bg-gray-800 p-4 transform translate-x-6 -translate-y-6  "  >
+                    <div class="mb-5">{{ t('iTrackIcpDayTransation') }}</div>
+                    <div class="flex-grow ">
+                        <div id="myTransationEcharts" :style="{ width: '650px', height: '300px' }"></div>
+                    </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
           </div>
            
@@ -69,7 +112,6 @@ import Footer from "@/components/Footer.vue";
 import * as echarts from "echarts";
 import { Decimal } from 'decimal.js';
 import { ref, onMounted,onUnmounted } from "vue";
-// import { identity } from "../api/identity.js";
 
 export default {
   name: "Chart",
@@ -78,7 +120,6 @@ export default {
 
 
     let echart = echarts;
-    let identity = identity ;
  
     onUnmounted(() => {
       echart.dispose;
@@ -86,8 +127,6 @@ export default {
 	
     function initTrackChart(dates,balance) {
       let chart = echart.init(document.getElementById("myTrackEcharts"), "dark");
-
-      // console.log(dates,balance,89898)
       //config data
       chart.setOption({
         xAxis: {
@@ -109,7 +148,6 @@ export default {
         ]
       });
         window.onresize = function() {
-            //自适应大小
             chart.resize();
         };
     }
@@ -117,8 +155,6 @@ export default {
 
     function initChart(dates,balance) {
       let chart = echart.init(document.getElementById("myEcharts"), "dark");
-
-      console.log(dates,balance,89898)
       //config data
       chart.setOption({
         xAxis: {
@@ -140,14 +176,126 @@ export default {
         ]
       });
         window.onresize = function() {
-            //自适应大小
             chart.resize();
         };
     }
 
+    function myBurnEcharts(dates,balance) {
+      let chart = echart.init(document.getElementById("myBurnEcharts"), "dark");
+      //config data
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: dates,
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: balance,
+            type: "line",
+            smooth: true
+          }
+        ]
+      });
+        window.onresize = function() {
+            chart.resize();
+        };
+    }
+
+    function myMintEcharts(dates,balance) {
+      let chart = echart.init(document.getElementById("myMintEcharts"), "dark");
+      //config data
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: dates,
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: balance,
+            type: "line",
+            smooth: true
+          }
+        ]
+      });
+        window.onresize = function() {
+            chart.resize();
+        };
+    }
+
+    function myAmountEcharts(dates,balance) {
+      let chart = echart.init(document.getElementById("myAmountEcharts"), "dark");
+      //config data
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: dates,
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: balance,
+            type: "line",
+            smooth: true
+          }
+        ]
+      });
+        window.onresize = function() {
+            chart.resize();
+        };
+    }
+    // myTransationEcharts
+
+    function myTransationEcharts(dates,balance) {
+      let chart = echart.init(document.getElementById("myTransationEcharts"), "dark");
+      //config data
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: dates,
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            data: balance,
+            type: "line",
+            smooth: true
+          }
+        ]
+      });
+        window.onresize = function() {
+            chart.resize();
+        };
+    }
+
+    
+
     const trackAccount = ref([]);
     const tranAccount = ref([]);
-    const texasAccount = ref([]);
+    const burnAccount = ref([]);
+    const mintCount = ref([]);
+    const amountCount = ref([]);
 
     const getTrackAccount = async () => {
       const res = await fetch(
@@ -156,39 +304,83 @@ export default {
       trackAccount.value=   res && res.data;
       initTrackChart(res.data.Dt,res.data.Number);
     }
-
+    // block create
     const getAccountOther = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/accountDAU`
+        `https://api.baqiye.com/api/block/blockCount`
       ).then(rsp => rsp.json())
       tranAccount.value=   res && res.data;
-      initChart(res.data.Dt,res.data.Number);
+      initChart(res.data.Dt,res.data.Count);
     }
 
-    // canister data 
+    // canister data  myBurnEcharts
 
-    // const getTexasData = async () => {
-    //     const canisterId = 'ery6l-taaaa-aaaah-aaeqq-cai';
-    //     const resd = identity.createActor(canisterId) ; 
-    //     texasAccount.value = await resd.totalUsers();
-    // }
+    const getBurnAccount = async () => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/destroyAmount`
+      ).then(rsp => rsp.json())
+      burnAccount.value=   res && res.data;
+      let burnCount = res.data.Count.map(val =>    new Decimal(val ? val : 1 ).div(new Decimal(100000000)).toNumber() )
+      myBurnEcharts(res.data.Dt,burnCount);
+    }
+    // mint coin
 
-    // console.log(texasAccount,777777)
+    const getMintAccount = async () => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/mintAmount`
+      ).then(rsp => rsp.json())
+      mintCount.value=   res && res.data;
+      let mCount = res.data.Count.map(val =>    new Decimal(val ? val : 1 ).div(new Decimal(100000000)).toNumber() )
+      myMintEcharts(res.data.Dt,mCount);
+    }
+    // Transation  amount
+
+    const getTransationAccount = async () => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/transationAmount`
+      ).then(rsp => rsp.json())
+      amountCount.value=   res && res.data;
+      let mCount = res.data.Count.map(val =>    new Decimal(val ? val : 1 ).div(new Decimal(100000000)).toNumber() )
+      myAmountEcharts(res.data.Dt,mCount);
+    }
+
+    // Transation count
+
+    const getTransationCount = async () => {
+      const res = await fetch(
+        `https://api.baqiye.com/api/block/transationCount`
+      ).then(rsp => rsp.json())
+      amountCount.value=   res && res.data;
+      myTransationEcharts(res.data.Dt,res.data.Count);
+    }
+   
 
     return {
       trackAccount,
       tranAccount,
+      mintCount,
       getTrackAccount,
       getAccountOther,
+      getBurnAccount,
+      getMintAccount,
+      getTransationAccount,
+      getTransationCount,
       initTrackChart,
       initChart,
-      // getTexasData,
+      myBurnEcharts,
+      myMintEcharts,
+      myAmountEcharts,
+      myTransationEcharts,
     };
   },
    created: function () {
     let that = this;
     that.getTrackAccount();
-    // that.getTexasData();
+    that.getAccountOther();
+    that.getBurnAccount();
+    that.getMintAccount();
+    that.getTransationAccount();
+    that.getTransationCount();
     
   },
 };

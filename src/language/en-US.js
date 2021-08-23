@@ -13,6 +13,8 @@ export default  {
     'iDappCandid': 'Dapp Canisters' ,
     'iNodeCount': 'Node Machines' ,
     'iIcpRank':'CMC Rank',
+    'iTexasTotalUser':'Total users in Texas',
+    'iTexasGameAmount':'Number of games in Texas',
     'iPriceName':'ICP Price',
     'iLatest': 'Latest' ,
     'iTransferHash': 'Transactions Hash' ,
@@ -79,6 +81,11 @@ export default  {
      'iAccountBalanceCurve': 'Account balance line chart' ,
      'iTrackIcpData': 'Track data on the IC chain' ,
      'iTrackIcpWallet': 'Active wallet' ,
+     'iTrackIcpDayBlock': 'Daily block volume' ,
+    'iTrackIcpDayBurn': 'Burn volume' ,
+    'iTrackIcpDayMint': 'Mint of coins' ,
+    'iTrackIcpDayMoney': 'Transaction amount' ,
+    'iTrackIcpDayTransation': 'Number of transactions' ,
  
 
     // about
@@ -111,7 +118,8 @@ export default  {
    
     'iNnsDaoTokenSub':'Therefore, before NnsDao is online, all users who donated will get a certain percentage of NDT, and you only need to have an ICP account to use it.',
 
-    'iNnsDaoSponsor':'Sponsors ICP Address(Over): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'Sponsors ICP Address(Second start): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsorIcpdrops':'Tip: Sponsors and airdrops account for 2% of the total.',
     'iKnowUser':'Unknown user',
 
 

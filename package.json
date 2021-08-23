@@ -19,14 +19,17 @@
     "@meforma/vue-toaster": "^1.2.2",
     "@soerenmartius/vue3-clipboard": "^0.1.2",
     "axios": "^0.21.1",
+    "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "decimal.js": "^10.2.1",
     "echarts": "^5.1.2",
     "echarts-gl": "^2.0.6",
     "moment": "^2.29.1",
+    "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
+    "util": "^0.12.4",
     "vue": "^3.0.11",
     "vue-i18n": "^9.1.6",
     "vue-router": "^4.0.8"
@@ -42,6 +45,7 @@
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.11",
     "autoprefixer": "^10.2.5",
+    "rollup-plugin-polyfill-node": "^0.7.0",
     "tailwindcss": "^2.1.2",
     "vite": "^2.3.3"
   }

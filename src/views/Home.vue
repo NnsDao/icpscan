@@ -7,8 +7,10 @@ import Footer from "@/components/Footer.vue";
 import { fetchList,fetchSearch }  from "../api/index.js";
 import { Decimal } from 'decimal.js';
 import { reactive, onMounted, watchEffect } from 'vue'
-import { toThousands,MDate,mydate } from "../utils/tool.js";
+import { toThousands,MDate,mydate,divisionBigInt } from "../utils/tool.js";
 import { useRouter } from "vue-router";
+import  * as  identitys from "../api/identity";
+import  * as  gameidentity from "../api/texasidl";
 
 
 export default defineComponent({
@@ -25,37 +27,9 @@ export default defineComponent({
     }
 
     console.log("setup");
+  
     const list = ref([]);
-    // let _clearCache = () => {}
-    // let onClear = () => {
-    //   _clearCache();
-    // };
-    // let time = 0
-    // const getList = () => {
-    //   time++
-    //   var num = Math.floor(Math.random() * 100 + 1);
-    //   const data = {
-    //     // page: 1,
-    //     // pageSize: 10,
-    //     // loading 回调函数
-    //     _loadingCallback: (l) => {
-    //       console.log("loading:::", l);
-    //     },
-    //     // 是否使用缓存
-    //     _cache: true,
-    //     // 清除缓存方法 
-    //     _clearCache: (clear) => {
-    //       _clearCache = clear;
-    //     },
-    //   };
-    //   fetchList(data).then((res) => {
-    //     console.log("APP:::", res.data);
-    //     list.value = res && res.data;
-    //     if (time < 3) {
-    //       getList()
-    //     }
-    //   });
-    // };
+    
     // 单个请求 TODO CORS 
     const getList = async () => {
       const res = await fetch(
@@ -99,6 +73,14 @@ export default defineComponent({
 
     const priceData = reactive({
       ticker: [],
+    });
+
+    const texasAccount = reactive({
+      user: [],
+    });
+
+    const texasGameTotal = reactive({
+      game: [],
     });
 
     
@@ -241,6 +223,22 @@ export default defineComponent({
         }
     }
 
+    //texas  data 
+    const getTexasData = async () => {
+        const canisterId = 'ery6l-taaaa-aaaah-aaeqq-cai';
+        const resd = identitys.createActor(canisterId) ; 
+        const decimals = 10 ** Number(await resd.decimals());
+        const tuser = divisionBigInt(await resd.totalUsers(), decimals) ;
+        texasAccount.user =  tuser * 100000000 ;
+    }
+
+    const getTexasGame = async () => {
+        const canisterId = 'll4dt-naaaa-aaaah-aafuq-cai';
+        const resdddd = gameidentity.createActor(canisterId) ; 
+        const decimals = 10 ** Number(8);
+        const tuser = divisionBigInt(await resdddd.gameAmount(), decimals) ;
+        texasGameTotal.game =  tuser * 100000000;
+    }
 
     onMounted(() => {
     
@@ -280,6 +278,8 @@ export default defineComponent({
       goAccount,
       goSearch,
       blockData,
+      texasAccount,
+      texasGameTotal,
       nodeData,
       canData,
       rateData,
@@ -292,10 +292,14 @@ export default defineComponent({
       account:'',
       timer: null,
       toThousands,
+      getTexasData,
+      getTexasGame,
     };
   },
   created() {
-    
+    let that = this;
+    that.getTexasData();
+    that.getTexasGame();
   },
   methods: {
    
@@ -411,7 +415,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/dfinity-logo.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-green-500" >
                     {{ t('iBlockCount') }} {{  toThousands(b[1]) }}
@@ -442,7 +446,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQPLGXKYJyWibn3GbZNEYKpG2Lp3XP77kJ4mhg6DP2uvY" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/speed.jpeg" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{    toThousands( Math.floor(n[1] * 10000) / 10000)    }}
@@ -471,7 +475,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmVf4fnL8CbQszVcrK1Mhn4GUus7J38BV93iE1mFYhpetF" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/canister.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{   toThousands(n)  }}
@@ -501,7 +505,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmVHQugXWXtUHdmFqQWX8NNiNVmZTq5FYQ3beTpCweLFPw" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/total.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{    toThousands( n / 100000000 )      }}
@@ -532,7 +536,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmWVW7H5zirP83wNXLRrZvcvH8eWgdawfUpUdzJue9ph88" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/cmessage.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{      toThousands( Math.floor(n[1] * 10000) / 10000 )      }}
@@ -562,7 +566,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmaAbFqf1ZXZ4vpKLCMM7qwyKyJMqf3PTHCPCgCBq6EWB9" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/message.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{     toThousands( Math.floor(n[1] * 10000) / 10000  )      }}
@@ -594,7 +598,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmdAMDPpo82WHPz9jAcgLMuEGq4pNdVmPVzbnRu43a3diA" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/motoko.jpeg" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{  toThousands(n[1])  }}
@@ -624,7 +628,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmSY1FY8CjDSiPtmvPQvPRAy39RHpWQq33vcequmNv1YKf" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/node.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-gray-900" >
                      {{   toThousands( n[1] )  }}
@@ -655,7 +659,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/dfinity-logo.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
                     {{   toThousands( i['price']  )  }}
@@ -684,7 +688,7 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="https://gateway.pinata.cloud/ipfs/QmQ5FvUMYUNuU5mRYocqtxMjgAgRHGw5zyEwnFqT2Xadtp" alt="Contact with Customer support" title="Contact with Customer support">
+                  <img src="/img/dfinity-logo.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
                      {{ i['rank'] }}
@@ -692,6 +696,65 @@ export default defineComponent({
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
                     {{ t('iIcpRank') }}
+              </dd>
+            </div>
+
+            <div
+              class="relative"
+              v-for="i in texasAccount" :key="i.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="/img/texas-logo.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
+                     {{ i }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    {{ t('iTexasTotalUser') }}
+              </dd>
+            </div>
+
+
+             <div
+              class="relative"
+              v-for="i in texasGameTotal" :key="i.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="/img/texas-logo.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
+                     {{ i }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    {{ t('iTexasGameAmount') }}
               </dd>
             </div>
            

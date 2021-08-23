@@ -1,5 +1,5 @@
 import { Actor, HttpAgent } from "@dfinity/agent";
-import  IDL  from './idl.js';
+import  IDL  from './gameidl.js';
 
 /**
  * 

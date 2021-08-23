@@ -186,6 +186,7 @@ export default defineComponent({
             {{ t('iNnsDaoToken') }}
           </p>
           <p class="my-3"> {{ t('iNnsDaoTokenSub') }} </p>
+          <p class="my-3"> {{ t('iNnsDaoSponsorIcpdrops') }} </p>
           <p class="my-5">  
               {{ t('iNnsDaoSponsor') }} 
           </p>

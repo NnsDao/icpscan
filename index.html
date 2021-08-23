@@ -15,10 +15,21 @@
     <link rel="stylesheet" href="/font/inter.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://unpkg.com/pattern.css" rel="stylesheet">
+    <script>window.global = window;</script>
+    <script type="module">
+      import process from "process";
+      import { Buffer } from "buffer";
+      import EventEmitter from "events";
+
+      window.Buffer = Buffer;
+      window.process = process;
+      window.EventEmitter = EventEmitter;
+    </script>
    
   </head>
   <body>
     <div id="app"></div>
+    <script>window.global = window;</script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

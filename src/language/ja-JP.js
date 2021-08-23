@@ -14,6 +14,8 @@ export default  {
     'iNodeCount': 'ノード数' ,
     'iPriceName':'ICP価格',
     'iIcpRank':'グローバルランキング',
+    'iTexasTotalUser':'テキサスの総ユーザー数',
+    'iTexasGameAmount':'テキサスのゲーム数',
     'iLatest': '最新' ,
     'iTransferHash': 'トランスファーハッシュ' ,
     'iTransactions': '振替' ,
@@ -81,6 +83,11 @@ export default  {
     'iAccountBalanceCurve': '勘定残高折れ線グラフ' ,
     'iTrackIcpData': 'ICチェーン上のデータを追跡する' ,
     'iTrackIcpWallet': 'アクティブウォレット' ,
+    'iTrackIcpDayBlock': '毎日のブロックボリューム' ,
+    'iTrackIcpDayBurn': '破壊された量' ,
+    'iTrackIcpDayMint': 'コインの数' ,
+    'iTrackIcpDayMoney': '取引金額' ,
+    'iTrackIcpDayTransation': 'トランザクション数' ,
 
 
     // about
@@ -113,7 +120,8 @@ export default  {
    
     'iNnsDaoTokenSub':'そのため、NnsDaoが稼動するまでは、寄付をしたすべてのユーザーは、それを利用するためのICPアカウントを持っている限り、NDTのパーセンテージを受け取ることができます。',
 
-    'iNnsDaoSponsor':'ICPアドレスのスポンサー募集（終了): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'ICPアドレスのスポンサー募集（セカンドスタート): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsorIcpdrops':'ヒント：スポンサーシップとエアドロップは全体の2％を占めています。',
 
     'iKnowUser':'未知のユーザー',
 

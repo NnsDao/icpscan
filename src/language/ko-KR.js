@@ -14,6 +14,8 @@ export default  {
     'iNodeCount': '노드 수' ,
     'iPriceName':'ICP 가격',
     'iIcpRank':'글로벌 랭킹',
+    'iTexasTotalUser':'텍사스의 총 사용자',
+    'iTexasGameAmount':'텍사스의 게임 수',
     'iLatest': '최신 정보' ,
     'iTransferHash': '해시 전송' ,
     'iTransactions': '이전' ,
@@ -80,6 +82,11 @@ export default  {
     'iAccountBalanceCurve': '계정 잔액 그래프' ,
     'iTrackIcpData': 'IC 체인의 데이터 추적' ,
     'iTrackIcpWallet': '활성 지갑' ,
+    'iTrackIcpDayBlock': '일일 블록 볼륨' ,
+    'iTrackIcpDayBurn': '파괴된 수량' ,
+    'iTrackIcpDayMint': '동전 수' ,
+    'iTrackIcpDayMoney': '거래 금액' ,
+    'iTrackIcpDayTransation': '거래 수' ,
 
     // about
     'iAboutUs':'우리에 대해',
@@ -111,7 +118,8 @@ export default  {
    
     'iNnsDaoTokenSub':'NnsDao가 온라인 상태가되기 전에 기부 한 모든 사용자는 일정 비율의 NDT를 받게되며 ICP 계정 만 있으면 사용할 수 있습니다.',
 
-    'iNnsDaoSponsor':'스폰서 ICP 주소 (닫힘): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'스폰서 ICP 주소 (두 번째 시작): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsorIcpdrops':'팁: 후원 및 에어드랍은 전체의 2%를 차지합니다.',
 
     'iKnowUser':'알 수없는 사용자',
 

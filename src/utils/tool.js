@@ -62,3 +62,13 @@ export function mydate(time_stamp ) {
   return date;
 }
 
+const divisionBigInt = (number1, number2) => {
+  return Number(Number(number1) / Number(number2))
+}
+
+const multipBigInt = (number1, number2) => {
+  return Number(Number(number1) * Number(number2))
+}
+
+
+export { divisionBigInt, multipBigInt }
