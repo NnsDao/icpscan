@@ -16,6 +16,7 @@ export default  {
     'iIcpRank':'グローバルランキング',
     'iTexasTotalUser':'テキサスの総ユーザー数',
     'iTexasGameAmount':'テキサスのゲーム数',
+    'iDfinanceLiqAmount':'トータルディファイナンスミント/流動性',
     'iLatest': '最新' ,
     'iTransferHash': 'トランスファーハッシュ' ,
     'iTransactions': '振替' ,

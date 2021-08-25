@@ -15,6 +15,7 @@ export default  {
     'iIcpRank':'CMC Rank',
     'iTexasTotalUser':'Total users in Texas',
     'iTexasGameAmount':'Number of games in Texas',
+    'iDfinanceLiqAmount':'Total Dfinance Mint / Liquidity',
     'iPriceName':'ICP Price',
     'iLatest': 'Latest' ,
     'iTransferHash': 'Transactions Hash' ,

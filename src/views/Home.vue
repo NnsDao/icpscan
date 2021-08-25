@@ -11,6 +11,7 @@ import { toThousands,MDate,mydate,divisionBigInt } from "../utils/tool.js";
 import { useRouter } from "vue-router";
 import  * as  identitys from "../api/identity";
 import  * as  gameidentity from "../api/texasidl";
+import  * as  dfidentity from "../api/financeidl";
 
 
 export default defineComponent({
@@ -81,6 +82,11 @@ export default defineComponent({
 
     const texasGameTotal = reactive({
       game: [],
+    });
+
+
+    const getTokenListTotal = reactive({
+      token: [],
     });
 
     
@@ -240,6 +246,20 @@ export default defineComponent({
         texasGameTotal.game =  tuser * 100000000;
     }
 
+    // dfinance gve4r-hyaaa-aaaah-qaj4a-cai
+
+    const getDfinanceGame = async () => {
+        const canisterId = 'gve4r-hyaaa-aaaah-qaj4a-cai';
+        const resdddd = dfidentity.createActor(canisterId) ; 
+        const ttoken = await resdddd.getDSwapInfo();
+        console.log(ttoken,44444)
+        getTokenListTotal.token[0] =  ttoken.tokens.length;
+        getTokenListTotal.token[1] =  ttoken.pairs.length;
+
+    }
+
+     console.log(getTokenListTotal,888)
+
     onMounted(() => {
     
       watchEffect(() => {
@@ -280,6 +300,7 @@ export default defineComponent({
       blockData,
       texasAccount,
       texasGameTotal,
+      getTokenListTotal,
       nodeData,
       canData,
       rateData,
@@ -294,12 +315,14 @@ export default defineComponent({
       toThousands,
       getTexasData,
       getTexasGame,
+      getDfinanceGame,
     };
   },
   created() {
     let that = this;
     that.getTexasData();
     that.getTexasGame();
+    that.getDfinanceGame();
   },
   methods: {
    
@@ -757,7 +780,35 @@ export default defineComponent({
                     {{ t('iTexasGameAmount') }}
               </dd>
             </div>
-           
+
+             <div
+              class="relative"
+              v-for="i in getTokenListTotal" :key="i.key"
+            >
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-indigo-50
+                    text-white
+                  "
+                >
+                  <img src="/img/dfinance-logo.jpeg" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
+                     {{  i.toString().replace(/,/g," / ")   }}
+                </p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                    {{ t('iDfinanceLiqAmount') }}
+              </dd>
+            </div>
             
           </dl>
         </div>

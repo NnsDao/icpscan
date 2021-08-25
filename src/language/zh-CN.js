@@ -16,6 +16,7 @@ export default  {
     'iIcpRank':'全球排名',
     'iTexasTotalUser':'德州总用户',
     'iTexasGameAmount':'德州游戏局数',
+    'iDfinanceLiqAmount':'Dfinance铸币总量/流动性',
     'iLatest': '最新' ,
     'iTransferHash': '转账hash' ,
     'iTransactions': '转账' ,
