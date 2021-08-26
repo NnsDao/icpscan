@@ -16,7 +16,7 @@ export default  {
     'iIcpRank':'글로벌 랭킹',
     'iTexasTotalUser':'텍사스의 총 사용자',
     'iTexasGameAmount':'텍사스의 게임 수',
-    'iDfinanceLiqAmount':'총 디파이낸스 민트/유동성',
+    'iDfinanceLiqAmount':'Holder/총 디파이낸스 민트/유동성',
     'iLatest': '최신 정보' ,
     'iTransferHash': '해시 전송' ,
     'iTransactions': '이전' ,

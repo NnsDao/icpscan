@@ -12,6 +12,7 @@ import { useRouter } from "vue-router";
 import  * as  identitys from "../api/identity";
 import  * as  gameidentity from "../api/texasidl";
 import  * as  dfidentity from "../api/financeidl";
+import  * as  useridentity from "../api/useridl";
 
 
 export default defineComponent({
@@ -233,32 +234,33 @@ export default defineComponent({
     const getTexasData = async () => {
         const canisterId = 'ery6l-taaaa-aaaah-aaeqq-cai';
         const resd = identitys.createActor(canisterId) ; 
-        const decimals = 10 ** Number(await resd.decimals());
-        const tuser = divisionBigInt(await resd.totalUsers(), decimals) ;
-        texasAccount.user =  tuser * 100000000 ;
+        const tuser = await resd.totalUsers() ;
+        texasAccount.user[0] =  Number(tuser)  ;
     }
 
     const getTexasGame = async () => {
         const canisterId = 'll4dt-naaaa-aaaah-aafuq-cai';
         const resdddd = gameidentity.createActor(canisterId) ; 
-        const decimals = 10 ** Number(8);
-        const tuser = divisionBigInt(await resdddd.gameAmount(), decimals) ;
-        texasGameTotal.game =  tuser * 100000000;
+        const tuser = await resdddd.gameAmount() ;
+        texasAccount.user[1] =  Number (tuser);
     }
 
-    // dfinance gve4r-hyaaa-aaaah-qaj4a-cai
+    // dfinance gve4r-hyaaa-aaaah-qaj4a-cai lf23w-ciaaa-aaaah-qaeya-cai
 
     const getDfinanceGame = async () => {
         const canisterId = 'gve4r-hyaaa-aaaah-qaj4a-cai';
         const resdddd = dfidentity.createActor(canisterId) ; 
         const ttoken = await resdddd.getDSwapInfo();
-        console.log(ttoken,44444)
-        getTokenListTotal.token[0] =  ttoken.tokens.length;
-        getTokenListTotal.token[1] =  ttoken.pairs.length;
-
+        getTokenListTotal.token[1] =  ttoken.tokens.length;
+        getTokenListTotal.token[2] =  ttoken.pairs.length;
     }
 
-     console.log(getTokenListTotal,888)
+    const getDfinanceUser = async () => {
+        const canisterId = 'lf23w-ciaaa-aaaah-qaeya-cai';
+        const resdddd = useridentity.createActor(canisterId) ; 
+        const ttoken = await resdddd.getHolderNumber();
+        getTokenListTotal.token[0] =  ttoken;
+    }
 
     onMounted(() => {
     
@@ -316,6 +318,7 @@ export default defineComponent({
       getTexasData,
       getTexasGame,
       getDfinanceGame,
+      getDfinanceUser,
     };
   },
   created() {
@@ -323,6 +326,7 @@ export default defineComponent({
     that.getTexasData();
     that.getTexasGame();
     that.getDfinanceGame();
+    that.getDfinanceUser();
   },
   methods: {
    
@@ -743,16 +747,15 @@ export default defineComponent({
                   <img src="/img/texas-logo.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
-                     {{ i }}
+                     {{ i.toString().replace(/,/g," / ")  }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    {{ t('iTexasTotalUser') }}
+                    {{ t('iTexasTotalUser') }} /  {{ t('iTexasGameAmount') }}
               </dd>
             </div>
 
-
-             <div
+             <!-- <div
               class="relative"
               v-for="i in texasGameTotal" :key="i.key"
             >
@@ -779,7 +782,7 @@ export default defineComponent({
               <dd class="mt-2 ml-16 text-base text-gray-500">
                     {{ t('iTexasGameAmount') }}
               </dd>
-            </div>
+            </div> -->
 
              <div
               class="relative"
