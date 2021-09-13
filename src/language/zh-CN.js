@@ -17,6 +17,7 @@ export default  {
     'iTexasTotalUser':'德州总用户',
     'iTexasGameAmount':'德州游戏局数',
     'iDfinanceLiqAmount':'Holder/Dfinance铸币总量/流动性',
+    'iDscvrDrip':'注册用户 / 交易量 / 在售',
     'iLatest': '最新' ,
     'iTransferHash': '转账hash' ,
     'iTransactions': '转账' ,
@@ -96,6 +97,11 @@ export default  {
     'iIcpScan':'ICP生态区块链浏览器.',
     'iIcpScanName':'ICPSCAN',
     'iIcpScanAuthor':'kkdelos & cwb2819259',
+
+
+    'iIcTexas':'建设在IC上的德州游戏。',
+    'iIcTexasAuthor':'DAOs Leo',
+    'iIcTexasName':'ICTexas  Hold\'em ',
 
     'iIcpDrops':'ICP生态应用首发、空投项目集合.',
     'iIcpDropsAuthor':'drops',

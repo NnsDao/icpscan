@@ -17,6 +17,7 @@ export default  {
     'iTexasTotalUser':'텍사스의 총 사용자',
     'iTexasGameAmount':'텍사스의 게임 수',
     'iDfinanceLiqAmount':'Holder/총 디파이낸스 민트/유동성',
+    'iDscvrDrip':'레지스트리 / 거래 / 목록',
     'iLatest': '최신 정보' ,
     'iTransferHash': '해시 전송' ,
     'iTransactions': '이전' ,
@@ -96,6 +97,10 @@ export default  {
     'iIcpScan':'ICP 생태 블록 체인 브라우저.',
     'iIcpScanName':'ICPSCAN',
     'iIcpScanAuthor':'kkdelos & cwb2819259',
+
+    'iIcTexas':'IC 기반 텍사스 게임.',
+    'iIcTexasAuthor':'DAOs Leo',
+    'iIcTexasName':'ICTexas  Hold\'em ',
 
     'iIcpDrops':'ICP 생태 응용 프로그램 첫 출시, 에어 드랍 프로젝트 수집.',
     'iIcpDropsAuthor':'액',

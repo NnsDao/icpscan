@@ -17,6 +17,7 @@ export default  {
     'iTexasTotalUser':'テキサスの総ユーザー数',
     'iTexasGameAmount':'テキサスのゲーム数',
     'iDfinanceLiqAmount':'Holder/トータルディファイナンスミント/流動性',
+    'iDscvrDrip':'レジストリ / トランザクション / リスト',
     'iLatest': '最新' ,
     'iTransferHash': 'トランスファーハッシュ' ,
     'iTransactions': '振替' ,
@@ -98,6 +99,10 @@ export default  {
     'iIcpScan':'ICPエコ・ブロックチェーン・ブラウザ.',
     'iIcpScanName':'ICPSCAN',
     'iIcpScanAuthor':'kkdelos & cwb2819259',
+
+    'iIcTexas':'IC上に構築されたテキサスゲーム。',
+    'iIcTexasAuthor':'DAOs Leo',
+    'iIcTexasName':'ICTexas  Hold\'em ',
 
     'iIcpDrops':'ICPのエコアプリデビュー、プロジェクトコレクションの空輸.',
     'iIcpDropsAuthor':'drops',

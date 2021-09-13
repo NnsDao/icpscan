@@ -16,6 +16,7 @@ export default  {
     'iTexasTotalUser':'Total users in Texas',
     'iTexasGameAmount':'Number of games in Texas',
     'iDfinanceLiqAmount':'Holder / Total Dfinance Mint / Liquidity',
+    'iDscvrDrip':'Registry / Transaction / Listings',
     'iPriceName':'ICP Price',
     'iLatest': 'Latest' ,
     'iTransferHash': 'Transactions Hash' ,
@@ -96,6 +97,11 @@ export default  {
     'iIcpScan':'ICP ecological blockchain browser.',
     'iIcpScanAuthor':'kkdelos & cwb2819259',
     'iIcpScanName':'ICPSCAN',
+
+
+    'iIcTexas':'Texas game built on IC.',
+    'iIcTexasAuthor':'DAOs Leo',
+    'iIcTexasName':'ICTexas  Hold\'em ',
 
     'iIcpDrops':'First launch of ICP ecological application, airdrop project box.',
     'iIcpDropsAuthor':'drops',

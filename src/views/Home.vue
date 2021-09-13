@@ -13,6 +13,7 @@ import  * as  identitys from "../api/identity";
 import  * as  gameidentity from "../api/texasidl";
 import  * as  dfidentity from "../api/financeidl";
 import  * as  useridentity from "../api/useridl";
+import  * as  icdripidentity from "../api/icdrip";
 
 
 export default defineComponent({
@@ -88,6 +89,10 @@ export default defineComponent({
 
     const getTokenListTotal = reactive({
       token: [],
+    });
+
+    const getDripUserTotal = reactive({
+      user: [],
     });
 
     
@@ -262,6 +267,30 @@ export default defineComponent({
         getTokenListTotal.token[0] =  ttoken;
     }
 
+    // icdripidentity
+
+    const getUserDrip = async () => {
+        const canisterId = '3db6u-aiaaa-aaaah-qbjbq-cai';
+        const resdddd = icdripidentity.createActor(canisterId) ; 
+        const ttoken = await resdddd.getRegistry();
+        getDripUserTotal.user[0] =  Number(ttoken.length);
+    }
+    // transactions
+    const getUserTranDrip = async () => {
+        const canisterId = '3db6u-aiaaa-aaaah-qbjbq-cai';
+        const resdddd = icdripidentity.createActor(canisterId) ; 
+        const ttoken = await resdddd.transactions();
+        getDripUserTotal.user[1] =  Number(ttoken.length);
+    }
+    //listings
+    const getListenDrip = async () => {
+        const canisterId = '3db6u-aiaaa-aaaah-qbjbq-cai';
+        const resdddd = icdripidentity.createActor(canisterId) ; 
+        const ttoken = await resdddd.listings();
+        getDripUserTotal.user[2] =  Number(ttoken.length);
+    }
+    //
+
     onMounted(() => {
     
       watchEffect(() => {
@@ -303,6 +332,7 @@ export default defineComponent({
       texasAccount,
       texasGameTotal,
       getTokenListTotal,
+      getDripUserTotal,
       nodeData,
       canData,
       rateData,
@@ -319,6 +349,9 @@ export default defineComponent({
       getTexasGame,
       getDfinanceGame,
       getDfinanceUser,
+      getUserDrip,
+      getUserTranDrip,
+      getListenDrip,
     };
   },
   created() {
@@ -327,6 +360,9 @@ export default defineComponent({
     that.getTexasGame();
     that.getDfinanceGame();
     that.getDfinanceUser();
+    that.getUserDrip();
+    that.getUserTranDrip();
+    that.getListenDrip();
   },
   methods: {
    
@@ -755,9 +791,9 @@ export default defineComponent({
               </dd>
             </div>
 
-             <!-- <div
+             <div
               class="relative"
-              v-for="i in texasGameTotal" :key="i.key"
+              v-for="i in getDripUserTotal" :key="i.key"
             >
               <dt>
                 <div
@@ -773,16 +809,17 @@ export default defineComponent({
                     text-white
                   "
                 >
-                  <img src="/img/texas-logo.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
+                  <img src="/img/dscvr-one-drip.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo">
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-red-500" >
-                     {{ i }}
+                     <!-- {{ i }} -->
+                      {{  i.toString().replace(/,/g," / ")   }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
-                    {{ t('iTexasGameAmount') }}
+                    {{ t('iDscvrDrip') }}
               </dd>
-            </div> -->
+            </div>
 
              <div
               class="relative"
