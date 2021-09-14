@@ -78,12 +78,12 @@ export default  {
     'iNeuronStacked':'Staked ICP',
     'iNeuronDissolveDate':'Dissolve Date',
 
-     //acount
-     'iAccountBalance': 'Balance' ,
-     'iAccountBalanceCurve': 'Account balance line chart' ,
-     'iTrackIcpData': 'Track data on the IC chain' ,
-     'iTrackIcpWallet': 'Active wallet' ,
-     'iTrackIcpDayBlock': 'Daily block volume' ,
+    //acount
+    'iAccountBalance': 'Balance' ,
+    'iAccountBalanceCurve': 'Account balance line chart' ,
+    'iTrackIcpData': 'Track data on the IC chain' ,
+    'iTrackIcpWallet': 'Active wallet' ,
+    'iTrackIcpDayBlock': 'Daily block volume' ,
     'iTrackIcpDayBurn': 'Burn volume' ,
     'iTrackIcpDayMint': 'Mint of coins' ,
     'iTrackIcpDayMoney': 'Transaction amount' ,
@@ -121,9 +121,9 @@ export default  {
 
     'iNnsDaoInfo':'Nnsdao is derived from the combination of IC’s NNS thought and DAO organization. It is analogous to the complexity of human neural networks and combined with individuals in the pursuit of independence, freedom, and autonomy. The main vision is to achieve a kind of decentralization, A free and autonomous agreement led by users. Nnsdao is simply a boundaryless autonomous organization that provides some basic modular programmable services for building the world of DAOn.',
 
-    'iNnsDaoToken':'NnsDao Protocol: It is the DAO governance token of the NnsDao community. The future issuance is 1 billion. The tentative price of each NDT is 0.1 USDT. We accept early donations to help developers build the NnsDao ecosystem, and also encourage everyone who contributes to the community people.',
+    'iNnsDaoToken':'NnsDao Protocol: It is the DAO governance token of the NnsDao community. The future issuance is 1 billion. The tentative price of each NDP is 0.15 USDT. We accept early donations to help developers build the NnsDao ecosystem, and also encourage everyone who contributes to the community people.',
    
-    'iNnsDaoTokenSub':'Therefore, before NnsDao is online, all users who donated will get a certain percentage of NDT, and you only need to have an ICP account to use it.',
+    'iNnsDaoTokenSub':'Therefore, before NnsDao is online, all users who donated will get a certain percentage of NDP, and you only need to have an ICP account to use it.',
 
     'iNnsDaoSponsor':'Sponsors ICP Address(Second start): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
     'iNnsDaoSponsorIcpdrops':'Tip: Sponsors and airdrops account for 2% of the total.',

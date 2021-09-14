@@ -208,6 +208,8 @@ if (defaultData.locale === "zh-CN") {
   locale = "ko-KR";
 } else if (defaultData.locale === "en-US") {
   locale = "en-US";
+} else if (defaultData.locale === "tl-SW") {
+  locale = "tl-SW";
 }
 
 let navigation = [
@@ -236,6 +238,24 @@ if (locale == "zh-CN") {
       current: false,
     },
     { name: "关于", href: "/about", current: false },
+  ];
+}
+
+if (locale == "tl-SW") {
+  navigation = [
+    { name: "Nyumbani", href: "/", current: false },
+    { name: "Cheo", href: "/rank", current: false },
+    { name: "Canister", href: "/canisters", current: false },
+    { name: "Neva", href: "/neurons", current: false },
+    { name: "Mradi", href: "/project", current: false },
+    { name: "Chati", href: "/chart", current: false },
+    { name: "Kikokotoo", href: "https://nns.icpscan.co/", current: false },
+    {
+      name: "Mstari",
+      href: "/line",
+      current: false,
+    },
+    { name: "Kuhusu", href: "/about", current: false },
   ];
 }
 

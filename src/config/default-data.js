@@ -20,5 +20,9 @@
         label: "ko-KR",
         value: "한국어",
       },
+      {
+        label: "tl-SW",
+        value: "Kiswahili",
+      },
     ],
   }

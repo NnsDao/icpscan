@@ -61,22 +61,22 @@ export default  {
     'iLastUpdated':'최근 업데이트',
     'iUrl':'신청 주소',
 
-      // Neurons
-      'iNeurons':'NNS 뉴런',
-      'iKnowNeurons':'알려진 뉴런',
-      'iNeuronStatus':'뉴런 상태',
-      'iNeuronCount':'뉴런의 수',
-      'iNeuronController':'뉴런 컨트롤러',
-      'iNeuronLockIcp':'총 서약 ICP',
-      'iNeuronSupplyIcp':'담보비율',
-      'iNeuronLock':'잠금',
-      'iNeuronDissolving':'용해',
-      'iNeuronId':'뉴런 번호',
-      'iNeuronState':'현재 상태',
-      'iNeuronProposals':'提案신청',
-      'iNeuronWhoAccount':'계정',
-      'iNeuronStacked':'약정금액',
-      'iNeuronDissolveDate':'용해 시간',
+    // Neurons
+    'iNeurons':'NNS 뉴런',
+    'iKnowNeurons':'알려진 뉴런',
+    'iNeuronStatus':'뉴런 상태',
+    'iNeuronCount':'뉴런의 수',
+    'iNeuronController':'뉴런 컨트롤러',
+    'iNeuronLockIcp':'총 서약 ICP',
+    'iNeuronSupplyIcp':'담보비율',
+    'iNeuronLock':'잠금',
+    'iNeuronDissolving':'용해',
+    'iNeuronId':'뉴런 번호',
+    'iNeuronState':'현재 상태',
+    'iNeuronProposals':'提案신청',
+    'iNeuronWhoAccount':'계정',
+    'iNeuronStacked':'약정금액',
+    'iNeuronDissolveDate':'용해 시간',
 
 
     //acount
@@ -120,9 +120,9 @@ export default  {
 
     'iNnsDaoInfo':'Nnsdao는 IC의 NNS 사고와 DAO 조직의 결합에서 파생되며 인간 신경망의 복잡성과 유사하며 독립, 자유 및 자율성을 추구하기 위해 개인과 결합됩니다. 주요 비전은 일종의 탈중앙화를 달성하는 것입니다. 사용자가 주도하는 자유롭고 자율적인 계약. Nnsdao는 단순히 DAOn의 세계를 구축하기 위한 몇 가지 기본 모듈식 프로그래밍 가능 서비스를 제공하는 국경 없는 자율 조직입니다.',
 
-    'iNnsDaoToken':'NnsDao Protocol : NnsDao 커뮤니티의 DAO 거버넌스 토큰입니다. 향후 발행량은 10 억, 각 NDT의 잠정 가격은 0.1 USDT입니다. 개발자가 NnsDao 생태계를 구축 할 수 있도록 조기 기부를 받고 참여하는 모든 사람을 격려합니다. 커뮤니티 사람들에게.',
+    'iNnsDaoToken':'NnsDao Protocol : NnsDao 커뮤니티의 DAO 거버넌스 토큰입니다. 향후 발행량은 1 억, 각 NDP의 잠정 가격은 0.15 USDT입니다. 개발자가 NnsDao 생태계를 구축 할 수 있도록 조기 기부를 받고 참여하는 모든 사람을 격려합니다. 커뮤니티 사람들에게.',
    
-    'iNnsDaoTokenSub':'NnsDao가 온라인 상태가되기 전에 기부 한 모든 사용자는 일정 비율의 NDT를 받게되며 ICP 계정 만 있으면 사용할 수 있습니다.',
+    'iNnsDaoTokenSub':'NnsDao가 온라인 상태가되기 전에 기부 한 모든 사용자는 일정 비율의 NDP를 받게되며 ICP 계정 만 있으면 사용할 수 있습니다.',
 
     'iNnsDaoSponsor':'스폰서 ICP 주소 (두 번째 시작): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
     'iNnsDaoSponsorIcpdrops':'팁: 후원 및 에어드랍은 전체의 2%를 차지합니다.',

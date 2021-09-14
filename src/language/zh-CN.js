@@ -121,7 +121,7 @@ export default  {
 
     'iNnsDaoInfo':'Nnsdao 源自于IC的NNS思想和DAO组织组合而来，在类比到人类的神经网络复杂性，并结合个体在追求独立、自由、自治的前景下成立NNSDAO，主要愿景是实现一种权力下放、由用户主导的自由自治协议。Nnsdao简单说是一个无边界的自治组织，它提供一些基础的模块式可编程服务，用于构建DAOn的世界.',
 
-    'iNnsDaoToken':'NnsDao Protocol : 是NnsDao社区的DAO治理通证,未来发行量10亿,每个NDP 暂定价格为 0.1 USDT, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.',
+    'iNnsDaoToken':'NnsDao Protocol : 是NnsDao社区的DAO治理通证,未来发行量1亿,每个NDP 暂定价格为 0.15 USDT, 我们接受早期的捐助帮助开发者建设NnsDao生态,同时也鼓励每个为社区做贡献的人.',
    
     'iNnsDaoTokenSub':'因此在NnsDao没有上线之前所有捐助的用户都将会得到一定比例的NDP,只需要你有ICP账户即可使用.',
 
