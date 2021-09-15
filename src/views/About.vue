@@ -64,7 +64,7 @@ export default defineComponent({
             <div class="border border-gray-300 p-6 rounded-lg">
               <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4 italic">
                 <!-- icpdrops -->
-                <img src="/img/icpdrops.png" alt="icpdrops nnsdao" title="icpdrops dfinity nnsdao">
+                <img src="/img/Icpdrops.png" alt="icpdrops nnsdao" title="icpdrops dfinity nnsdao">
               </div>
               <h2 class="text-lg  font-medium title-font mb-2">{{ t('iIcpDropsName') }}</h2>
               <p class="leading-relaxed text-base">{{ t('iIcpDrops') }}</p>
