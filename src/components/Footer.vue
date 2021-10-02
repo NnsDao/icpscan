@@ -2,7 +2,11 @@
      <section class="h-full bg-gray-800">
             <div class="py-6 px-16 flex justify-between">
                 <div>
-                    <h1 class="font-bold text-white text-xl">Icpscan<span class="text-blue-400">-<a href="https://nnsdao.org/" >NnsDAO</a></span></h1>
+                    <h1 class="font-bold text-white text-xl">
+                        Icpscan
+                        <span class="text-white">- <a href="/about" >About</a></span> - 
+                        <span class="text-blue-400"><a href="https://nnsdao.org/" >NnsDAO</a></span>
+                    </h1>
                 </div>
                 <div class="flex space-x-6 mt-2">
                     <a href="https://nnsdao.org/" class="w-6 h-6 mt-0 fill-current" > <img src="/img/nnsdao-logo-1024.png" alt="nnsdao dfinity logo" title="nnsdao dfinity logo"> </a>
@@ -18,7 +22,7 @@
 
             <div class="py-4 px-16 flex justify-between">
                 <div>
-                    <h1 class="font-semibold text-white text-sm">NnsDAO Labs © 2021 </h1>
+                    <h1 class="font-semibold text-white text-sm">NnsDAO Labs Limited © 2021 </h1>
                     <p class="font-semibold text-white text-sm my-3"> {{ t('iNnsDaoSponsor') }}</p>
                 </div>
 

@@ -5,8 +5,8 @@
     locale,
     localeSelect: [
       {
-        label: "zh-CN",
-        value: "中文",
+        label: "zh-TW",
+        value: "中文（繁体）",
       },
       {
         label: "en-US",

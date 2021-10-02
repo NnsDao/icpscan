@@ -61,6 +61,23 @@ export default  {
     'iLastUpdated':'최근 업데이트',
     'iUrl':'신청 주소',
 
+    //subnet
+    'iSubnetName':'서브넷',
+    'iSubnetType':'유형',
+    'iSubnetId':'서브넷 ID',
+    'iSubnetNode':'서브넷 노드',
+    'iSubnetCanister':'레지스터 캐니스터',
+    'iSubnetRunning':'실행중인 dapp',
+    'iSubnetStopped':'중지된 dapp',
+
+     //principals
+    'iPrincipal':'교장',
+    'iPrincipalName':'Name',
+    'iPrincipalId':'교장 ID',
+    'iPrincipalCanister':'깡통',
+    'iPrincipalNode':'마디',
+    'iPrincipalAccount':'계정',
+
     // Neurons
     'iNeurons':'NNS 뉴런',
     'iKnowNeurons':'알려진 뉴런',
@@ -124,7 +141,7 @@ export default  {
    
     'iNnsDaoTokenSub':'NnsDao가 온라인 상태가되기 전에 기부 한 모든 사용자는 일정 비율의 NDP를 받게되며 ICP 계정 만 있으면 사용할 수 있습니다.',
 
-    'iNnsDaoSponsor':'스폰서 ICP 주소 (두 번째 시작): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'스폰서 ICP 주소 (두 번째 중지): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
     'iNnsDaoSponsorIcpdrops':'팁: 후원 및 에어드랍은 전체의 2%를 차지합니다.',
 
     'iKnowUser':'알 수없는 사용자',

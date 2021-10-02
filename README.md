@@ -65,10 +65,12 @@ Example: `dfx identity --network ic deploy-wallet sznps-4aaaa-aaaah-qab2a-cai`
 + NNS Calculator
 + Internetcomputer API
 + Deploy to IC
++ Node Map
++ Subnet 
 
 ### TODO
 
-+ Node Map
+
 + Mobile version adaptation
 + Internetcomputer Status
 + Fee Rank
@@ -78,22 +80,8 @@ Example: `dfx identity --network ic deploy-wallet sznps-4aaaa-aaaah-qab2a-cai`
 
 ### api
 
-+ https://ic-api.internetcomputer.org/api/metrics/block 当前的出块数  1
-+ https://ic-api.internetcomputer.org/api/metrics/message-execution-rate 当前的消息速度 1
-+ https://ic-api.internetcomputer.org/api/metrics/registered-canisters 当前的合约罐 1
-+ https://ic-api.internetcomputer.org/api/metrics/ic-nodes-count  当前的节点数量  1
-+ https://ic-api.internetcomputer.org/api/metrics/block-rate  当前出块速度  1
-+ https://ic-api.internetcomputer.org/api/metrics/messages-count  当前消息数量 1
-+ https://ic-api.internetcomputer.org/api/metrics/ic-cpu-cores cpu数量 ic_cpu_cores 
-+ https://ic-api.internetcomputer.org/api/metrics/ic-memory-total 总内存  ic_memory_total
-+ https://ic-api.internetcomputer.org/api/metrics/ic-subnet-total 子网数量
-+ https://ic-api.internetcomputer.org/api/metrics/boundary-nodes-count  边界节点
-+ https://ic-api.internetcomputer.org/api/node-providers/count 节点供应商 
-+ https://ic-api.internetcomputer.org/api/nns/total-supply-icp icp总供应量  1
-+ https://ic-api.internetcomputer.org/api/nns/proposals-count 提案数量
-+ https://ic-api.internetcomputer.org/api/boundary-node-locations map
-+ https://ic-api.internetcomputer.org/api/locations map 
-+ https://ic.rocks/api/markets price 和基础信息
++ https://ic-api.internetcomputer.org/api/subnet-list
+
 
 ```
 ICP Register account:https://ic-api.internetcomputer.org/api/metrics/internet-identity-total

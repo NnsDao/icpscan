@@ -200,8 +200,8 @@ import { SETLOCALE } from "@/language";
 
 let locale = "";
 
-if (defaultData.locale === "zh-CN") {
-  locale = "zh-CN";
+if (defaultData.locale === "zh-TW") {
+  locale = "zh-TW";
 } else if (defaultData.locale === "ja-JP") {
   locale = "ja-JP";
 } else if (defaultData.locale === "ko-KR") {
@@ -216,28 +216,30 @@ let navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Rank", href: "/rank", current: false },
   { name: "Canisters", href: "/canisters", current: false },
+  { name: "Subnet", href: "/subnet", current: false },
+  { name: "Principal", href: "/principals", current: false },
   { name: "Project", href: "/project", current: false },
   { name: "Node Map", href: "/chart", current: false },
   { name: "Calculator", href: "https://nns.icpscan.co/", current: false },
   { name: "Chart", href: "/line", current: false },
-  { name: "About", href: "/about", current: false },
 ];
 
-if (locale == "zh-CN") {
+if (locale == "zh-TW") {
   navigation = [
-    { name: "首页", href: "/", current: false },
+    { name: "首頁", href: "/", current: false },
     { name: "排行", href: "/rank", current: false },
     { name: "罐", href: "/canisters", current: false },
+    { name: "子網", href: "/subnet", current: false },
+    { name: "校長", href: "/principals", current: false },
     { name: "治理", href: "/neurons", current: false },
-    { name: "项目", href: "/project", current: false },
-    { name: "节点地图", href: "/chart", current: false },
-    { name: "收益计算器", href: "https://nns.icpscan.co/", current: false },
+    { name: "應用", href: "/project", current: false },
+    { name: "節點地圖", href: "/chart", current: false },
+    { name: "收益計算器", href: "https://nns.icpscan.co/", current: false },
     {
-      name: "图表",
+      name: "圖表",
       href: "/line",
       current: false,
     },
-    { name: "关于", href: "/about", current: false },
   ];
 }
 
@@ -246,6 +248,8 @@ if (locale == "tl-SW") {
     { name: "Nyumbani", href: "/", current: false },
     { name: "Cheo", href: "/rank", current: false },
     { name: "Canister", href: "/canisters", current: false },
+    { name: "Subnet", href: "/subnet", current: false },
+    { name: "wakuu", href: "/principals", current: false },
     { name: "Neva", href: "/neurons", current: false },
     { name: "Mradi", href: "/project", current: false },
     { name: "Chati", href: "/chart", current: false },
@@ -255,7 +259,6 @@ if (locale == "tl-SW") {
       href: "/line",
       current: false,
     },
-    { name: "Kuhusu", href: "/about", current: false },
   ];
 }
 
@@ -264,6 +267,8 @@ if (locale == "ko-KR") {
     { name: "홈페이지", href: "/", current: false },
     { name: "순위", href: "/rank", current: false },
     { name: "탱크", href: "/canisters", current: false },
+    { name: "서브넷", href: "/subnet", current: false },
+    { name: "교장", href: "/principals", current: false },
     { name: "뉴런", href: "/neurons", current: false },
     { name: "계획", href: "/project", current: false },
     { name: "노드 맵", href: "/chart", current: false },
@@ -273,7 +278,6 @@ if (locale == "ko-KR") {
       href: "/line",
       current: false,
     },
-    { name: "의 위에", href: "/about", current: false },
   ];
 }
 
@@ -282,16 +286,17 @@ if (locale == "ja-JP") {
     { name: "フロントページ", href: "/", current: false },
     { name: "ランキング", href: "/rank", current: false },
     { name: "タンク", href: "/canisters", current: false },
+    { name: "サブネット", href: "/subnet", current: false },
+    { name: "主要な", href: "/principals", current: false },
     { name: "ニューロン", href: "/neurons", current: false },
-    { name: "スポーツイベント", href: "/project", current: false },
+    { name: "応用", href: "/project", current: false },
     { name: "ノードマップ", href: "/chart", current: false },
-    { name: "損益計算書", href: "https://nns.icpscan.co/", current: false },
+    { name: "計算書", href: "https://nns.icpscan.co/", current: false },
     {
       name: "チャート",
       href: "/line",
       current: false,
     },
-    { name: "に関しては", href: "/about", current: false },
   ];
 }
 

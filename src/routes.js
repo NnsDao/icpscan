@@ -8,6 +8,8 @@ import NotFound from './views/NotFound.vue'
 import Chart from './views/Chart.vue'
 import Canisters from './views/Canisters.vue'
 import Neurons from './views/Neurons.vue'
+import Subnet from './views/Subnet.vue'
+import Principals from './views/Principals.vue'
 import Line from './views/Line.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
@@ -15,7 +17,7 @@ export const routes = [
   { 
     path: '/', 
     component: Home, 
-    meta: { title: '首页',local:'home' } 
+    meta: { title: 'Home',local:'home' } 
   
   },
   {
@@ -52,6 +54,16 @@ export const routes = [
     path: '/canisters',
     meta: { title: 'canisters' },
     component: Canisters,
+  },
+  {
+    path: '/subnet',
+    meta: { title: 'subnet' },
+    component: Subnet,
+  },
+  {
+    path: '/principals',
+    meta: { title: 'principal' },
+    component: Principals,
   },
   {
     path: '/neurons',

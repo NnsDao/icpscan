@@ -61,6 +61,23 @@ export default  {
     'iLastUpdated':'Last Updated',
     'iUrl':'dApp Url',
 
+    //subnet
+    'iSubnetName':'Subnet',
+    'iSubnetType':'Type',
+    'iSubnetId':'Subnet ID',
+    'iSubnetNode':'Subnet Node',
+    'iSubnetCanister':'Register Canister',
+    'iSubnetRunning':'Running dApp',
+    'iSubnetStopped':'Stoped dApp',
+
+     //principals
+    'iPrincipal':'Principal',
+    'iPrincipalId':'Principal Id',
+    'iPrincipalName':'Name',
+    'iPrincipalCanister':'Canister',
+    'iPrincipalNode':'Node',
+    'iPrincipalAccount':'Account',
+
      // Neurons
     'iNeurons':'Neurons',
     'iKnowNeurons':'Known Neurons',

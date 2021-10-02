@@ -61,6 +61,23 @@ export default  {
     'iLastUpdated':'最終更新',
     'iUrl':'から用地址',
 
+    //subnet
+    'iSubnetName':'サブネット',
+    'iSubnetType':'タイプ',
+    'iSubnetId':'サブネットID',
+    'iSubnetNode':'サブネットノード',
+    'iSubnetCanister':'キャニスターを登録する',
+    'iSubnetRunning':'実行中のdapp',
+    'iSubnetStopped':'停止したdapp',
+
+     //principals
+    'iPrincipal':'主要な',
+    'iPrincipalName':'principal',
+    'iPrincipalID':'プリンシパルID',
+    'iPrincipalCanister':'キャニスター',
+    'iPrincipalNode':'ノード',
+    'iPrincipalAccount':'アカウント',
+
 
      // Neurons
      'iNeurons':'NNSニューロン',
@@ -126,7 +143,7 @@ export default  {
    
     'iNnsDaoTokenSub':'そのため、NnsDaoが稼動するまでは、寄付をしたすべてのユーザーは、それを利用するためのICPアカウントを持っている限り、NDPのパーセンテージを受け取ることができます。',
 
-    'iNnsDaoSponsor':'ICPアドレスのスポンサー募集（セカンドスタート): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
+    'iNnsDaoSponsor':'ICPアドレスのスポンサー募集（セカンドストップ): 76f532b532a89440773abd7b45f513f39369882f4aafecd36809e4dd8d46d820',
     'iNnsDaoSponsorIcpdrops':'ヒント：スポンサーシップとエアドロップは全体の2％を占めています。',
 
     'iKnowUser':'未知のユーザー',
