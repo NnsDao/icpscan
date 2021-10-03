@@ -1,14 +1,112 @@
 <script>
 import { defineComponent } from "vue";
+import { ref } from "vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import { onMounted, watchEffect } from 'vue';
 
 
 export default defineComponent({
   components: { Header,Footer },
 
   setup() {
+
+    const list = ref([]);
+    const getList = async () => {
+      const res = await fetch(
+        `https://dapp.nnsdao.com/api/icpObject/getIcpObjectList`
+      ).then(rsp => rsp.json())
+      list.value=   res && res.data.list;
+    }
+
+    const typeImg = [
+      '/img/ClarityBlocksGroupLine.svg',
+      '/img/EmojioneMonotoneMoneyMouthFace.svg',
+      '/img/MdiTools.svg',
+      '/img/IcBaselineSocialDistance.svg',
+      '/img/MdiApplication.svg',
+      '/img/CarbonEnterprise.svg',
+      '/img/nfts.png',
+      '/img/MdiWallet.svg',
+      '/img/WhhExplorerwindow.svg',
+      '/img/DashiconsGames.svg',
+      '/img/IcBaselineWorkspaces.svg',
+    ]
+
+    // type
+
+    const listType = ref([]);
+    const getListType = async () => {
+      const res = await fetch(
+        `https://dapp.nnsdao.com/api/icpObject/getIcpObjectType`
+      ).then(rsp => rsp.json())
+      listType.value = res && res.data;
+    }
+
+    function getType(itype) {
+      console.log(itype)
+      switch(itype){
+        case 1:
+          return '#DAOs';
+          break;
+        case 2:
+          return '#DeFi';
+          break;
+        case 3:
+          return '#Infrastructure';
+          break;
+        case 4:
+          return '#Social';
+          break;
+        case 5:
+          return '#dApp';
+          break;
+        case 6:
+          return '#Enterprise';
+          break;
+        case 7:
+          return '#NFTs';
+          break;
+        case 8:
+          return '#Wallet';
+          break;
+        case 9:
+          return '#Authentication';
+          break;
+        case 10:
+          return '#Explorer';
+          break;
+        case 11:
+          return '#NNS';
+          break;
+        case 12:
+          return '#Games';
+          break;
+        case 13:
+          return '#Work';
+          break;
+        default:
+          return '#dApp';
+          break;
+      }
+    }
+
+    console.log(list,89898)
+
+    onMounted(() => {
+      watchEffect(() => {
+        getList()
+        getListType()
+      })
+    })
+
     return {
+      list,
+      getList,
+      getType,
+      listType,
+      getListType,
+      typeImg
     };
   },
 });
@@ -33,33 +131,26 @@ export default defineComponent({
      <div
       class="container mx-auto mt-10 grid grid-cols-4 gap-10 md:grid-cols-3 xl:grid-cols-4"
     >
-      <div class="">
+
+      <!-- start -->
+      <div class="" v-for="(apps,index) in listType" :key="apps.type" >
         <div class="flex flex-row bg-white shadow-sm rounded-xl p-4">
+         
           <div
-            class="flex items-center justify-center flex-shrink-0 h-12 w-12 rounded-xl bg-blue-100 text-blue-500"
+            class="flex items-center justify-center flex-shrink-0 h-12 w-12 rounded-xl bg-white text-green-500"
           >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-              ></path>
-            </svg>
+            <img :src="typeImg[index]" >
+
           </div>
+
           <div class="flex flex-col flex-grow ml-4">
-            <div class="text-sm text-gray-500">Social</div>
-            <div class="font-bold text-lg">66</div>
+            <div class="text-sm text-gray-500">{{  getType(apps.type).replace(/[^A-Z0-9]/ig, "")  }}</div>
+            <div class="font-bold text-lg">{{ apps.count }}</div>
           </div>
         </div>
       </div>
-      <div class="">
+
+      <!-- <div class="">
         <div class="flex flex-row bg-white shadow-sm rounded-xl p-4">
           <div
             class="flex items-center justify-center flex-shrink-0 h-12 w-12 rounded-xl bg-white-100 text-green-500"
@@ -110,10 +201,10 @@ export default defineComponent({
             <div class="font-bold text-lg">6</div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Infrastructure -->
-
+<!-- 
       <div class="">
         <div class="flex flex-row bg-white shadow-sm rounded-xl p-4">
           <div
@@ -126,11 +217,11 @@ export default defineComponent({
             <div class="font-bold text-lg">2</div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
       <!-- NFT -->
-
+<!-- 
       <div class="">
         <div class="flex flex-row bg-white shadow-sm rounded-xl p-4">
           <div
@@ -143,11 +234,11 @@ export default defineComponent({
             <div class="font-bold text-lg">5</div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
       <!-- Game -->
-
+<!-- 
       <div class="">
         <div class="flex flex-row bg-white shadow-sm rounded-xl p-4">
           <div
@@ -160,11 +251,11 @@ export default defineComponent({
             <div class="font-bold text-lg">77</div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- DAO -->
 
-      <div class="">
+      <!-- <div class="">
         <div class="flex flex-row bg-white shadow-sm rounded-xl p-4">
           <div
             class="flex items-center justify-center flex-shrink-0 h-12 w-12 rounded-xl bg-white-100 text-red-500"
@@ -176,7 +267,8 @@ export default defineComponent({
             <div class="font-bold text-lg">2</div>
           </div>
         </div>
-      </div>
+      </div> -->
+
     </div>
    
     <!-- app -->
@@ -185,219 +277,49 @@ export default defineComponent({
       class="container mx-auto mt-10 grid grid-cols-3 gap-4 md:grid-cols-2 xl:grid-cols-3"
     >
 
-       <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="/img/texas.png"
-              alt="Texas Holdem"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Texas Holdem</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://lm5fh-ayaaa-aaaah-aafua-cai.ic0.app/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  >Texas DAOs </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                Built in IC Texas Hold'em Poker, it does not have a cloud server, it belongs to everyone.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/nnsdao/"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/nnsdaos"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://lm5fh-ayaaa-aaaah-aafua-cai.ic0.app/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://pbs.twimg.com/profile_banners/1376643064018526210/1620507140/1500x500"
-              alt=""
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">dscvr</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://h5aet-waaaa-aaaab-qaamq-cai.raw.ic0.app/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  >rckprtr</a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                A completely decentralized social content platform running on the InternetComputer ... beta preview started!
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://twitter.com/DscvrO"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://h5aet-waaaa-aaaab-qaamq-cai.raw.ic0.app/post/5/introducing-dscvr-a-platform-that-belongs-to-its"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
-                </div>
-                <a
-                  href="https://h5aet-waaaa-aaaab-qaamq-cai.raw.ic0.app/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmRMd9jVEtChEuGNDSEju9fTfAfZXCjgwXVi2JHUG5UYJu"
-              alt=""
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">capsule social</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://capsule.social/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > Nadim Kobeissi </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                Capsule Social is building discourse technologies that are resistant to takedowns, censorship and mob intimidation.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://twitter.com/capsulesoc"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://discord.com/invite/HhVbaD2BHY"> <i class="fa fa-telegram  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://capsule.social/about/"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
-                </div>
-                <a
-                  href="https://capsule.social/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- second -->
 
-       <div>
+       <div  v-for="app in list" :key="app.Id" >
         <div class="rounded-lg overflow-hidden">
           <div class="relative overflow-hidden pb-60">
             <img
               class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmZRqVpRW1VUHDoAh5onRwEMemUW9rJ3sLktchSBAG2L93"
-              alt="origyn"
+              :src="app.logo"
+              alt="{{app.name}}"
             />
           </div>
           <div class="relative bg-gray-200">
             <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">origyn</h3>
+              <h3 class="text-2xl font-bold">{{ app.name }}</h3>
               <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
                 <p>Provided by&nbsp;</p>
                 <a
-                  href="https://origyn.ch/"
+                  :href="app.websiteUrl"
                   class="hover:text-black transition duration-300 ease-in-out"
-                  > ORIGYN Foundation </a
+                  > {{ app.organization ? app.organization : app.name }} </a
                 >
+               
               </div>
+              <p> {{ getType(app.type)  }} </p>
               <!--  -->
               <p class="leading-7">
-                For the first time in history, an object itself constitutes its own unique identity, through its own biometry.
+                {{ app.description }}
               </p>
-              <div class="mt-10 flex justify-between items-center">
+              <div class="mt-10 flex flex-row justify-between items-center ">
                 <div>
-                  <a href="https://twitter.com/ORIGYNTech"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.instagram.com/origynfoundation/"> <i class="fa fa-instagram  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.linkedin.com/company/origyn-foundation/"> <i class="fa fa-linkedin  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.facebook.com/Origynfoundation/"> <i class="fa fa-facebook  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.origyn.ch/art/"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
+                  <a target="_blank" rel="noopener noreferrer" v-show="app.telegram" :href="app.telegram" > <img class="inline-block r-2" src="/img/MdiTelegram.svg" alt="app.name" ></a>
+                  <a target="_blank" rel="noopener noreferrer" v-show="app.github" :href="app.github" > <img class="inline-block r-2" src="/img/MdiGithub.svg" alt="app.name" ></a>
+                  <a target="_blank" rel="noopener noreferrer" v-show="app.discord" :href="app.discord" > <img class="inline-block r-2" src="/img/MdiDiscord.svg" alt="app.name" ></a>
+                  <a target="_blank" rel="noopener noreferrer" v-show="app.medium" :href="app.medium" > <img class="inline-block r-2" src="/img/MdiMedium.svg" alt="app.name" ></a>
+                  <a target="_blank" rel="noopener noreferrer" v-show="app.twitter" :href="app.twitter" > <img class="inline-block r-2" src="/img/MdiTwitter.svg" alt="app.name" ></a>
+                  <a target="_blank" rel="noopener noreferrer" v-show="app.dscvr" :href="app.dscvr" > <img class="w-6 h-6 mr-2 inline-block" src="/img/dscvr-one-drip.png" alt="app.name" ></a>
+                  <a target="_blank" rel="noopener noreferrer" v-show="app.distrikt" :href="app.distrikt" > <img class="w-6 h-6 mr-2 inline-block" src="/img/distrikt.png" alt="app.name" ></a>
                 </div>
                 <a
-                  href="https://origyn.ch/"
-                  class="flex items-center"
+                  :href="app.canister"
+                  class="flex items-center text-green-600 animate-bounce"
                 >
-                  <p class="mr-4">Visit</p>
+                  <p class="mr-4 ">Visit</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14.125"
@@ -420,980 +342,7 @@ export default defineComponent({
           </div>
         </div>
       </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmYSDXkS7uVEQhppGnPRJbhnwQGpYp1rMaWXgkArg8X3VF"
-              alt="cancan"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">CanCan</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://github.com/dfinity/cancan"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > dfinity Foundation </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                CanCan is a decentralized video-sharing social networking service that lets people stream and share videos onto their mobile device directly from the internet. The DFINITY Foundation developed the sample dapp to demonstrate the abilities of the Internet Computer, the world’s first blockchain that runs at web speed with unbounded capacity.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/dfinity/cancan"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://medium.com/dfinity/cancan-the-internet-computers-decentralized-tiktok-is-now-open-source-5eed04547aa1"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
-                </div>
-                <a
-                  href="https://github.com/dfinity/cancan"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://pbs.twimg.com/profile_banners/1047915263453224966/1585629262/1500x500"
-              alt="Fleek"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Fleek</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://fleek.co/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > Fleek Foundation </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                  Effortlessly build Open Web sites & apps. Hosting, ENS, Storage, Pinning & More. Built on IPFS, DFINITY, Ethereum & Filecoin.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://twitter.com/FleekHQ"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://blog.fleek.co/"> <i class="fa fa-medium  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://fleek-public.slack.com/join/shared_invite/zt-qa2ukl1i-Z5j9uzxPL2CyhND58jCDbQ#/shared-invite/email"> <i class="fa fa-slack  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.youtube.com/channel/UCBzlwYM0JjZpjDZ52-SLUmw"> <i class="fa fa-youtube  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://fleek.co/about/"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
-                </div>
-                <a
-                  href="https://fleek.co/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmZUw515LL4wVTAErPcxxMeK4CmFBZaRSnbFf9tjt3icSC"
-              alt="cancan"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">dfinitynft</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://www.dfinitynft.org/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > dfinitynft labs </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                  Anyone can easily experience blockchain through open Internet service and distributed financial system.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://twitter.com/DfinitynftO"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://github.com/dfinitynft"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.dfinitynft.org/market"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
-                </div>
-                <a
-                  href="https://dfinitynft.org/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmUB4nwfaHjeUqM4vxGVCUnufuVffqmZ8tsZXFAMRuNQXd"
-              alt="canistore"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Canistore</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://canistore.io/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > canistore </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                  Create. License. Play.
-                  Your Content, Your Community.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://twitter.com/canistore"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://t.me/canistore"> <i class="fa fa-telegram  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.instagram.com/canistore.io/"> <i class="fa fa-instagram  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://medium.com/@canistore"> <i class="fa fa-medium  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.youtube.com/channel/UC00_KjsUGBgAc9yP4Z7_4iQ"> <i class="fa fa-youtube  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://canistore.io/technology/"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
-                </div>
-                <a
-                  href="https://canistore.io/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://images.ctfassets.net/ywqk17d3hsnp/7eAAoMwv7605cOKs9W3E9m/3d06af7e606ce40955e76dd6b5e6b6a6/Main_LOGO.png?w=280&q=50"
-              alt="hypotenuse"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Hypotenuse</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://hypotenuse.ca/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > HYP LABS </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                  Framework with weather and crypto oracle plug-ins.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/hyplabs"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://hypotenuselabs.medium.com/"> <i class="fa fa-medium  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://www.linkedin.com/company/hypotenuselabs/about/"> <i class="fa fa-linkedin  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://hypotenuse.ca/about"> <i class="fa fa-exclamation-circle  text-black-400 fa-lg"></i> </a>
-                </div>
-                <a
-                  href="https://hypotenuse.ca/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://images.ctfassets.net/ywqk17d3hsnp/6XF59gUeMJvtQm93f93m3M/b75a00a2fa3a99b38ed51625a82e616c/Sudograph.png"
-              alt="Sudograph"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Sudograph</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://sudograph.org/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > lastmjs.eth </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                  GraphQL implementation on the Internet Computer.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/sudograph/sudograph"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/lastmjs"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://sudograph.org/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://pbs.twimg.com/profile_banners/1372633684411621380/1618031199/1500x500"
-              alt="dfinance"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">dfinance</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://dfinance.ai/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > DFinance </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                  Open financial services hub for DFINITY internet computer.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/dfinance-tech"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/DFinance_AI"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://dfinance.ai/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-       <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmWLk14YKmybtjVgMDJdPXeHGKeuYhK2L917ZgW2qE8rmX"
-              alt="OpenChat"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">OpenChat</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://7e6iv-biaaa-aaaaf-aaada-cai.ic0.app/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > OpenChat </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                  OpenChat 的功能类似于 WhatsApp，不同之处在于它完全运行在互联网计算机上，这是世界上第一个互联网规模的区块链.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/nnsdao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/OpenChat"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://7e6iv-biaaa-aaaaf-aaada-cai.ic0.app/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmV692XE1WdmHXjWULAQV2z4w95jzrZaFNDsyEEarUPnwe"
-              alt="CycleDao"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">cycledao</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://cycledao.xyz/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > CycleDao </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                我们的使命是支持自主服务、应用程序和基础设施的创建，以促进全球访问 DFINITY 互联网计算机上的开放网络和去中心化金融。
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/cycledao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/cycle_dao"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://cycledao.xyz/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="https://gateway.pinata.cloud/ipfs/QmPkUSiHrpLUbsHa7t56zoArxFp8fKsdbP7fch4re6TgCa"
-              alt="icme_app"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">icme_app</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://sygsn-caaaa-aaaaf-qaahq-cai.raw.ic0.app/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > icme_app </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                Internet Computer 的第一个无代码网站构建器。
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/nnsdao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/icme_app"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://sygsn-caaaa-aaaaf-qaahq-cai.raw.ic0.app/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="/img/nnsdao-logo-1024.png"
-              alt="Nnsdao"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Nnsdao Protocol</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://twitter.com/nnsdaos"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > Nnsdao Labs </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                The boundaryless autonomous organization.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/nnsdao"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/nnsdaos"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://twitter.com/nnsdaos"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="/img/ICP-logo-mark.png"
-              alt="Nnsdao"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">NNS Dapp</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://nns.ic0.app/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > Dfinity </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                The NNS front-end dapp allows anyone to interact with the Internet Computer's Network Nervous System with a user-friendly UI. 
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/dfinity"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/dfinity"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://nns.ic0.app/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="/img/motoko-lab-logo.5b9112fe.png"
-              alt="Nnsdao Motoko"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Motoko Playground</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > Motoko School </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                The Motoko Playground is an IDE for developers to learn Motoko – the native language for the Internet Computer blockchain. 
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/dfinity/motoko-playground"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/dfinity"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="/img/icrocks-logo.png"
-              alt="IC Rocks"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">IC Rocks</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://ic.rocks/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > IC Rocks </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                IC.Rocks is a complete "block explorer" for the Internet Computer – built by the community.Tracking everything from transactions, to network upgrades, to cycles, IC.Rocks enables anyone to explore the inner-workings of the Internet Computer. 
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/ic-rocks"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/ic_rocks"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://ic.rocks/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="rounded-lg overflow-hidden">
-          <div class="relative overflow-hidden pb-60">
-            <img
-              class="absolute h-full w-full object-cover object-center"
-              src="/img/loader.webp"
-              alt="Internet Identity"
-            />
-          </div>
-          <div class="relative bg-gray-200">
-            <div class="py-10 px-8">
-              <h3 class="text-2xl font-bold">Internet Identity</h3>
-              <div class="text-gray-600 text-sm font-medium flex mb-4 mt-2">
-                <p>Provided by&nbsp;</p>
-                <a
-                  href="https://identity.ic0.app/"
-                  class="hover:text-black transition duration-300 ease-in-out"
-                  > Dfinity </a
-                >
-              </div>
-              <!--  -->
-              <p class="leading-7">
-                Internet Identity guarantees that your data isn’t visible, tracked, or mined. The blockchain authentication system enables users to sign in to dapps on the Internet Computer and sites across the web anonymously and securely.
-              </p>
-              <div class="mt-10 flex justify-between items-center">
-                <div>
-                  <a href="https://github.com/dfinity/internet-identity"> <i class="fa fa-github  text-black-400 fa-lg mr-5"></i> </a>
-                  <a href="https://twitter.com/dfinity"> <i class="fa fa-twitter  text-black-400 fa-lg mr-5"></i> </a>
-                </div>
-                <a
-                  href="https://identity.ic0.app/"
-                  class="flex items-center"
-                >
-                  <p class="mr-4">Visit</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14.125"
-                    height="13.358"
-                    viewBox="0 0 14.125 13.358"
-                  >
-                    <g transform="translate(-3 -3.293)">
-                      <path
-                        id="Path_7"
-                        data-name="Path 7"
-                        d="M14.189,10.739H3V9.2H14.189L9.361,4.378l1.085-1.085,6.679,6.679-6.679,6.679L9.361,15.566Z"
-                        fill="#1d1d1d"
-                        fill-rule="evenodd"
-                      ></path>
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    
      
-    </div>
-  
-    <!-- 最后的项目特色介绍 -->
-    <div
-      class="container mx-auto mt-20 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3"
-    >
-     <!-- 
-      <div class="rounded-xl bg-gray-800 flex flex-col p-8">
-        <div
-          class="w-16 h-16 inline-flex items-center justify-center rounded-full bg-green-100 text-green-500 mb-5 flex-shrink-0 p-4"
-        >
-          <svg
-            class="w-24 h-24"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-            ></path>
-          </svg>
-        </div>
-        <div class="flex-grow text-white">
-          <h2 class="text-xl title-font font-medium mb-3">Webdesign</h2>
-          <p class="leading-relaxed text-sm text-justify">
-            Donner du goût 😍 de la couleur aux applications, je le fais afin de
-            rendre vos sites attrayants 🎨. Avant de devenir webdesigner, depuis
-            tout petit j'étais déjà familier à la couleur et du dessin.
-          </p>
-        </div>
-      </div>
-     <div class="rounded-xl bg-gray-800 flex flex-col p-8">
-        <div
-          class="w-16 h-16 inline-flex items-center justify-center rounded-full bg-green-100 text-green-500 mb-5 flex-shrink-0 p-4"
-        >
-          <svg
-            class="w-24 h-24"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-            ></path>
-          </svg>
-        </div>
-        <div class="flex-grow text-white">
-          <h2 class="text-xl title-font font-medium mb-3">Webdesign</h2>
-          <p class="leading-relaxed text-sm text-justify">
-            Donner du goût 😍 de la couleur aux applications, je le fais afin de
-            rendre vos sites attrayants 🎨. Avant de devenir webdesigner, depuis
-            tout petit j'étais déjà familier à la couleur et du dessin.
-          </p>
-        </div>
-      </div>
-      <div class="rounded-xl bg-gray-800 flex flex-col p-8">
-        <div
-          class="w-16 h-16 inline-flex items-center justify-center rounded-full bg-green-100 text-green-500 mb-5 flex-shrink-0 p-4"
-        >
-          <svg
-            class="w-24 h-24"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-            ></path>
-          </svg>
-        </div>
-        <div class="flex-grow text-white">
-          <h2 class="text-xl title-font font-medium mb-3">Webdesign</h2>
-          <p class="leading-relaxed text-sm text-justify">
-            Donner du goût 😍 de la couleur aux applications, je le fais afin de
-            rendre vos sites attrayants 🎨. Avant de devenir webdesigner, depuis
-            tout petit j'étais déjà familier à la couleur et du dessin.
-          </p>
-        </div>
-      </div> -->
     </div>
   
   </div>
