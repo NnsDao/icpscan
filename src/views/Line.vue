@@ -83,7 +83,7 @@
 
           <!-- transationCount -->
 
-           <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
+          <div class="sm:-m-4 -mx-4 -mb-10 -mt-4 ">
             <div class="p-10  md:mb-0 mb-6   ">
               <div class="pattern-dots-md gray-light">
                 <div class="rounded bg-gray-800 p-4 transform translate-x-6 -translate-y-6  "  >
@@ -96,7 +96,11 @@
             </div>
           </div>
 
+          <!-- cycle mint   -->
 
+          <div class="sm:-m-4 -mx-4 -mb-10 -mt-4">
+               <div  id="mySubnetEcharts" :style="{ width: '1280px', height: '620px' }"></div>
+          </div>
 
           </div>
            
@@ -289,6 +293,78 @@ export default {
         };
     }
 
+    // subnet 
+
+      function mySubnetEcharts(datas,count) {
+        let chart = echart.init(document.getElementById("mySubnetEcharts"), "dark");
+        //config data
+        let new_arr = datas.map(obj => {return obj.displayName})
+
+        for (let i=0; i<datas.length; i++) {
+          datas[i]['value'] = datas[i].canisterCount;
+          datas[i].name= datas[i].displayName;
+        }
+
+        chart.setOption({
+           tooltip: {
+              trigger: 'item',
+              formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+              orient: 'vertical',
+               x: 'left',
+              right:'100px',
+              data: new_arr
+            },
+            series: [
+              {
+                name: 'Canisters-per-subnet',
+                type: 'pie',
+                radius: ['40%', '55%'],
+                labelLine: {
+                  length: 40
+                },
+                label: {
+                  formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                  backgroundColor: '#F6F8FC',
+                  borderColor: '#8C8D8E',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  rich: {
+                    a: {
+                      color: '#6E7079',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    hr: {
+                      borderColor: '#8C8D8E',
+                      width: '100%',
+                      borderWidth: 1,
+                      height: 0
+                    },
+                    b: {
+                      color: '#4C5058',
+                      fontSize: 14,
+                      fontWeight: 'bold',
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#fff',
+                      backgroundColor: '#4C5058',
+                      padding: [3, 4],
+                      borderRadius: 4
+                    }
+                  }
+                },
+                data: datas
+              }
+            ]
+          });
+          window.onresize = function() {
+              chart.resize();
+          };
+      }
+
     
 
     const trackAccount = ref([]);
@@ -296,6 +372,7 @@ export default {
     const burnAccount = ref([]);
     const mintCount = ref([]);
     const amountCount = ref([]);
+    const subnetCount = ref([]);
 
     const getTrackAccount = async () => {
       const res = await fetch(
@@ -353,7 +430,16 @@ export default {
       amountCount.value=   res && res.data;
       myTransationEcharts(res.data.Dt,res.data.Count);
     }
-   
+
+    // subnet
+
+     const mySubnetCount = async () => {
+        const res = await fetch(
+          `https://ic.rocks/api/subnets`
+        ).then(rsp => rsp.json())
+        subnetCount.value = res ; 
+        mySubnetEcharts(res,res);
+      }
 
     return {
       trackAccount,
@@ -371,6 +457,8 @@ export default {
       myMintEcharts,
       myAmountEcharts,
       myTransationEcharts,
+      mySubnetEcharts,
+      mySubnetCount,
     };
   },
    created: function () {
@@ -381,6 +469,7 @@ export default {
     that.getMintAccount();
     that.getTransationAccount();
     that.getTransationCount();
+    that.mySubnetCount();
     
   },
 };
