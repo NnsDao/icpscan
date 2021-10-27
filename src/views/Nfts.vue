@@ -127,11 +127,11 @@ export default defineComponent({
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
+          let popl = arrs[3].split(":");
+          let popp = arrs[4].split(":");
+          let popk = arrs[5].split(":");
+          let popm = arrs[6].split(":");
+          let popn = arrs[7].split(":");
           arrOp["icon"] =
             "https://nnsdao.s3.ap-southeast-1.amazonaws.com/nnsdao/tW7romVf_400x400.jpg";
           arrOp["name"] = "Ictuts";
