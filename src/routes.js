@@ -11,6 +11,7 @@ import Neurons from './views/Neurons.vue'
 import Subnet from './views/Subnet.vue'
 import Principals from './views/Principals.vue'
 import Line from './views/Line.vue'
+import Nfts from './views/Nfts.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -39,6 +40,11 @@ export const routes = [
     path: '/rank',
     meta: { title: 'Rank' },
     component: Rank,
+  },
+  {
+    path: '/nfts',
+    meta: { title: 'Nfts' },
+    component: Nfts,
   },
   {
     path: '/account/:id',

@@ -376,7 +376,7 @@ export default {
 
     const getTrackAccount = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/accountDAU`
+        `https://dapi.nnsdao.com/api/block/accountDAU`
       ).then(rsp => rsp.json())
       trackAccount.value=   res && res.data;
       initTrackChart(res.data.Dt,res.data.Number);
@@ -384,7 +384,7 @@ export default {
     // block create
     const getAccountOther = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/blockCount`
+        `https://dapi.nnsdao.com/api/block/blockCount`
       ).then(rsp => rsp.json())
       tranAccount.value=   res && res.data;
       initChart(res.data.Dt,res.data.Count);
@@ -394,7 +394,7 @@ export default {
 
     const getBurnAccount = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/destroyAmount`
+        `https://dapi.nnsdao.com/api/block/destroyAmount`
       ).then(rsp => rsp.json())
       burnAccount.value=   res && res.data;
       let burnCount = res.data.Count.map(val =>    new Decimal(val ? val : 1 ).div(new Decimal(100000000)).toNumber() )
@@ -404,7 +404,7 @@ export default {
 
     const getMintAccount = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/mintAmount`
+        `https://dapi.nnsdao.com/api/block/mintAmount`
       ).then(rsp => rsp.json())
       mintCount.value=   res && res.data;
       let mCount = res.data.Count.map(val =>    new Decimal(val ? val : 1 ).div(new Decimal(100000000)).toNumber() )
@@ -414,7 +414,7 @@ export default {
 
     const getTransationAccount = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/transationAmount`
+        `https://dapi.nnsdao.com/api/block/transationAmount`
       ).then(rsp => rsp.json())
       amountCount.value=   res && res.data;
       let mCount = res.data.Count.map(val =>    new Decimal(val ? val : 1 ).div(new Decimal(100000000)).toNumber() )
@@ -425,7 +425,7 @@ export default {
 
     const getTransationCount = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/transationCount`
+        `https://dapi.nnsdao.com/api/block/transationCount`
       ).then(rsp => rsp.json())
       amountCount.value=   res && res.data;
       myTransationEcharts(res.data.Dt,res.data.Count);

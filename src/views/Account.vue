@@ -107,21 +107,21 @@ export default defineComponent({
 
     const getDetail = async (id) => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+        `https://dapi.nnsdao.com/api/block/search?recorde_addr=`+id
       ).then(rsp => rsp.json())
       list.value=   res && res.data;
     }
 
     const getAccountDetail = async (id) => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/searchDetail?account=`+id
+        `https://dapi.nnsdao.com/api/block/searchDetail?account=`+id
       ).then(rsp => rsp.json())
       listAccount.value=   res && res.data;
     }
 
     const getTransAccount = async (id) => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/accountBalanceCurve?account=`+id
+        `https://dapi.nnsdao.com/api/block/accountBalanceCurve?account=`+id
       ).then(rsp => rsp.json())
       tranAccount.value=   res && res.data;
 

@@ -66,7 +66,7 @@ export default defineComponent({
 
     const getDetail = async (id) => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+        `https://dapi.nnsdao.com/api/block/search?recorde_addr=`+id
       ).then(rsp => rsp.json())
       list.value=   res && res.data;
     }

@@ -218,9 +218,9 @@ let navigation = [
   { name: "Canisters", href: "/canisters", current: false },
   { name: "Subnet", href: "/subnet", current: false },
   { name: "Principal", href: "/principals", current: false },
+  { name: "NFTs", href: "/nfts", current: false },
   { name: "Project", href: "/project", current: false },
   { name: "Node Map", href: "/chart", current: false },
-  { name: "Calculator", href: "https://nns.icpscan.co/", current: false },
   { name: "Chart", href: "/line", current: false },
 ];
 
@@ -232,9 +232,9 @@ if (locale == "zh-TW") {
     { name: "子網", href: "/subnet", current: false },
     { name: "校長", href: "/principals", current: false },
     { name: "治理", href: "/neurons", current: false },
+    { name: "NFTs", href: "/nfts", current: false },
     { name: "應用", href: "/project", current: false },
     { name: "節點地圖", href: "/chart", current: false },
-    { name: "收益計算器", href: "https://nns.icpscan.co/", current: false },
     {
       name: "圖表",
       href: "/line",
@@ -251,9 +251,9 @@ if (locale == "tl-SW") {
     { name: "Subnet", href: "/subnet", current: false },
     { name: "wakuu", href: "/principals", current: false },
     { name: "Neva", href: "/neurons", current: false },
+    { name: "NFTs", href: "/nfts", current: false },
     { name: "Mradi", href: "/project", current: false },
     { name: "Chati", href: "/chart", current: false },
-    { name: "Kikokotoo", href: "https://nns.icpscan.co/", current: false },
     {
       name: "Mstari",
       href: "/line",
@@ -270,9 +270,9 @@ if (locale == "ko-KR") {
     { name: "서브넷", href: "/subnet", current: false },
     { name: "교장", href: "/principals", current: false },
     { name: "뉴런", href: "/neurons", current: false },
+    { name: "NFTs", href: "/nfts", current: false },
     { name: "계획", href: "/project", current: false },
     { name: "노드 맵", href: "/chart", current: false },
-    { name: "소득 계산기", href: "https://nns.icpscan.co/", current: false },
     {
       name: "차트",
       href: "/line",
@@ -289,9 +289,9 @@ if (locale == "ja-JP") {
     { name: "サブネット", href: "/subnet", current: false },
     { name: "主要な", href: "/principals", current: false },
     { name: "ニューロン", href: "/neurons", current: false },
+    { name: "NFTs", href: "/nfts", current: false },
     { name: "応用", href: "/project", current: false },
     { name: "ノードマップ", href: "/chart", current: false },
-    { name: "計算書", href: "https://nns.icpscan.co/", current: false },
     {
       name: "チャート",
       href: "/line",

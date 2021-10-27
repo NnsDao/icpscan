@@ -2,9 +2,14 @@
      <section class="h-full bg-gray-800">
             <div class="py-6 px-16 flex justify-between">
                 <div>
+                    <p class="font-bold text-white text-xl mt-3"> 
+                        Tools - 
+                        <span class="text-blue-400"> <a href="https://nns.icpscan.co/" target="_blank" >Calculator</a></span> -  
+                        <span class="text-blue-400"><a href="https://nnsdao.substack.com/" target="_blank" >Newsletters</a></span>
+                    </p>
                     <h1 class="font-bold text-white text-xl">
                         Icpscan
-                        <span class="text-white">- <a href="/about" >About</a></span> - 
+                        <span class="text-blue-400">- <a href="/about" >About</a></span> - 
                         <span class="text-blue-400"><a href="https://nnsdao.org/" >NnsDAO</a></span>
                     </h1>
                 </div>

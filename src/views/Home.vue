@@ -36,7 +36,7 @@ export default defineComponent({
     // 单个请求 TODO CORS 
     const getList = async () => {
       const res = await fetch(
-        `https://api.baqiye.com/api/block/newList`
+        `https://dapi.nnsdao.com/api/block/newList`
       ).then(rsp => rsp.json())
       list.value=   res && res.data;
     }
@@ -216,7 +216,7 @@ export default defineComponent({
 
     const getDetail = async (that,id) => {
         const res = await fetch(
-          `https://api.baqiye.com/api/block/search?recorde_addr=`+id
+          `https://dapi.nnsdao.com/api/block/search?recorde_addr=`+id
         ).then(rsp => rsp.json())
 
         searchList.value = res && res.data;

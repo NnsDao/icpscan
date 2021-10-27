@@ -44,7 +44,6 @@ export default defineComponent({
     }
 
     function getType(itype) {
-      console.log(itype)
       switch(itype){
         case 1:
           return '#DAOs';
@@ -90,8 +89,6 @@ export default defineComponent({
           break;
       }
     }
-
-    console.log(list,89898)
 
     onMounted(() => {
       watchEffect(() => {

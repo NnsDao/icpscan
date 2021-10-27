@@ -62,7 +62,7 @@ const setCancel = (reqList, config, c) => {
   ci.setCancel(c)
 }
 
-let baseURL = "https://api.baqiye.com";
+let baseURL = "https://dapi.nnsdao.com/";
 
 // 服务端地址
 const request = axios.create({
