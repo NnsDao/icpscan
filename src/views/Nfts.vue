@@ -281,7 +281,7 @@ export default defineComponent({
           let popm = arrs[4].split(":");
           let popn = arrs[5].split(":");
           arrOp["icon"] =
-            "https://k4qsa-4aaaa-aaaah-qbvnq-cai.raw.ic0.app/?tokenid=srd5d-nakor-uwiaa-aaaaa-b4anl-maqca-aaaaa-a";
+            "https://k4qsa-4aaaa-aaaah-qbvnq-cai.raw.ic0.app/?tokenid=4x3fi-pikor-uwiaa-aaaaa-b4anl-maqca-aaabc-a";
           arrOp["name"] = "FacetedMeninas";
           arrOp["score"] = "66";
           arrOp["minted"] = popl[1].trim().replace("_", "");
@@ -386,7 +386,213 @@ export default defineComponent({
           console.log(err);
         });
     }
+    // motoko
 
+    function goMotoko() {
+      var api = "https://oeee4-qaaaa-aaaak-qaaeq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[8].split(":");
+          let popp = arrs[9].split(":");
+          let popk = arrs[10].split(":");
+          let popm = arrs[11].split(":");
+          let popn = arrs[12].split(":");
+          arrOp["icon"] =
+            "https://oeee4-qaaaa-aaaak-qaaeq-cai.raw.ic0.app/?tokenid=ceujj-dqkor-uwiaa-aaaaa-cuaab-eaqca-aabmu-q";
+          arrOp["name"] = "Motoko";
+          arrOp["score"] = "86.4";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    // wildwest
+
+    function goWildwest() {
+      var api = "https://b5el6-hqaaa-aaaah-qcdhq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[4].split(":");
+          let popp = arrs[6].split(":");
+          let popk = arrs[7].split(":");
+          let popm = arrs[8].split(":");
+          let popn = arrs[9].split(":");
+          arrOp["icon"] =
+            "https://b5el6-hqaaa-aaaah-qcdhq-cai.raw.ic0.app/?tokenid=dthxl-6ykor-uwiaa-aaaaa-b4aqz-4aqca-aaacb-q";
+          arrOp["name"] = "Wildwest";
+          arrOp["score"] = "76.4";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //icpumpkins
+
+    function goIcpumpkins() {
+      var api = "https://btggw-4aaaa-aaaah-qcdgq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(":");
+          let popp = arrs[2].split(":");
+          let popk = arrs[3].split(":");
+          let popm = arrs[4].split(":");
+          let popn = arrs[5].split(":");
+          arrOp["icon"] =
+            "https://btggw-4aaaa-aaaah-qcdgq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=ttt5v-eikor-uwiaa-aaaaa-b4aqz-uaqca-aaaao-q";
+          arrOp["name"] = "Icpumpkins";
+          arrOp["score"] = "68.9";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //iconic2021
+
+    function goIconic2021() {
+      var api = "https://eb7r3-myaaa-aaaah-qcdya-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[7].split(":");
+          let popp = arrs[9].split(":");
+          let popk = arrs[10].split(":");
+          let popm = arrs[11].split(":");
+          let popn = arrs[12].split(":");
+          arrOp["icon"] =
+            "https://eb7r3-myaaa-aaaah-qcdya-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=zcawt-lakor-uwiaa-aaaaa-b4aq6-aaqca-aaacm-a";
+          arrOp["name"] = "Iconic2021";
+          arrOp["score"] = "48.4";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    //  tylerdakota
+
+    function goTylerdakota() {
+      var api = "https://dv6u3-vqaaa-aaaah-qcdlq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(":");
+          let popp = arrs[2].split(":");
+          let popk = arrs[3].split(":");
+          let popm = arrs[4].split(":");
+          let popn = arrs[5].split(":");
+          arrOp["icon"] =
+            "https://dv6u3-vqaaa-aaaah-qcdlq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=jneek-xqkor-uwiaa-aaaaa-b4aq2-4aqca-aaaaa-q";
+          arrOp["name"] = "tylerdakota";
+          arrOp["score"] = "59.7";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // patternbased
+
+    function goPatternbased() {
+      var api = "https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(":");
+          let popp = arrs[2].split(":");
+          let popk = arrs[3].split(":");
+          let popm = arrs[4].split(":");
+          let popn = arrs[5].split(":");
+          arrOp["icon"] =
+            "https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=7aeta-iikor-uwiaa-aaaaa-b4aq3-yaqca-aaaay-q";
+          arrOp["name"] = "Patternbased";
+          arrOp["score"] = "59.7";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // selaykarasu
+
+    function goSelaykarasu() {
+      var api = "https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(":");
+          let popp = arrs[2].split(":");
+          let popk = arrs[3].split(":");
+          let popm = arrs[4].split(":");
+          let popn = arrs[5].split(":");
+          arrOp["icon"] =
+            "https://cdvmq-aaaaa-aaaah-qcdoq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=544bu-eakor-uwiaa-aaaaa-b4aq3-uaqca-aaaaa-q";
+          arrOp["name"] = "Selaykarasu";
+          arrOp["score"] = "79.1";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
     onMounted(() => {
       watchEffect(() => {
@@ -401,6 +607,13 @@ export default defineComponent({
         goIcelebrity();
         goIcmojis();
         goWearables();
+        goIcpumpkins();
+        goWildwest();
+        goIconic2021();
+        goSelaykarasu();
+        goPatternbased();
+        goTylerdakota();
+        goMotoko();
       });
     });
 
@@ -413,6 +626,13 @@ export default defineComponent({
       goInterastrosc,
       goFacetedMeninas,
       goWearables,
+      goIcpumpkins,
+      goWildwest,
+      goMotoko,
+      goTylerdakota,
+      goPatternbased,
+      goSelaykarasu,
+      goIconic2021,
       goIcelebrity,
       goIcmojis,
       goIcpuppies,
