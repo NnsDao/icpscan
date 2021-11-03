@@ -1,4 +1,4 @@
-  const locale = window.localStorage.getItem("locale") || 'zh-CN';
+  const locale = window.localStorage.getItem("locale") || 'zh-TW';
   
   export default {
     // 默认语言
