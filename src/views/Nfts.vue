@@ -594,6 +594,130 @@ export default defineComponent({
         });
     }
 
+    // Heroes
+
+    function goHeros() {
+      var api = "https://poyn6-dyaaa-aaaah-qcfzq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[3].split(":");
+          let popp = arrs[11].split(":");
+          let popk = arrs[12].split(":");
+          let popm = arrs[13].split(":");
+          let popn = arrs[14].split(":");
+          arrOp["icon"] =
+            "https://poyn6-dyaaa-aaaah-qcfzq-cai.raw.ic0.app/?asset=22R&type=thumbnail";
+          arrOp["name"] = "Heroes";
+          arrOp["score"] = "86.4";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // Dfinity Bulls
+
+    function goBulls() {
+      var api = "https://dknxi-2iaaa-aaaah-qceuq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[4].split(":");
+          let popp = arrs[13].split(":");
+          let popk = arrs[14].split(":");
+          let popm = arrs[15].split(":");
+          let popn = arrs[16].split(":");
+          arrOp["icon"] =
+            "https://entrepot.app/collections/bulls/avatar.jpg";
+          arrOp["name"] = "Dfinity Bulls";
+          arrOp["score"] = "66.7";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // IC3D
+
+     function goBulls() {
+      var api = "https://nfvlz-jaaaa-aaaah-qcciq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[3].split(":");
+          let popp = arrs[10].split(":");
+          let popk = arrs[11].split(":");
+          let popm = arrs[12].split(":");
+          let popn = arrs[13].split(":");
+          arrOp["icon"] =
+            "https://entrepot.app/collections/nfvlz-jaaaa-aaaah-qcciq-cai.jpg";
+          arrOp["name"] = "IC3D";
+          arrOp["score"] = "77.12";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // IC Flight
+
+    function goFlight() {
+      var api = "https://dylar-wyaaa-aaaah-qcexq-cai.raw.ic0.app/";
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(":");
+          let popp = arrs[2].split(":");
+          let popk = arrs[3].split(":");
+          let popm = arrs[4].split(":");
+          let popn = arrs[5].split(":");
+          arrOp["icon"] =
+            "https://entrepot.app/collections/flight/avatar.jpg";
+          arrOp["name"] = "Flight";
+          arrOp["score"] = "72.7";
+          arrOp["minted"] = popl[1].trim().replace("_", "");
+          arrOp["listings"] = popp[1].trim().replace("_", "");
+          arrOp["totalSales"] = popk[1].trim().replace("_", "");
+          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
+          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+
+
+
+
     onMounted(() => {
       watchEffect(() => {
         goStarverse();
@@ -611,6 +735,9 @@ export default defineComponent({
         goWildwest();
         goIconic2021();
         goSelaykarasu();
+        goHeros();
+        goBulls();
+        goFlight();
         goPatternbased();
         goTylerdakota();
         goMotoko();
@@ -632,6 +759,9 @@ export default defineComponent({
       goTylerdakota,
       goPatternbased,
       goSelaykarasu,
+      goHeros,
+      goBulls,
+      goFlight,
       goIconic2021,
       goIcelebrity,
       goIcmojis,
