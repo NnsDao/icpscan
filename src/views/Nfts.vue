@@ -1,16 +1,16 @@
 <script>
-import { defineComponent } from "vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-import { ref } from "vue";
-import { fetchRank } from "../api/index.js";
-import { Decimal } from "decimal.js";
-import moment from "moment";
-import { toThousands } from "../utils/tool.js";
-import { reactive, onMounted, watchEffect } from "vue";
-import { useRouter } from "vue-router";
-import * as icpuzzleIdl from "../api/nft/icpuzzleIdl";
-import axios from "axios";
+import { defineComponent } from 'vue';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import { ref } from 'vue';
+import { fetchRank } from '../api/index.js';
+import { Decimal } from 'decimal.js';
+import moment from 'moment';
+import { toThousands } from '../utils/tool.js';
+import { reactive, onMounted, watchEffect } from 'vue';
+import { useRouter } from 'vue-router';
+import * as icpuzzleIdl from '../api/nft/icpuzzleIdl';
+import axios from 'axios';
 
 export default defineComponent({
   components: { Header, Footer },
@@ -19,7 +19,7 @@ export default defineComponent({
     const router = useRouter();
 
     function goJump(id) {
-      const url = "https://" + id + ".raw.ic0.app/";
+      const url = 'https://' + id + '.raw.ic0.app/';
       window.open(url);
     }
 
@@ -38,50 +38,50 @@ export default defineComponent({
       var interval = (new Date().getTime() - dval) / 1000;
       if (Math.floor(interval / 60) <= 0) {
         //1 分钟之前
-        return "just now";
+        return 'just now';
       } else if (interval < 3600) {
         //1 分钟到 1 小时之间
-        return Math.floor(interval / 60) + " minutes ago";
+        return Math.floor(interval / 60) + ' minutes ago';
       } else if (interval >= 3600 && dval - this.getTodayUnix() >= 0) {
         //1 小时到 1 天之间
-        return Math.floor(interval / 3600) + " hours ago";
+        return Math.floor(interval / 3600) + ' hours ago';
       } else if (interval / (3600 * 24) <= 31) {
         //1 天到 1 个月（假设固定为 31 天）之间
-        return Math.ceil(interval / (3600 * 24)) + " days ago";
+        return Math.ceil(interval / (3600 * 24)) + ' days ago';
       } else {
-        return this.moment(dval).format("YYYY-MM-DD hh:mm:ss");
+        return this.moment(dval).format('YYYY-MM-DD hh:mm:ss');
       }
     }
 
     const getIcpuzzleTotal = reactive([]);
 
     function goJumpAccount(raccount) {
-      router.push({ path: "/account/" + raccount, query: { id: raccount } });
+      router.push({ path: '/account/' + raccount, query: { id: raccount } });
     }
 
     // get data https://owuqd-dyaaa-aaaah-qapxq-cai.raw.ic0.app/
 
     function getPuzzle() {
-      var api = "https://owuqd-dyaaa-aaaah-qapxq-cai.raw.ic0.app/";
+      var api = 'https://owuqd-dyaaa-aaaah-qapxq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrPop = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrPop["icon"] =
-            "https://owuqd-dyaaa-aaaah-qapxq-cai.raw.ic0.app/?tokenid=uew4n-3akor-uwiaa-aaaaa-b4ad5-4aqca-aabas-a";
-          arrPop["name"] = "Icpuzzle";
-          arrPop["score"] = "65";
-          arrPop["minted"] = popl[1].trim().replace("_", "");
-          arrPop["listings"] = popp[1].trim().replace("_", "");
-          arrPop["totalSales"] = popk[1].trim().replace("_", "");
-          arrPop["salesIcp"] = popm[1].trim().replace("_", "");
-          arrPop["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrPop['icon'] =
+            'https://owuqd-dyaaa-aaaah-qapxq-cai.raw.ic0.app/?tokenid=uew4n-3akor-uwiaa-aaaaa-b4ad5-4aqca-aabas-a';
+          arrPop['name'] = 'Icpuzzle';
+          arrPop['score'] = '65';
+          arrPop['minted'] = popl[1].trim().replace('_', '');
+          arrPop['listings'] = popp[1].trim().replace('_', '');
+          arrPop['totalSales'] = popk[1].trim().replace('_', '');
+          arrPop['salesIcp'] = popm[1].trim().replace('_', '');
+          arrPop['averagePrice'] = popn[1].trim().replace('_', '');
 
           getIcpuzzleTotal.push(arrPop);
         })
@@ -91,26 +91,26 @@ export default defineComponent({
     }
     // wings
     function getWings() {
-      var api = "https://73xld-saaaa-aaaah-qbjya-cai.raw.ic0.app/";
+      var api = 'https://73xld-saaaa-aaaah-qbjya-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://73xld-saaaa-aaaah-qbjya-cai.raw.ic0.app/?tokenid=eq7yk-xikor-uwiaa-aaaaa-b4ako-aaqca-aaaaa-q";
-          arrOp["name"] = "Wing";
-          arrOp["score"] = "89";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://73xld-saaaa-aaaah-qbjya-cai.raw.ic0.app/?tokenid=eq7yk-xikor-uwiaa-aaaaa-b4ako-aaqca-aaaaa-q';
+          arrOp['name'] = 'Wing';
+          arrOp['score'] = '89';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -121,26 +121,26 @@ export default defineComponent({
     // Ictuts
 
     function goIctuts() {
-      var api = "https://ahl3d-xqaaa-aaaaj-qacca-cai.raw.ic0.app/";
+      var api = 'https://ahl3d-xqaaa-aaaaj-qacca-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[3].split(":");
-          let popp = arrs[4].split(":");
-          let popk = arrs[5].split(":");
-          let popm = arrs[6].split(":");
-          let popn = arrs[7].split(":");
-          arrOp["icon"] =
-            "https://nnsdao.s3.ap-southeast-1.amazonaws.com/nnsdao/tW7romVf_400x400.jpg";
-          arrOp["name"] = "Ictuts";
-          arrOp["score"] = "55";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[3].split(':');
+          let popp = arrs[4].split(':');
+          let popk = arrs[5].split(':');
+          let popm = arrs[6].split(':');
+          let popn = arrs[7].split(':');
+          arrOp['icon'] =
+            'https://nnsdao.s3.ap-southeast-1.amazonaws.com/nnsdao/tW7romVf_400x400.jpg';
+          arrOp['name'] = 'Ictuts';
+          arrOp['score'] = '55';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -149,26 +149,26 @@ export default defineComponent({
     }
     // goStarverse
     function goStarverse() {
-      var api = "https://nbg4r-saaaa-aaaah-qap7a-cai.raw.ic0.app/";
+      var api = 'https://nbg4r-saaaa-aaaah-qap7a-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://nbg4r-saaaa-aaaah-qap7a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=pjif4-yykor-uwiaa-aaaaa-b4ad7-yaqca-aaaab-a";
-          arrOp["name"] = "Starverse";
-          arrOp["score"] = "77";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://nbg4r-saaaa-aaaah-qap7a-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=pjif4-yykor-uwiaa-aaaaa-b4ad7-yaqca-aaaab-a';
+          arrOp['name'] = 'Starverse';
+          arrOp['score'] = '77';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -179,26 +179,26 @@ export default defineComponent({
     //interastrosc
 
     function goInterastrosc() {
-      var api = "https://sr4qi-vaaaa-aaaah-qcaaq-cai.raw.ic0.app/";
+      var api = 'https://sr4qi-vaaaa-aaaah-qcaaq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://sr4qi-vaaaa-aaaah-qcaaq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=6roeh-nykor-uwiaa-aaaaa-b4aqa-eaqca-aaaaa-a";
-          arrOp["name"] = "Interastrosc";
-          arrOp["score"] = "72";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://sr4qi-vaaaa-aaaah-qcaaq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=6roeh-nykor-uwiaa-aaaaa-b4aqa-eaqca-aaaaa-a';
+          arrOp['name'] = 'Interastrosc';
+          arrOp['score'] = '72';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -209,26 +209,26 @@ export default defineComponent({
     // icpuppies
 
     function goIcpuppies() {
-      var api = "https://njgly-uaaaa-aaaah-qb6pa-cai.raw.ic0.app/";
+      var api = 'https://njgly-uaaaa-aaaah-qb6pa-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://njgly-uaaaa-aaaah-qb6pa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=g33bu-wakor-uwiaa-aaaaa-b4apt-yaqca-aaaag-q";
-          arrOp["name"] = "Icpuppies";
-          arrOp["score"] = "81";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://njgly-uaaaa-aaaah-qb6pa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=g33bu-wakor-uwiaa-aaaaa-b4apt-yaqca-aaaag-q';
+          arrOp['name'] = 'Icpuppies';
+          arrOp['score'] = '81';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -239,26 +239,26 @@ export default defineComponent({
     // icelebrity
 
     function goIcelebrity() {
-      var api = "https://kss7i-hqaaa-aaaah-qbvmq-cai.raw.ic0.app";
+      var api = 'https://kss7i-hqaaa-aaaah-qbvmq-cai.raw.ic0.app';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://kss7i-hqaaa-aaaah-qbvmq-cai.raw.ic0.app/?tokenid=apmmb-hikor-uwiaa-aaaaa-b4anl-eaqca-aaaaa-a";
-          arrOp["name"] = "Icelebrity";
-          arrOp["score"] = "81";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://kss7i-hqaaa-aaaah-qbvmq-cai.raw.ic0.app/?tokenid=apmmb-hikor-uwiaa-aaaaa-b4anl-eaqca-aaaaa-a';
+          arrOp['name'] = 'Icelebrity';
+          arrOp['score'] = '81';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -269,26 +269,26 @@ export default defineComponent({
     // faceted-meninas
 
     function goFacetedMeninas() {
-      var api = "https://k4qsa-4aaaa-aaaah-qbvnq-cai.raw.ic0.app/";
+      var api = 'https://k4qsa-4aaaa-aaaah-qbvnq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://k4qsa-4aaaa-aaaah-qbvnq-cai.raw.ic0.app/?tokenid=4x3fi-pikor-uwiaa-aaaaa-b4anl-maqca-aaabc-a";
-          arrOp["name"] = "FacetedMeninas";
-          arrOp["score"] = "66";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://k4qsa-4aaaa-aaaah-qbvnq-cai.raw.ic0.app/?tokenid=4x3fi-pikor-uwiaa-aaaaa-b4anl-maqca-aaabc-a';
+          arrOp['name'] = 'FacetedMeninas';
+          arrOp['score'] = '66';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -299,26 +299,26 @@ export default defineComponent({
     // icp-news
 
     function goIcpnews() {
-      var api = "https://uzhxd-ziaaa-aaaah-qanaq-cai.raw.ic0.app/";
+      var api = 'https://uzhxd-ziaaa-aaaah-qanaq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://uzhxd-ziaaa-aaaah-qanaq-cai.raw.ic0.app/?tokenid=ijrqa-bqkor-uwiaa-aaaaa-b4adi-eaqca-aaaaa-a";
-          arrOp["name"] = "Icpnews";
-          arrOp["score"] = "40";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://uzhxd-ziaaa-aaaah-qanaq-cai.raw.ic0.app/?tokenid=ijrqa-bqkor-uwiaa-aaaaa-b4adi-eaqca-aaaaa-a';
+          arrOp['name'] = 'Icpnews';
+          arrOp['score'] = '40';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -329,27 +329,26 @@ export default defineComponent({
     // goIcmojis
 
     function goIcmojis() {
-      
-       var api = "https://gevsk-tqaaa-aaaah-qaoca-cai.raw.ic0.app/";
+      var api = 'https://gevsk-tqaaa-aaaah-qaoca-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://gevsk-tqaaa-aaaah-qaoca-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=3rdla-kqkor-uwiaa-aaaaa-b4adq-qaqca-aaaaa-a";
-          arrOp["name"] = "Icmojis";
-          arrOp["score"] = "66.4";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://gevsk-tqaaa-aaaah-qaoca-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=3rdla-kqkor-uwiaa-aaaaa-b4adq-qaqca-aaaaa-a';
+          arrOp['name'] = 'Icmojis';
+          arrOp['score'] = '66.4';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -360,26 +359,26 @@ export default defineComponent({
     // goWearables
 
     function goWearables() {
-      var api = "https://tde7l-3qaaa-aaaah-qansa-cai.raw.ic0.app";
+      var api = 'https://tde7l-3qaaa-aaaah-qansa-cai.raw.ic0.app';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://tde7l-3qaaa-aaaah-qansa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=exusw-xqkor-uwiaa-aaaaa-b4adm-qaqca-aaaap-a";
-          arrOp["name"] = "Wearables";
-          arrOp["score"] = "79.4";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://tde7l-3qaaa-aaaah-qansa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=exusw-xqkor-uwiaa-aaaaa-b4adm-qaqca-aaaap-a';
+          arrOp['name'] = 'Wearables';
+          arrOp['score'] = '79.4';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -389,26 +388,26 @@ export default defineComponent({
     // motoko
 
     function goMotoko() {
-      var api = "https://oeee4-qaaaa-aaaak-qaaeq-cai.raw.ic0.app/";
+      var api = 'https://oeee4-qaaaa-aaaak-qaaeq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[8].split(":");
-          let popp = arrs[9].split(":");
-          let popk = arrs[10].split(":");
-          let popm = arrs[11].split(":");
-          let popn = arrs[12].split(":");
-          arrOp["icon"] =
-            "https://oeee4-qaaaa-aaaak-qaaeq-cai.raw.ic0.app/?tokenid=ceujj-dqkor-uwiaa-aaaaa-cuaab-eaqca-aabmu-q";
-          arrOp["name"] = "Motoko";
-          arrOp["score"] = "86.4";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[8].split(':');
+          let popp = arrs[9].split(':');
+          let popk = arrs[10].split(':');
+          let popm = arrs[11].split(':');
+          let popn = arrs[12].split(':');
+          arrOp['icon'] =
+            'https://oeee4-qaaaa-aaaak-qaaeq-cai.raw.ic0.app/?tokenid=ceujj-dqkor-uwiaa-aaaaa-cuaab-eaqca-aabmu-q';
+          arrOp['name'] = 'Motoko';
+          arrOp['score'] = '86.4';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -418,26 +417,26 @@ export default defineComponent({
     // wildwest
 
     function goWildwest() {
-      var api = "https://b5el6-hqaaa-aaaah-qcdhq-cai.raw.ic0.app/";
+      var api = 'https://b5el6-hqaaa-aaaah-qcdhq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[4].split(":");
-          let popp = arrs[6].split(":");
-          let popk = arrs[7].split(":");
-          let popm = arrs[8].split(":");
-          let popn = arrs[9].split(":");
-          arrOp["icon"] =
-            "https://b5el6-hqaaa-aaaah-qcdhq-cai.raw.ic0.app/?tokenid=dthxl-6ykor-uwiaa-aaaaa-b4aqz-4aqca-aaacb-q";
-          arrOp["name"] = "Wildwest";
-          arrOp["score"] = "76.4";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[4].split(':');
+          let popp = arrs[6].split(':');
+          let popk = arrs[7].split(':');
+          let popm = arrs[8].split(':');
+          let popn = arrs[9].split(':');
+          arrOp['icon'] =
+            'https://b5el6-hqaaa-aaaah-qcdhq-cai.raw.ic0.app/?tokenid=dthxl-6ykor-uwiaa-aaaaa-b4aqz-4aqca-aaacb-q';
+          arrOp['name'] = 'Wildwest';
+          arrOp['score'] = '76.4';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -448,26 +447,26 @@ export default defineComponent({
     //icpumpkins
 
     function goIcpumpkins() {
-      var api = "https://btggw-4aaaa-aaaah-qcdgq-cai.raw.ic0.app/";
+      var api = 'https://btggw-4aaaa-aaaah-qcdgq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://btggw-4aaaa-aaaah-qcdgq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=ttt5v-eikor-uwiaa-aaaaa-b4aqz-uaqca-aaaao-q";
-          arrOp["name"] = "Icpumpkins";
-          arrOp["score"] = "68.9";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://btggw-4aaaa-aaaah-qcdgq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=ttt5v-eikor-uwiaa-aaaaa-b4aqz-uaqca-aaaao-q';
+          arrOp['name'] = 'Icpumpkins';
+          arrOp['score'] = '68.9';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -478,26 +477,26 @@ export default defineComponent({
     //iconic2021
 
     function goIconic2021() {
-      var api = "https://eb7r3-myaaa-aaaah-qcdya-cai.raw.ic0.app/";
+      var api = 'https://eb7r3-myaaa-aaaah-qcdya-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[7].split(":");
-          let popp = arrs[9].split(":");
-          let popk = arrs[10].split(":");
-          let popm = arrs[11].split(":");
-          let popn = arrs[12].split(":");
-          arrOp["icon"] =
-            "https://eb7r3-myaaa-aaaah-qcdya-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=zcawt-lakor-uwiaa-aaaaa-b4aq6-aaqca-aaacm-a";
-          arrOp["name"] = "Iconic2021";
-          arrOp["score"] = "48.4";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[7].split(':');
+          let popp = arrs[9].split(':');
+          let popk = arrs[10].split(':');
+          let popm = arrs[11].split(':');
+          let popn = arrs[12].split(':');
+          arrOp['icon'] =
+            'https://eb7r3-myaaa-aaaah-qcdya-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=zcawt-lakor-uwiaa-aaaaa-b4aq6-aaqca-aaacm-a';
+          arrOp['name'] = 'Iconic2021';
+          arrOp['score'] = '48.4';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -507,26 +506,26 @@ export default defineComponent({
     //  tylerdakota
 
     function goTylerdakota() {
-      var api = "https://dv6u3-vqaaa-aaaah-qcdlq-cai.raw.ic0.app/";
+      var api = 'https://dv6u3-vqaaa-aaaah-qcdlq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://dv6u3-vqaaa-aaaah-qcdlq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=jneek-xqkor-uwiaa-aaaaa-b4aq2-4aqca-aaaaa-q";
-          arrOp["name"] = "tylerdakota";
-          arrOp["score"] = "59.7";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://dv6u3-vqaaa-aaaah-qcdlq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=jneek-xqkor-uwiaa-aaaaa-b4aq2-4aqca-aaaaa-q';
+          arrOp['name'] = 'tylerdakota';
+          arrOp['score'] = '59.7';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -537,26 +536,26 @@ export default defineComponent({
     // patternbased
 
     function goPatternbased() {
-      var api = "https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/";
+      var api = 'https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=7aeta-iikor-uwiaa-aaaaa-b4aq3-yaqca-aaaay-q";
-          arrOp["name"] = "Patternbased";
-          arrOp["score"] = "59.7";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=7aeta-iikor-uwiaa-aaaaa-b4aq3-yaqca-aaaay-q';
+          arrOp['name'] = 'Patternbased';
+          arrOp['score'] = '59.7';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -567,26 +566,26 @@ export default defineComponent({
     // selaykarasu
 
     function goSelaykarasu() {
-      var api = "https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/";
+      var api = 'https://ckwhm-wiaaa-aaaah-qcdpa-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://cdvmq-aaaaa-aaaah-qcdoq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=544bu-eakor-uwiaa-aaaaa-b4aq3-uaqca-aaaaa-q";
-          arrOp["name"] = "Selaykarasu";
-          arrOp["score"] = "79.1";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://cdvmq-aaaaa-aaaah-qcdoq-cai.raw.ic0.app/?cc=0&type=thumbnail&tokenid=544bu-eakor-uwiaa-aaaaa-b4aq3-uaqca-aaaaa-q';
+          arrOp['name'] = 'Selaykarasu';
+          arrOp['score'] = '79.1';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -597,26 +596,26 @@ export default defineComponent({
     // Heroes
 
     function goHeros() {
-      var api = "https://poyn6-dyaaa-aaaah-qcfzq-cai.raw.ic0.app/";
+      var api = 'https://poyn6-dyaaa-aaaah-qcfzq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[3].split(":");
-          let popp = arrs[11].split(":");
-          let popk = arrs[12].split(":");
-          let popm = arrs[13].split(":");
-          let popn = arrs[14].split(":");
-          arrOp["icon"] =
-            "https://poyn6-dyaaa-aaaah-qcfzq-cai.raw.ic0.app/?asset=22R&type=thumbnail";
-          arrOp["name"] = "Heroes";
-          arrOp["score"] = "86.4";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[3].split(':');
+          let popp = arrs[11].split(':');
+          let popk = arrs[12].split(':');
+          let popm = arrs[13].split(':');
+          let popn = arrs[14].split(':');
+          arrOp['icon'] =
+            'https://poyn6-dyaaa-aaaah-qcfzq-cai.raw.ic0.app/?asset=22R&type=thumbnail';
+          arrOp['name'] = 'Heroes';
+          arrOp['score'] = '86.4';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -627,26 +626,25 @@ export default defineComponent({
     // Dfinity Bulls
 
     function goBulls() {
-      var api = "https://dknxi-2iaaa-aaaah-qceuq-cai.raw.ic0.app/";
+      var api = 'https://dknxi-2iaaa-aaaah-qceuq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[4].split(":");
-          let popp = arrs[13].split(":");
-          let popk = arrs[14].split(":");
-          let popm = arrs[15].split(":");
-          let popn = arrs[16].split(":");
-          arrOp["icon"] =
-            "https://entrepot.app/collections/bulls/avatar.jpg";
-          arrOp["name"] = "Dfinity Bulls";
-          arrOp["score"] = "66.7";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[4].split(':');
+          let popp = arrs[13].split(':');
+          let popk = arrs[14].split(':');
+          let popm = arrs[15].split(':');
+          let popn = arrs[16].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/bulls/avatar.jpg';
+          arrOp['name'] = 'Dfinity Bulls';
+          arrOp['score'] = '66.7';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -656,27 +654,27 @@ export default defineComponent({
 
     // IC3D
 
-     function goBulls() {
-      var api = "https://nfvlz-jaaaa-aaaah-qcciq-cai.raw.ic0.app/";
+    function goBulls() {
+      var api = 'https://nfvlz-jaaaa-aaaah-qcciq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[3].split(":");
-          let popp = arrs[10].split(":");
-          let popk = arrs[11].split(":");
-          let popm = arrs[12].split(":");
-          let popn = arrs[13].split(":");
-          arrOp["icon"] =
-            "https://entrepot.app/collections/nfvlz-jaaaa-aaaah-qcciq-cai.jpg";
-          arrOp["name"] = "IC3D";
-          arrOp["score"] = "77.12";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[3].split(':');
+          let popp = arrs[10].split(':');
+          let popk = arrs[11].split(':');
+          let popm = arrs[12].split(':');
+          let popn = arrs[13].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/nfvlz-jaaaa-aaaah-qcciq-cai.jpg';
+          arrOp['name'] = 'IC3D';
+          arrOp['score'] = '77.12';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -687,26 +685,25 @@ export default defineComponent({
     // IC Flight
 
     function goFlight() {
-      var api = "https://dylar-wyaaa-aaaah-qcexq-cai.raw.ic0.app/";
+      var api = 'https://dylar-wyaaa-aaaah-qcexq-cai.raw.ic0.app/';
       axios
         .get(api)
         .then((res) => {
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
-          let popl = arrs[1].split(":");
-          let popp = arrs[2].split(":");
-          let popk = arrs[3].split(":");
-          let popm = arrs[4].split(":");
-          let popn = arrs[5].split(":");
-          arrOp["icon"] =
-            "https://entrepot.app/collections/flight/avatar.jpg";
-          arrOp["name"] = "Flight";
-          arrOp["score"] = "72.7";
-          arrOp["minted"] = popl[1].trim().replace("_", "");
-          arrOp["listings"] = popp[1].trim().replace("_", "");
-          arrOp["totalSales"] = popk[1].trim().replace("_", "");
-          arrOp["salesIcp"] = popm[1].trim().replace("_", "");
-          arrOp["averagePrice"] = popn[1].trim().replace("_", "");
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/flight/avatar.jpg';
+          arrOp['name'] = 'Flight';
+          arrOp['score'] = '72.7';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
           getIcpuzzleTotal.push(arrOp);
         })
         .catch((err) => {
@@ -714,9 +711,120 @@ export default defineComponent({
         });
     }
 
+    //ic art
 
+    function goArt() {
+      var api = 'https://vj752-6iaaa-aaaah-qcm6a-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/eq/avatar.jpg';
+          arrOp['name'] = 'Equanimity';
+          arrOp['score'] = '64.2';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
+    // ickitties
+    function goIckitties() {
+      var api = 'https://v3zkd-syaaa-aaaah-qcm5a-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[4].split(':');
+          let popp = arrs[13].split(':');
+          let popk = arrs[11].split(':');
+          let popm = arrs[15].split(':');
+          let popn = arrs[16].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/ickitties/avatar.jpg';
+          arrOp['name'] = 'Ickitties';
+          arrOp['score'] = '73.9';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
+    // icircle
+
+    function goIcircle() {
+      var api = 'https://z7mqv-liaaa-aaaah-qcnqa-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[3].split(':');
+          let popp = arrs[13].split(':');
+          let popk = arrs[10].split(':');
+          let popm = arrs[14].split(':');
+          let popn = arrs[15].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/icircle/avatar.jpg';
+          arrOp['name'] = 'Icircle';
+          arrOp['score'] = '83.2';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //cyman
+    function goCyman() {
+      var api = 'https://xphpx-xyaaa-aaaah-qcmta-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[4].split(':');
+          let popp = arrs[12].split(':');
+          let popk = arrs[10].split(':');
+          let popm = arrs[14].split(':');
+          let popn = arrs[15].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/cyman/avatar.jpg';
+          arrOp['name'] = 'Cyman';
+          arrOp['score'] = '83.2';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
     onMounted(() => {
       watchEffect(() => {
@@ -738,6 +846,10 @@ export default defineComponent({
         goHeros();
         goBulls();
         goFlight();
+        goArt();
+        goIckitties();
+        goIcircle();
+        goCyman();
         goPatternbased();
         goTylerdakota();
         goMotoko();
@@ -762,6 +874,10 @@ export default defineComponent({
       goHeros,
       goBulls,
       goFlight,
+      goArt,
+      goIckitties,
+      goIcircle,
+      goCyman,
       goIconic2021,
       goIcelebrity,
       goIcmojis,
@@ -774,10 +890,10 @@ export default defineComponent({
       goJumpAccount,
       goIctuts,
       goStarverse,
-      account: "",
-      goJump,
+      account: '',
+      goJump
     };
-  },
+  }
 });
 </script>
 
