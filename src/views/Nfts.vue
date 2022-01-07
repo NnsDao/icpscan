@@ -395,10 +395,10 @@ export default defineComponent({
           let arrOp = [];
           let arrs = res.data.split(/\r?\n/);
           let popl = arrs[8].split(':');
-          let popp = arrs[9].split(':');
-          let popk = arrs[10].split(':');
-          let popm = arrs[11].split(':');
-          let popn = arrs[12].split(':');
+          let popp = arrs[10].split(':');
+          let popk = arrs[11].split(':');
+          let popm = arrs[12].split(':');
+          let popn = arrs[13].split(':');
           arrOp['icon'] =
             'https://oeee4-qaaaa-aaaak-qaaeq-cai.raw.ic0.app/?tokenid=ceujj-dqkor-uwiaa-aaaaa-cuaab-eaqca-aabmu-q';
           arrOp['name'] = 'Motoko';
@@ -826,6 +826,36 @@ export default defineComponent({
         });
     }
 
+    // spaceapes
+
+    function goSpaceapes() {
+      var api = 'https://3mttv-dqaaa-aaaah-qcn6q-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[4].split(':');
+          let popp = arrs[13].split(':');
+          let popk = arrs[11].split(':');
+          let popm = arrs[15].split(':');
+          let popn = arrs[16].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/spaceapes/avatar.jpg';
+          arrOp['name'] = 'Spaceapes';
+          arrOp['score'] = '89.6';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
     onMounted(() => {
       watchEffect(() => {
         goStarverse();
@@ -850,6 +880,7 @@ export default defineComponent({
         goIckitties();
         goIcircle();
         goCyman();
+        goSpaceapes();
         goPatternbased();
         goTylerdakota();
         goMotoko();
@@ -878,6 +909,7 @@ export default defineComponent({
       goIckitties,
       goIcircle,
       goCyman,
+      goSpaceapes,
       goIconic2021,
       goIcelebrity,
       goIcmojis,
@@ -902,15 +934,7 @@ export default defineComponent({
   <main>
     <div>
       <div
-        class="
-          w-full
-          md:container md:mx-auto
-          mx-auto
-          relative
-          items-center
-          justify-center
-          bg-gray-600
-        "
+        class="w-full md:container md:mx-auto mx-auto relative items-center justify-center bg-gray-600"
       >
         <header class="bg-gray-600">
           <div class="max-w-7xl mx-left py-6 px-4 sm:px-6 lg:px-8">
@@ -933,16 +957,7 @@ export default defineComponent({
               </tr>
             </thead>
             <tbody
-              class="
-                bg-grey-light
-                flex flex-col
-                items-center
-                justify-between
-                w-full
-                text-white
-                divide-y divide-gray-400 divide-opacity-65
-                h-auto
-              "
+              class="bg-grey-light flex flex-col items-center justify-between w-full text-white divide-y divide-gray-400 divide-opacity-65 h-auto"
             >
               <tr
                 class="flex w-full pt-3 pb-3 text-center"
