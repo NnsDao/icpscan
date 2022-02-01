@@ -855,7 +855,92 @@ export default defineComponent({
           console.log(err);
         });
     }
+    // frog2d
 
+    function goFrog2d() {
+      var api = 'https://bkvll-jiaaa-aaaah-qcqnq-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/frog2d/2dAvatar.png';
+          arrOp['name'] = 'Frog2d';
+          arrOp['score'] = '59.6';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //btcflower
+    function goBtcflower() {
+      var api = 'https://pk6rk-6aaaa-aaaae-qaazq-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[3].split(':');
+          let popp = arrs[4].split(':');
+          let popk = arrs[5].split(':');
+          let popm = arrs[6].split(':');
+          let popn = arrs[7].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/btcflower/avatar.jpg';
+          arrOp['name'] = 'Btcflower';
+          arrOp['score'] = '79.2';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //memecake
+    function goMemecake() {
+      var api = 'https://txr2a-fqaaa-aaaah-qcmkq-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[3].split(':');
+          let popp = arrs[11].split(':');
+          let popk = arrs[12].split(':');
+          let popm = arrs[13].split(':');
+          let popn = arrs[14].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/mc/avatar.png';
+          arrOp['name'] = 'Memecake';
+          arrOp['score'] = '65.9';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     onMounted(() => {
       watchEffect(() => {
         goStarverse();
@@ -881,6 +966,9 @@ export default defineComponent({
         goIcircle();
         goCyman();
         goSpaceapes();
+        goFrog2d();
+        goBtcflower();
+        goMemecake();
         goPatternbased();
         goTylerdakota();
         goMotoko();
@@ -910,6 +998,9 @@ export default defineComponent({
       goIcircle,
       goCyman,
       goSpaceapes,
+      goFrog2d,
+      goMemecake,
+      goBtcflower,
       goIconic2021,
       goIcelebrity,
       goIcmojis,
