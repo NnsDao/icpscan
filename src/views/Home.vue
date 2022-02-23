@@ -153,10 +153,11 @@ export default defineComponent({
 
     // price  交易总量
     const fetchPrice = async () => {
-      const data = await fetch(`https://ic.rocks/api/markets`).then((rsp) =>
-        rsp.json()
-      );
-      priceData.ticker = data.ticker;
+      const data = await fetch(
+        `https://data.messari.io/api/v1/assets/icp/metrics/market-data`
+      ).then((rsp) => rsp.json());
+      console.log(data.data.market_data, 82828282828);
+      priceData.ticker = data.data.market_data;
     };
 
     // const queryData = reactive({
@@ -418,14 +419,7 @@ export default defineComponent({
             width="20"
             height="20"
             fill="currentColor"
-            class="
-              absolute
-              left-3
-              top-1/2
-              transform
-              -translate-y-1/2
-              text-gray-400
-            "
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
           >
             <path
               fill-rule="evenodd"
@@ -434,20 +428,7 @@ export default defineComponent({
             />
           </svg>
           <input
-            class="
-              focus:border-light-blue-500
-              focus:ring-1
-              focus:ring-light-blue-500
-              focus:outline-none
-              w-6/12
-              text-sm text-black
-              placeholder-gray-500
-              border border-gray-200
-              rounded-md
-              py-2
-              pl-10
-              mr-20
-            "
+            class="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-6/12 text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-10 mr-20"
             v-model="account"
             type="text"
             aria-label=" Search by Account / Transaction "
@@ -455,19 +436,7 @@ export default defineComponent({
           />
           <button
             @click="goSearch()"
-            class="
-              bg-indigo-500
-              px-5
-              py-3
-              text-sm
-              shadow-sm
-              font-medium
-              tracking-wider
-              border
-              text-indigo-100
-              rounded-full
-              hover:shadow-lg hover:bg-indigo-400
-            "
+            class="bg-indigo-500 px-5 py-3 text-sm shadow-sm font-medium tracking-wider border text-indigo-100 rounded-full hover:shadow-lg hover:bg-indigo-400"
           >
             {{ t('iSearch') }}
           </button>
@@ -487,17 +456,7 @@ export default defineComponent({
             <div class="relative" v-for="b in blockData" :key="b.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/dfinity-logo.png"
@@ -517,17 +476,7 @@ export default defineComponent({
             <div class="relative" v-for="n in rateData" :key="n.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-500
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"
                 >
                   <img
                     src="/img/speed.jpeg"
@@ -547,17 +496,7 @@ export default defineComponent({
             <div class="relative" v-for="n in proposalslData" :key="n">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/canister.png"
@@ -577,17 +516,7 @@ export default defineComponent({
             <div class="relative" v-for="n in totalData" :key="n.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-700
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-700 text-white"
                 >
                   <img
                     src="/img/total.png"
@@ -607,17 +536,7 @@ export default defineComponent({
             <div class="relative" v-for="n in messageCountData" :key="n.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/cmessage.png"
@@ -637,17 +556,7 @@ export default defineComponent({
             <div class="relative" v-for="n in messageData" :key="n.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/message.png"
@@ -667,17 +576,7 @@ export default defineComponent({
             <div class="relative" v-for="n in canData" :key="n.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/motoko.jpeg"
@@ -697,17 +596,7 @@ export default defineComponent({
             <div class="relative" v-for="n in nodeData" :key="n.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/node.png"
@@ -729,17 +618,7 @@ export default defineComponent({
             <div class="relative" v-for="i in priceData" :key="i.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/dfinity-logo.png"
@@ -748,7 +627,7 @@ export default defineComponent({
                   />
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-red-500">
-                  {{ toThousands(i['price']) }}
+                  {{ toThousands(i['price_usd']) }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -759,17 +638,7 @@ export default defineComponent({
             <div class="relative" v-for="i in priceData" :key="i.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/dfinity-logo.png"
@@ -778,7 +647,7 @@ export default defineComponent({
                   />
                 </div>
                 <p class="ml-16 text-lg leading-6 font-medium text-red-500">
-                  {{ i['rank'] }}
+                  {{ toThousands(i['volume_last_24_hours']) }}
                 </p>
               </dt>
               <dd class="mt-2 ml-16 text-base text-gray-500">
@@ -789,17 +658,7 @@ export default defineComponent({
             <div class="relative" v-for="i in texasAccount" :key="i.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/texas-logo.png"
@@ -819,17 +678,7 @@ export default defineComponent({
             <div class="relative" v-for="i in getDripUserTotal" :key="i.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/dscvr-one-drip.png"
@@ -850,17 +699,7 @@ export default defineComponent({
             <div class="relative" v-for="i in getTokenListTotal" :key="i.key">
               <dt>
                 <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-indigo-50
-                    text-white
-                  "
+                  class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-50 text-white"
                 >
                   <img
                     src="/img/nnsdao-logo-1024.png"
@@ -891,54 +730,22 @@ export default defineComponent({
                 <thead>
                   <tr>
                     <th
-                      class="
-                        px-6
-                        py-3
-                        border-b-2 border-gray-300
-                        text-left
-                        leading-4
-                        text-blue-500
-                        tracking-wider
-                      "
+                      class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider"
                     >
                       {{ t('iTransferHash') }}
                     </th>
                     <th
-                      class="
-                        px-6
-                        py-3
-                        border-b-2 border-gray-300
-                        text-left text-sm
-                        leading-4
-                        text-blue-500
-                        tracking-wider
-                      "
+                      class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
                     >
                       {{ t('iBlockHeight') }}
                     </th>
                     <th
-                      class="
-                        px-6
-                        py-3
-                        border-b-2 border-gray-300
-                        text-left text-sm
-                        leading-4
-                        text-blue-500
-                        tracking-wider
-                      "
+                      class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
                     >
                       {{ t('iTransferStatus') }}
                     </th>
                     <th
-                      class="
-                        px-6
-                        py-3
-                        border-b-2 border-gray-300
-                        text-left text-sm
-                        leading-4
-                        text-blue-500
-                        tracking-wider
-                      "
+                      class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"
                     >
                       {{ t('iTransferToken') }}
                     </th>
@@ -960,12 +767,7 @@ export default defineComponent({
                 <tbody class="bg-white divide-y divide-gray-100">
                   <tr v-for="person in list" :key="person.Id">
                     <td
-                      class="
-                        py-4
-                        whitespace-nowrap
-                        cursor-pointer
-                        hover:underline
-                      "
+                      class="py-4 whitespace-nowrap cursor-pointer hover:underline"
                       @click="goJump(person.Tranidentifier)"
                     >
                       <div class="flex items-center">
@@ -998,44 +800,20 @@ export default defineComponent({
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <span
-                        class="
-                          px-2
-                          inline-flex
-                          text-xs
-                          leading-5
-                          font-semibold
-                          rounded-full
-                          bg-green-100
-                          text-green-800
-                        "
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                         v-if="person.Ostatus == 'COMPLETED'"
                       >
                         {{ t('iOstatusSuccess') }}
                       </span>
                       <span
-                        class="
-                          px-2
-                          inline-flex
-                          text-xs
-                          leading-5
-                          font-semibold
-                          rounded-full
-                          bg-green-100
-                          text-red-800
-                        "
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-red-800"
                         v-else
                       >
                         {{ t('iOstatusFail') }}</span
                       >
                     </td>
                     <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-left text-sm
-                        font-medium
-                      "
+                      class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium"
                     >
                       <a class="text-indigo-600 hover:text-indigo-900">{{
                         new Decimal(person.Osum)

@@ -60,16 +60,15 @@
     <div class="border-t-2 mx-10 border-gray-500"></div>
 
     <div class="py-4 px-16 flex justify-between">
-      <div>
-        <h1 class="font-semibold text-white text-sm">
-          NnsDAO Labs Limited © 2022
-        </h1>
-
-        <p class="font-semibold text-sm my-3 text-blue-500">
-          <a href="https://docs.nnsdao.org/docs/nomos/join-contributing"
-            >DAOs Contributing Guide</a
-          >
-        </p>
+      <div class="flex flex-row">
+        <div class="flex-shrink-0 mr-3 opacity-70">
+          <img src="/img/ic-badge-powered.png" width="120px" alt="" />
+        </div>
+        <div>
+          <div class="text-xl font-medium text-white">
+            NnsDAO Labs Limited © 2022
+          </div>
+        </div>
         <!-- <p class="font-semibold text-white text-sm my-3"> {{ t('iNnsDaoSponsor') }}</p> -->
       </div>
 

@@ -941,6 +941,177 @@ export default defineComponent({
           console.log(err);
         });
     }
+    //ogmedals
+    function goOgmedals() {
+      var api = 'https://rw623-hyaaa-aaaah-qctcq-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[1].split(':');
+          let popp = arrs[2].split(':');
+          let popk = arrs[3].split(':');
+          let popm = arrs[4].split(':');
+          let popn = arrs[5].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/ogmedals/avatar.jpg';
+          arrOp['name'] = 'Ogmedals';
+          arrOp['score'] = '88.21';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //dfinitydeck
+    function goDfinitydeck() {
+      var api = 'https://mk3kn-pyaaa-aaaah-qcoda-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[4].split(':');
+          let popp = arrs[10].split(':');
+          let popk = arrs[11].split(':');
+          let popm = arrs[12].split(':');
+          let popn = arrs[13].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/dd/avatar.jpg';
+          arrOp['name'] = 'Dfinitydeck';
+          arrOp['score'] = '78.44';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //frogvoxel
+    function goFrogvoxel() {
+      var api = 'https://erpx2-pyaaa-aaaah-qcqsq-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[3].split(':');
+          let popp = arrs[12].split(':');
+          let popk = arrs[13].split(':');
+          let popm = arrs[14].split(':');
+          let popn = arrs[15].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/frog2d/VoxelAvatar.png';
+          arrOp['name'] = 'Frogvoxel';
+          arrOp['score'] = '65.78';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // frog3d
+    function goFrog3d() {
+      var api = 'https://xcep7-sqaaa-aaaah-qcukq-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[3].split(':');
+          let popp = arrs[12].split(':');
+          let popk = arrs[13].split(':');
+          let popm = arrs[14].split(':');
+          let popn = arrs[15].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/frog3d/avatar.png';
+          arrOp['name'] = 'Frog3d';
+          arrOp['score'] = '89.72';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    // saga
+    function goSaga() {
+      var api = 'https://nges7-giaaa-aaaaj-qaiya-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[2].split(':');
+          let popp = arrs[5].split(':');
+          let popk = arrs[6].split(':');
+          let popm = arrs[7].split(':');
+          let popn = arrs[10].split(':');
+          arrOp['icon'] = 'https://entrepot.app/collections/saga/avatar.jpg';
+          arrOp['name'] = 'Saga Legends';
+          arrOp['score'] = '92.12';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '') / 10000000;
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '') / 100000000;
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //tranquillity
+
+    function goTranquillity() {
+      var api = 'https://t2eok-gyaaa-aaaah-qclwq-cai.raw.ic0.app/';
+      axios
+        .get(api)
+        .then((res) => {
+          let arrOp = [];
+          let arrs = res.data.split(/\r?\n/);
+          let popl = arrs[4].split(':');
+          let popp = arrs[11].split(':');
+          let popk = arrs[12].split(':');
+          let popm = arrs[13].split(':');
+          let popn = arrs[14].split(':');
+          arrOp['icon'] =
+            'https://entrepot.app/collections/tranquillity/avatar.jpg';
+          arrOp['name'] = 'Tranquillity';
+          arrOp['score'] = '97.7';
+          arrOp['minted'] = popl[1].trim().replace('_', '');
+          arrOp['listings'] = popp[1].trim().replace('_', '');
+          arrOp['totalSales'] = popk[1].trim().replace('_', '');
+          arrOp['salesIcp'] = popm[1].trim().replace('_', '');
+          arrOp['averagePrice'] = popn[1].trim().replace('_', '');
+          getIcpuzzleTotal.push(arrOp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
     onMounted(() => {
       watchEffect(() => {
         goStarverse();
@@ -969,6 +1140,12 @@ export default defineComponent({
         goFrog2d();
         goBtcflower();
         goMemecake();
+        goOgmedals();
+        goDfinitydeck();
+        goFrogvoxel();
+        goFrog3d();
+        goSaga();
+        goTranquillity();
         goPatternbased();
         goTylerdakota();
         goMotoko();
@@ -1000,6 +1177,12 @@ export default defineComponent({
       goSpaceapes,
       goFrog2d,
       goMemecake,
+      goOgmedals,
+      goDfinitydeck,
+      goFrogvoxel,
+      goFrog3d,
+      goSaga,
+      goTranquillity,
       goBtcflower,
       goIconic2021,
       goIcelebrity,
