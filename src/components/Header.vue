@@ -1,42 +1,24 @@
- 
- <template>
+<template>
   <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-2 sm:px-8 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
           <DisclosureButton
-            class="
-              inline-flex
-              items-center
-              justify-center
-              p-2
-              rounded-md
-              text-gray-400
-              hover:text-white
-              hover:bg-gray-700
-              focus:outline-none
-              focus:ring-2 focus:ring-inset focus:ring-white
-            "
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span class="sr-only">Open main menu</span>
             <MenuIcon v-show="open" class="block h-6 w-6" aria-hidden="true" />
             <XIcon v-show="open" class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
         </div>
-        <div
-          class="
-            flex-1 flex
-            sm:items-stretch
-            sm:justify-start
-          "
-        >
-          <div class="flex-shrink-0 flex  mr-7">
+        <div class="flex-1 flex sm:items-stretch sm:justify-start">
+          <div class="flex-shrink-0 flex mr-7">
             <a href="/">
               <p class="text-3xl text-white">Icpscan</p>
             </a>
           </div>
-          <div  class="lg:hidden sm:block sm:ml-6">
+          <div class="lg:hidden sm:block sm:ml-6">
             <div class="flex flex-wrap space-x-4">
               <a
                 v-for="(item, i) in navigation"
@@ -46,7 +28,7 @@
                   item.current
                     ? 'bg-gray-900 text-white'
                     : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                  'px-3 py-2 rounded-md text-sm font-medium',
+                  'px-3 py-2 rounded-md text-sm font-medium'
                 ]"
                 :aria-current="item.current ? 'page' : undefined"
                 >{{ item.name }}</a
@@ -55,18 +37,7 @@
           </div>
         </div>
         <div
-          class="
-            absolute
-            inset-y-0
-            right-0
-            flex
-            items-center
-            pr-2
-            sm:static
-            sm:inset-auto
-            sm:ml-6
-            sm:pr-0
-          "
+          class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
           <div class="relative inline-flex">
             <svg
@@ -83,18 +54,7 @@
             <select
               v-model="locale"
               @change="getTypeSelected"
-              class="
-                border border-gray-300
-                rounded-full
-                text-gray-600
-                h-10
-                pl-5
-                pr-10
-                bg-white
-                hover:border-gray-400
-                focus:outline-none
-                appearance-none
-              "
+              class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
             >
               <option
                 v-for="items in localeSelect"
@@ -123,24 +83,12 @@
             <BellIcon class="h-6 w-6" aria-hidden="true" />
           </button> -->
           <!-- login -->
-           
+
           <div class="w-32 mr-10 ...">
             <Login
-              class="
-                text-gray-300
-                hover:bg-gray-700
-                hover:text-white
-                block
-                px-3
-                py-2
-                rounded-md
-                text-base
-                font-medium
-                truncate
-              "
+              class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium truncate"
             />
           </div>
-        
         </div>
       </div>
     </div>
@@ -155,23 +103,13 @@
             item.current
               ? 'bg-gray-900 text-white'
               : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-            'block px-3 py-2 rounded-md text-base font-medium',
+            'block px-3 py-2 rounded-md text-base font-medium'
           ]"
           :aria-current="item.current ? 'page' : undefined"
           >{{ item.name }}</a
         >
         <Login
-          class="
-            text-gray-300
-            hover:bg-gray-700
-            hover:text-white
-            block
-            px-3
-            py-2
-            rounded-md
-            text-base
-            font-medium
-          "
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         />
       </div>
     </DisclosurePanel>
@@ -179,7 +117,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue';
 import {
   Disclosure,
   DisclosureButton,
@@ -187,116 +125,116 @@ import {
   Menu,
   MenuButton,
   MenuItem,
-  MenuItems,
-} from "@headlessui/vue";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
+  MenuItems
+} from '@headlessui/vue';
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/vue/outline';
 
-import Login from "@/components/Login.vue";
+import Login from '@/components/Login.vue';
 
 // i18n
 
-import defaultData from "../config/default-data";
-import { SETLOCALE } from "@/language";
+import defaultData from '../config/default-data';
+import { SETLOCALE } from '@/language';
 
-let locale = "";
+let locale = '';
 
-if (defaultData.locale === "zh-TW") {
-  locale = "zh-TW";
-} else if (defaultData.locale === "ja-JP") {
-  locale = "ja-JP";
-} else if (defaultData.locale === "ko-KR") {
-  locale = "ko-KR";
-} else if (defaultData.locale === "en-US") {
-  locale = "en-US";
-} else if (defaultData.locale === "tl-SW") {
-  locale = "tl-SW";
+if (defaultData.locale === 'zh-TW') {
+  locale = 'zh-TW';
+} else if (defaultData.locale === 'ja-JP') {
+  locale = 'ja-JP';
+} else if (defaultData.locale === 'ko-KR') {
+  locale = 'ko-KR';
+} else if (defaultData.locale === 'en-US') {
+  locale = 'en-US';
+} else if (defaultData.locale === 'tl-SW') {
+  locale = 'tl-SW';
 }
 
 let navigation = [
-  { name: "Home", href: "/", current: false },
-  { name: "Rank", href: "/rank", current: false },
-  { name: "Canisters", href: "/canisters", current: false },
-  { name: "Subnet", href: "/subnet", current: false },
-  { name: "Principal", href: "/principals", current: false },
-  { name: "NFTs", href: "/nfts", current: false },
-  { name: "Project", href: "/project", current: false },
-  { name: "Node Map", href: "/chart", current: false },
-  { name: "Chart", href: "/line", current: false },
+  { name: 'Home', href: '/', current: false },
+  { name: 'Rank', href: '/rank', current: false },
+  // { name: "Canisters", href: "/canisters", current: false },
+  { name: 'Subnet', href: '/subnet', current: false },
+  // { name: "Principal", href: "/principals", current: false },
+  { name: 'NFTs', href: '/nfts', current: false },
+  { name: 'Project', href: '/project', current: false },
+  { name: 'Node Map', href: '/chart', current: false },
+  { name: 'Chart', href: '/line', current: false }
 ];
 
-if (locale == "zh-TW") {
+if (locale == 'zh-TW') {
   navigation = [
-    { name: "首頁", href: "/", current: false },
-    { name: "排行", href: "/rank", current: false },
-    { name: "罐", href: "/canisters", current: false },
-    { name: "子網", href: "/subnet", current: false },
-    { name: "校長", href: "/principals", current: false },
-    { name: "治理", href: "/neurons", current: false },
-    { name: "NFTs", href: "/nfts", current: false },
-    { name: "應用", href: "/project", current: false },
-    { name: "節點地圖", href: "/chart", current: false },
+    { name: '首頁', href: '/', current: false },
+    { name: '排行', href: '/rank', current: false },
+    // { name: "罐", href: "/canisters", current: false },
+    { name: '子網', href: '/subnet', current: false },
+    // { name: "校長", href: "/principals", current: false },
+    // { name: "治理", href: "/neurons", current: false },
+    { name: 'NFTs', href: '/nfts', current: false },
+    { name: '應用', href: '/project', current: false },
+    { name: '節點地圖', href: '/chart', current: false },
     {
-      name: "圖表",
-      href: "/line",
-      current: false,
-    },
+      name: '圖表',
+      href: '/line',
+      current: false
+    }
   ];
 }
 
-if (locale == "tl-SW") {
+if (locale == 'tl-SW') {
   navigation = [
-    { name: "Nyumbani", href: "/", current: false },
-    { name: "Cheo", href: "/rank", current: false },
-    { name: "Canister", href: "/canisters", current: false },
-    { name: "Subnet", href: "/subnet", current: false },
-    { name: "wakuu", href: "/principals", current: false },
-    { name: "Neva", href: "/neurons", current: false },
-    { name: "NFTs", href: "/nfts", current: false },
-    { name: "Mradi", href: "/project", current: false },
-    { name: "Chati", href: "/chart", current: false },
+    { name: 'Nyumbani', href: '/', current: false },
+    { name: 'Cheo', href: '/rank', current: false },
+    // { name: "Canister", href: "/canisters", current: false },
+    { name: 'Subnet', href: '/subnet', current: false },
+    // { name: "wakuu", href: "/principals", current: false },
+    // { name: "Neva", href: "/neurons", current: false },
+    { name: 'NFTs', href: '/nfts', current: false },
+    { name: 'Mradi', href: '/project', current: false },
+    { name: 'Chati', href: '/chart', current: false },
     {
-      name: "Mstari",
-      href: "/line",
-      current: false,
-    },
+      name: 'Mstari',
+      href: '/line',
+      current: false
+    }
   ];
 }
 
-if (locale == "ko-KR") {
+if (locale == 'ko-KR') {
   navigation = [
-    { name: "홈페이지", href: "/", current: false },
-    { name: "순위", href: "/rank", current: false },
-    { name: "탱크", href: "/canisters", current: false },
-    { name: "서브넷", href: "/subnet", current: false },
-    { name: "교장", href: "/principals", current: false },
-    { name: "뉴런", href: "/neurons", current: false },
-    { name: "NFTs", href: "/nfts", current: false },
-    { name: "계획", href: "/project", current: false },
-    { name: "노드 맵", href: "/chart", current: false },
+    { name: '홈페이지', href: '/', current: false },
+    { name: '순위', href: '/rank', current: false },
+    // { name: "탱크", href: "/canisters", current: false },
+    // { name: "서브넷", href: "/subnet", current: false },
+    { name: '교장', href: '/principals', current: false },
+    // { name: "뉴런", href: "/neurons", current: false },
+    { name: 'NFTs', href: '/nfts', current: false },
+    { name: '계획', href: '/project', current: false },
+    { name: '노드 맵', href: '/chart', current: false },
     {
-      name: "차트",
-      href: "/line",
-      current: false,
-    },
+      name: '차트',
+      href: '/line',
+      current: false
+    }
   ];
 }
 
-if (locale == "ja-JP") {
+if (locale == 'ja-JP') {
   navigation = [
-    { name: "フロントページ", href: "/", current: false },
-    { name: "ランキング", href: "/rank", current: false },
-    { name: "タンク", href: "/canisters", current: false },
-    { name: "サブネット", href: "/subnet", current: false },
-    { name: "主要な", href: "/principals", current: false },
-    { name: "ニューロン", href: "/neurons", current: false },
-    { name: "NFTs", href: "/nfts", current: false },
-    { name: "応用", href: "/project", current: false },
-    { name: "ノードマップ", href: "/chart", current: false },
+    { name: 'フロントページ', href: '/', current: false },
+    { name: 'ランキング', href: '/rank', current: false },
+    // { name: "タンク", href: "/canisters", current: false },
+    // { name: "サブネット", href: "/subnet", current: false },
+    { name: '主要な', href: '/principals', current: false },
+    // { name: "ニューロン", href: "/neurons", current: false },
+    { name: 'NFTs', href: '/nfts', current: false },
+    { name: '応用', href: '/project', current: false },
+    { name: 'ノードマップ', href: '/chart', current: false },
     {
-      name: "チャート",
-      href: "/line",
-      current: false,
-    },
+      name: 'チャート',
+      href: '/line',
+      current: false
+    }
   ];
 }
 
@@ -312,7 +250,7 @@ export default {
     BellIcon,
     MenuIcon,
     XIcon,
-    Login,
+    Login
   },
   setup() {
     const open = ref(true);
@@ -321,21 +259,20 @@ export default {
     // let locale = defaultData.locale;
     const localeSelect = defaultData.localeSelect;
 
-    console.log(open,989898)
+    console.log(open, 989898);
 
     return {
       navigation,
       open,
       localeSelect,
-      locale,
+      locale
     };
   },
   methods: {
     getTypeSelected() {
       //获取选中的违规类型
       SETLOCALE(this.locale);
-    },
-  },
+    }
+  }
 };
 </script>
-

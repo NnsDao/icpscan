@@ -386,7 +386,7 @@ export default defineComponent({
         clearInterval(that.timer);
       }
       that.testTime();
-    }, 3000);
+    }, 6000);
   },
   beforeUnmount() {
     //clear timer
